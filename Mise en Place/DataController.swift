@@ -46,13 +46,13 @@ class DataController: ObservableObject {
                 recipe.servings = Double(Int.random(in: 1...3))
                 recipe.creationDate = .now
                 recipe.difficulty = Int16(Int.random(in: 0...2))
-                recipe.recipeDescription = "This sure is a recipe"
+                recipe.recipeInformation = "This sure is a recipe"
                 tag.addToRecipes(recipe)
 
                 for k in 1...5 {
                     let ingredient = Ingredient(context: viewContext)
                     let unitNames = ["grams", "ounces", "mililitters"]
-                    ingredient.massUnit = "grams"
+                    ingredient.massUnit = unitNames[Int.random(in: 0...2)]
                     ingredient.massValue = Double(Int.random(in: 1...100))
                     ingredient.name = "Ingredient \(k) for recipe \(j)"
                     recipe.addToIngredients(ingredient)

@@ -16,6 +16,10 @@
 		CC8D52D02A9D5EA1000C99DD /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D52CF2A9D5EA1000C99DD /* SidebarView.swift */; };
 		CC8D52D22A9D5EAF000C99DD /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D52D12A9D5EAF000C99DD /* DetailView.swift */; };
 		CC8D52D42A9D60A9000C99DD /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D52D32A9D60A9000C99DD /* Filter.swift */; };
+		CCC94E992AA69B750072473F /* Recipe-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC94E982AA69B750072473F /* Recipe-CoreDataHelpers.swift */; };
+		CCDF32802AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF327F2AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift */; };
+		CCDF32822AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF32812AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift */; };
+		CCDF32842AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF32832AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,10 @@
 		CC8D52CF2A9D5EA1000C99DD /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		CC8D52D12A9D5EAF000C99DD /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		CC8D52D32A9D60A9000C99DD /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		CCC94E982AA69B750072473F /* Recipe-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		CCDF327F2AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		CCDF32812AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		CCDF32832AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Step-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +78,9 @@
 				CC8D52BC2A9C0246000C99DD /* ContentView.swift */,
 				CC8D52CF2A9D5EA1000C99DD /* SidebarView.swift */,
 				CC8D52D12A9D5EAF000C99DD /* DetailView.swift */,
-				CC8D52BE2A9C0247000C99DD /* Assets.xcassets */,
+				CCDF32852AA6BF13008C4AE9 /* CoreDataHelpers */,
 				CC8D52C92A9C03D4000C99DD /* Main.xcdatamodeld */,
+				CC8D52BE2A9C0247000C99DD /* Assets.xcassets */,
 				CC8D52C02A9C0247000C99DD /* Mise_en_Place.entitlements */,
 				CC8D52C12A9C0247000C99DD /* Preview Content */,
 			);
@@ -84,6 +93,17 @@
 				CC8D52C22A9C0247000C99DD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CCDF32852AA6BF13008C4AE9 /* CoreDataHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				CCC94E982AA69B750072473F /* Recipe-CoreDataHelpers.swift */,
+				CCDF327F2AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift */,
+				CCDF32832AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift */,
+				CCDF32812AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift */,
+			);
+			path = CoreDataHelpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,9 +177,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC8D52D42A9D60A9000C99DD /* Filter.swift in Sources */,
+				CCDF32802AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift in Sources */,
 				CC8D52CB2A9C03D4000C99DD /* Main.xcdatamodeld in Sources */,
+				CCC94E992AA69B750072473F /* Recipe-CoreDataHelpers.swift in Sources */,
+				CCDF32822AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift in Sources */,
 				CC8D52D22A9D5EAF000C99DD /* DetailView.swift in Sources */,
 				CC8D52CD2A9C0C47000C99DD /* DataController.swift in Sources */,
+				CCDF32842AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift in Sources */,
 				CC8D52D02A9D5EA1000C99DD /* SidebarView.swift in Sources */,
 				CC8D52BD2A9C0246000C99DD /* ContentView.swift in Sources */,
 				CC8D52BB2A9C0246000C99DD /* Mise_en_PlaceApp.swift in Sources */,
