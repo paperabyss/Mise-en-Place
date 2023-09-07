@@ -37,7 +37,7 @@ extension Step: Comparable {
         if left == right {
             return lhs.stepID.uuidString < rhs.stepID.uuidString
         } else {
-            return lhs < rhs
+            return left < right
         }
     }
 }

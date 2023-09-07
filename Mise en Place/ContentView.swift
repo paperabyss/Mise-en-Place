@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Content View")
+    @EnvironmentObject var dataController: DataController
+
+    var recipes: [Recipe] {
+        let filter = dataController.selectedFilter ?? .all
+        var allRecipes: [Recipe]
+
+        if let tag = filter.tag {
+            allRecipes = tag.recipes?.allObjects as? [Recipe] ?? []
+        } else {
+            let request = Recipe.fetchRequest()
+            request.predicate = NSPredicate(format: "lastMade > %@", filter.lastMade as NSDate)
+            allRecipes = (try? dataController.container.viewContext.fetch(request)) ?? []
         }
-        .padding()
+        return allRecipes.sorted()
+    }
+
+    var body: some View {
+        List {
+            ForEach(recipes) { recipe in
+                Text(recipe.recipeTitle)
+            }
+        }
+        Text("nsjfnsjfn")
     }
 }
 

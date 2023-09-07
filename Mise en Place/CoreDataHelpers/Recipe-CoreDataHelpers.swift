@@ -64,7 +64,7 @@ extension Recipe: Comparable {
         if left == right {
             return lhs.recipeCreationDate < rhs.recipeCreationDate
         } else {
-            return lhs < rhs
+            return left < right
         }
     }
 }

@@ -22,10 +22,10 @@ extension Ingredient {
         set { massUnit = newValue}
     }
 
-//    var ingredientRecipes: [Recipe] {
-//        let result = recipes?.allObjects as? [Recipe] ?? []
-//        return result.sorted()
-//    }
+    var ingredientRecipes: [Recipe] {
+        let result = recipes?.allObjects as? [Recipe] ?? []
+        return result.sorted()
+    }
 
     static var example: Ingredient {
         let controller = DataController(inMemory: true)
@@ -47,7 +47,7 @@ extension Ingredient: Comparable {
         if left == right {
             return lhs.ingredientID.uuidString < rhs.ingredientID.uuidString
         } else {
-            return lhs < rhs
+            return left < right
         }
     }
 }
