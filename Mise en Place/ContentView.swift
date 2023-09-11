@@ -29,8 +29,16 @@ struct ContentView: View {
             ForEach(recipes) { recipe in
                 Text(recipe.recipeTitle)
             }
+            .onDelete(perform: delete)
         }
-        Text("nsjfnsjfn")
+        .navigationTitle("Recipes")
+    }
+
+    func delete(_ offsets: IndexSet){
+        for offset in offsets {
+            let item = recipes[offset]
+            dataController.delete(item)
+        }
     }
 }
 
