@@ -16,21 +16,24 @@ struct ContentView: View {
 
         if let tag = filter.tag {
             allRecipes = tag.recipes?.allObjects as? [Recipe] ?? []
-        } else {
+        }
+        else {
             let request = Recipe.fetchRequest()
-            request.predicate = NSPredicate(format: "lastMade > %@", filter.lastMade as NSDate)
+            request.predicate = NSPredicate(format: "lastMade > %@", filter.minLastMade as NSDate)
+
             allRecipes = (try? dataController.container.viewContext.fetch(request)) ?? []
         }
         return allRecipes.sorted()
     }
 
     var body: some View {
-        List {
-            ForEach(recipes) { recipe in
-                Text(recipe.recipeTitle)
-            }
-            .onDelete(perform: delete)
-        }
+        RecipeListView(recipes: recipes)
+//        List {
+//            ForEach(recipes) { recipe in
+//                Text(recipe.recipeTitle)
+//            }
+//            .onDelete(perform: delete)
+//        }
         .navigationTitle("Recipes")
     }
 

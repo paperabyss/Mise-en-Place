@@ -47,6 +47,7 @@ struct SidebarView: View {
                 Label("ADD SAMPLE DATA", systemImage: "flame")
             }
         }
+        .navigationTitle("Filters")
     }
 
     func delete(_ offsets: IndexSet) {

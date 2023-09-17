@@ -11,11 +11,19 @@ struct Filter: Identifiable, Hashable {
     var id: UUID
     var name: String
     var icon: String
-    var lastMade = Date.distantPast
+    var minLastMade = Date.distantPast
     var tag: Tag?
 
-    static var all = Filter(id: UUID(), name: "All Recipes", icon: "tray")
-    static var recent = Filter(id: UUID(), name: "Recently Made Recipes", icon: "clock", lastMade: .now.addingTimeInterval(86400 * -14))
+    static var all = Filter(
+        id: UUID(),
+        name: "All Recipes",
+        icon: "tray"
+    )
+    static var recent = Filter(
+        id: UUID(),
+        name: "Recently Made Recipes",
+        icon: "clock",
+        minLastMade: .now.addingTimeInterval(86400 * -14))
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

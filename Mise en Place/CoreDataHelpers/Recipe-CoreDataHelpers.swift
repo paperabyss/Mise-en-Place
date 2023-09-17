@@ -41,6 +41,22 @@ extension Recipe {
         return result.sorted()
     }
 
+    var difficultyString: String {
+        switch difficulty{
+        case 0:
+            return "Easy"
+
+        case 1:
+            return "Medium"
+
+        case 2:
+            return "Hard"
+
+        default:
+            return ""
+        }
+    }
+
     static var example: Recipe {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext

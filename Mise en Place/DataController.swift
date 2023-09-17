@@ -11,6 +11,7 @@ class DataController: ObservableObject {
     let container: NSPersistentCloudKitContainer
 
     @Published var selectedFilter: Filter? = Filter.all
+    @Published var selectedRecipe: Recipe? 
 
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
@@ -58,6 +59,7 @@ class DataController: ObservableObject {
                 recipe.creationDate = .now
                 recipe.difficulty = Int16(Int.random(in: 0...2))
                 recipe.recipeInformation = "This sure is a recipe"
+                recipe.lastMade = .now
                 tag.addToRecipes(recipe)
 
                 for k in 1...5 {
