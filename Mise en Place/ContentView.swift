@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var dataController: DataController
+    @State private var viewToggle = false
 
     var recipes: [Recipe] {
         let filter = dataController.selectedFilter ?? .all
@@ -27,14 +28,19 @@ struct ContentView: View {
     }
 
     var body: some View {
-        RecipeListView(recipes: recipes)
-//        List {
-//            ForEach(recipes) { recipe in
-//                Text(recipe.recipeTitle)
-//            }
-//            .onDelete(perform: delete)
-//        }
+        Group {
+            if viewToggle {
+                RecipeListView(recipes: recipes)
+            } else {
+                RecipeGridView(recipes: recipes)
+            }
+        }
         .navigationTitle("Recipes")
+        .toolbar {
+            Button("Switch Layout") {
+                viewToggle.toggle()
+            }
+        }
     }
 
     func delete(_ offsets: IndexSet){
