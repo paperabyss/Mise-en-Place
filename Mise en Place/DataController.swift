@@ -70,6 +70,13 @@ class DataController: ObservableObject {
                     ingredient.name = "Ingredient \(k) for recipe \(j)"
                     recipe.addToIngredients(ingredient)
                 }
+
+                for l in 1...5 {
+                    let step = Step(context: viewContext)
+                    step.number = Int16(l)
+                    step.instruction = "Example Instructions"
+                    recipe.addToSteps(step)
+                }
             }
         }
 
