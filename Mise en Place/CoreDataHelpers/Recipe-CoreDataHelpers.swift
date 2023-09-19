@@ -41,7 +41,7 @@ extension Recipe {
         return result.sorted()
     }
 
-    var difficultyString: String {
+    var recipeDifficultyString: String {
         switch difficulty{
         case 0:
             return "Easy"
@@ -55,6 +55,24 @@ extension Recipe {
         default:
             return ""
         }
+    }
+
+    var recipeServings: String {
+        return "\(String(format: "%g", servings)) servings"
+    }
+
+    var recipeTimeToMakeString: String {
+        func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
+            return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+        }
+        let (h,m,s) = secondsToHoursMinutesSeconds(Int(cookingTime))
+
+        if h > 0 {
+            return ("\(h) H \(m) M \(s) S")
+        } else if m > 0 {
+            return ("\(m) M, \(s) S")
+        }
+        return ("\(s) S")
     }
 
     static var example: Recipe {

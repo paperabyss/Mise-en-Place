@@ -32,7 +32,7 @@ struct RecipeGridView: View {
                                     .font(.headline)
                                     .foregroundColor(.white)
 
-                                Text(recipe.difficultyString)
+                                Text(recipe.recipeDifficultyString)
                                     .font(.caption)
                                     .foregroundColor(.white.opacity(0.5))
                             }
@@ -48,7 +48,7 @@ struct RecipeGridView: View {
                         .accessibilityAddTraits(.isButton)
                         .accessibilityElement()
                         .accessibilityValue(recipe.recipeTitle)
-                        .accessibilityHint(recipe.difficultyString)
+                        .accessibilityHint(recipe.recipeDifficultyString)
                     }
                 }
             }

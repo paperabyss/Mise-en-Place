@@ -60,20 +60,21 @@ class DataController: ObservableObject {
                 recipe.difficulty = Int16(Int.random(in: 0...2))
                 recipe.recipeInformation = "This sure is a recipe"
                 recipe.lastMade = .now
+                recipe.cookingTime = Int16(Int.random(in: 0...7200))
                 tag.addToRecipes(recipe)
 
-                for k in 1...5 {
+                for ingredientNumber in 1...5 {
                     let ingredient = Ingredient(context: viewContext)
                     let unitNames = ["grams", "ounces", "mililitters"]
                     ingredient.massUnit = unitNames[Int.random(in: 0...2)]
                     ingredient.massValue = Double(Int.random(in: 1...100))
-                    ingredient.name = "Ingredient \(k) for recipe \(j)"
+                    ingredient.name = "Ingredient \(ingredientNumber) for recipe \(j)"
                     recipe.addToIngredients(ingredient)
                 }
 
-                for l in 1...5 {
+                for stepNumber in 1...5 {
                     let step = Step(context: viewContext)
-                    step.number = Int16(l)
+                    step.number = Int16(stepNumber)
                     step.instruction = "Example Instructions"
                     recipe.addToSteps(step)
                 }

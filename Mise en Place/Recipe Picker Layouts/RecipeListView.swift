@@ -28,7 +28,7 @@ struct RecipeListView: View {
                                     .font(.headline)
                                     .foregroundColor(.white)
 
-                                Text(recipe.difficultyString)
+                                Text(recipe.recipeDifficultyString)
                                     .font(.headline)
                                     .foregroundColor(.white.opacity(0.5))
                             }
