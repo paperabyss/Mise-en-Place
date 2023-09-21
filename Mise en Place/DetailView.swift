@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct DetailView: View {
+    @EnvironmentObject var dataController: DataController
     var body: some View {
-        Text("Detail")
+        VStack {
+            if let recipe = dataController.selectedRecipe {
+                RecipeView(recipe: recipe)
+            } else {
+                NoRecipeView()
+            }
+        }
+        .navigationTitle("Details")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

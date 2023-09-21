@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct RecipeView: View {
-    let recipe: Recipe
+    @ObservedObject var recipe: Recipe
+    @State private var editEnabled = false
     var body: some View {
         ScrollView {
             VStack {
@@ -16,6 +17,7 @@ struct RecipeView: View {
                     Image("testPie")
                         .resizable()
                         .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                         .padding()
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .overlay(
@@ -24,22 +26,28 @@ struct RecipeView: View {
                         )
 
                     VStack {
-                        Text(recipe.recipeTitle)
-                            .font(.title)
-                            .padding(.vertical)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.teal)
-                            )
-                            Spacer()
+                        if editEnabled {TextField("Recipe Title", text:$recipe.recipeTitle)
+                                .disabled(!editEnabled)
+                                .font(.title)
+                                .padding(.vertical)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(.teal)
+                                )
+                            }
+
+                        Spacer()
+
                         HStack {
+
                             Text(recipe.recipeTimeToMakeString)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(.teal)
                                 )
+
                             VStack {
                                 Text(recipe.recipeServings)
                                 Text(recipe.recipeDifficultyString)
@@ -52,7 +60,9 @@ struct RecipeView: View {
                                     .stroke(.teal)
                             )
                         }
+
                         Spacer()
+
                     }
                     .padding()
                 }
@@ -62,6 +72,7 @@ struct RecipeView: View {
                         .stroke(.teal)
                 )
             }
+
             VStack{
                 Text("Description:")
                     .font(.headline)
@@ -69,6 +80,7 @@ struct RecipeView: View {
                 Text(recipe.recipeInformation)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(.teal)
@@ -80,6 +92,7 @@ struct RecipeView: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(.teal)
@@ -94,10 +107,17 @@ struct RecipeView: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(.teal)
             )
+        }
+        .navigationTitle(recipe.recipeTitle)
+        .toolbar {
+            Button("Edit") {
+                editEnabled.toggle()
+            }
         }
     }
 }

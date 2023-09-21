@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RecipeGridView: View {
+
+    
     let recipes: [Recipe]
     let columns = [
         GridItem(.adaptive(minimum: 150))

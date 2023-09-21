@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NoRecipeView: View {
     @EnvironmentObject var dataController: DataController
+    
     var body: some View {
         Text("No Recipe Selected")
             .font(.title)

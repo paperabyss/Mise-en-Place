@@ -30,9 +30,13 @@ struct ContentView: View {
     var body: some View {
         Group {
             if viewToggle {
-                RecipeListView(recipes: recipes)
+                List(selection: $dataController.selectedRecipe){
+                    RecipeListView(recipes: recipes)
+                }
             } else {
-                RecipeGridView(recipes: recipes)
+                List(selection: $dataController.selectedRecipe){
+                    RecipeGridView(recipes: recipes)
+                }
             }
         }
         .navigationTitle("Recipes")
