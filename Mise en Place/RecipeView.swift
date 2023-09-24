@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RecipeView: View {
+    @EnvironmentObject var dataContoller: DataController
     @ObservedObject var recipe: Recipe
     @State private var editEnabled = false
     var body: some View {
@@ -118,6 +119,9 @@ struct RecipeView: View {
             Button("Edit") {
                 editEnabled.toggle()
             }
+        }
+        .onReceive(recipe.objectWillChange) { _ in
+            dataContoller.queueSave()
         }
     }
 }
