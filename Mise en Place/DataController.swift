@@ -13,6 +13,8 @@ class DataController: ObservableObject {
     @Published var selectedFilter: Filter? = Filter.all
     @Published var selectedRecipe: Recipe? 
 
+    @Published var filterText = "" 
+
     private var saveTask: Task<Void, Error>?
 
     static var preview: DataController = {
@@ -125,5 +127,34 @@ class DataController: ObservableObject {
         delete(request2)
 
         save()
+    }
+
+    func recipesForSelectedFilter() -> [Recipe] {
+        let filter = selectedFilter ?? .all
+        var predicates = [NSPredicate]()
+
+        if let tag = filter.tag {
+            let tagPredicate = NSPredicate(format: "tags CONTAINS %@", tag)
+            predicates.append(tagPredicate)
+        }
+        else {
+            let datePredicate = NSPredicate(format: "lastMade > %@", filter.minLastMade as NSDate)
+            predicates.append(datePredicate)
+        }
+
+        let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
+
+        if !trimmedFilterText.isEmpty {
+            let titlePredicate = NSPredicate(format: "title CONTAINS[c] %@", trimmedFilterText)
+            let informationPredicate = NSPredicate(format: "information CONTAINS[c]", trimmedFilterText)
+            let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, informationPredicate])
+            predicates.append(combinedPredicate)
+        }
+
+        let request = Recipe.fetchRequest()
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+
+        let allRecipes = (try? container.viewContext.fetch(request)) ?? []
+        return allRecipes.sorted()
     }
 }

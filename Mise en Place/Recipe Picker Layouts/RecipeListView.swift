@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct RecipeListView: View {
-    let recipes: [Recipe]
+    @EnvironmentObject var dataController: DataController
+
 
     var body: some View {
+        let recipes: [Recipe] = dataController.recipesForSelectedFilter()
+
         ScrollView {
                 ForEach(recipes) { recipe in
                     NavigationLink {
@@ -53,6 +56,6 @@ struct RecipeListView: View {
 
 struct RecipeListView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeListView(recipes: [])
+        RecipeListView()
     }
 }

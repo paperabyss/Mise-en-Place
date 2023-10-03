@@ -11,32 +11,12 @@ struct ContentView: View {
     @EnvironmentObject var dataController: DataController
     @State private var viewToggle = false
 
-    var recipes: [Recipe] {
-        let filter = dataController.selectedFilter ?? .all
-        var allRecipes: [Recipe]
-
-        if let tag = filter.tag {
-            allRecipes = tag.recipes?.allObjects as? [Recipe] ?? []
-        }
-        else {
-            let request = Recipe.fetchRequest()
-            request.predicate = NSPredicate(format: "lastMade > %@", filter.minLastMade as NSDate)
-
-            allRecipes = (try? dataController.container.viewContext.fetch(request)) ?? []
-        }
-        return allRecipes.sorted()
-    }
-
     var body: some View {
         Group {
             if viewToggle {
-                List(selection: $dataController.selectedRecipe){
-                    RecipeListView(recipes: recipes)
-                }
+                    RecipeListView()
             } else {
-                List(selection: $dataController.selectedRecipe){
-                    RecipeGridView(recipes: recipes)
-                }
+                    RecipeGridView()
             }
         }
         .navigationTitle("Recipes")
@@ -45,9 +25,12 @@ struct ContentView: View {
                 viewToggle.toggle()
             }
         }
+        .searchable(text: $dataController.filterText, prompt: "Search")
     }
 
     func delete(_ offsets: IndexSet){
+        let recipes = dataController.recipesForSelectedFilter()
+
         for offset in offsets {
             let item = recipes[offset]
             dataController.delete(item)

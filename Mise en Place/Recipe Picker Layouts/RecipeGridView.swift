@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct RecipeGridView: View {
+    @EnvironmentObject var dataController: DataController
 
-    
-    let recipes: [Recipe]
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
 
     var body: some View {
+
+        let recipes: [Recipe] = dataController.recipesForSelectedFilter()
+
         ScrollView {
             LazyVGrid(columns: columns) {
                 ForEach(recipes) { recipe in
@@ -61,6 +63,6 @@ struct RecipeGridView: View {
 
 struct RecipeGridView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeGridView(recipes: [])
+        RecipeGridView()
     }
 }

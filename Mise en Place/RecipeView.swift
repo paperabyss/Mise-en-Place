@@ -123,6 +123,9 @@ struct RecipeView: View {
         .onReceive(recipe.objectWillChange) { _ in
             dataContoller.queueSave()
         }
+        .onAppear {
+            dataContoller.selectedRecipe = recipe
+        }
     }
 }
 
