@@ -28,8 +28,6 @@ struct RecipeGridView: View {
                             Image("testPie")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 100, height: 100)
-                                .padding()
 
                             VStack {
                                 Text(recipe.recipeTitle)

@@ -146,7 +146,7 @@ class DataController: ObservableObject {
 
         if !trimmedFilterText.isEmpty {
             let titlePredicate = NSPredicate(format: "title CONTAINS[c] %@", trimmedFilterText)
-            let informationPredicate = NSPredicate(format: "information CONTAINS[c]", trimmedFilterText)
+            let informationPredicate = NSPredicate(format: "information CONTAINS[c] %@", trimmedFilterText)
             let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, informationPredicate])
             predicates.append(combinedPredicate)
         }
