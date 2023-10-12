@@ -6,6 +6,8 @@
 //
 
 import CoreData
+import CoreImage
+import SwiftUI
 
 class DataController: ObservableObject {
     let container: NSPersistentCloudKitContainer
@@ -14,7 +16,7 @@ class DataController: ObservableObject {
     @Published var selectedRecipe: Recipe? 
 
     @Published var filterText = "" 
-    @Published var filterTokens = [Tag]()
+    @Published var filterTokens = [Ingredient]()
 
     private var saveTask: Task<Void, Error>?
 
@@ -110,6 +112,7 @@ class DataController: ObservableObject {
         }
     }
 
+    
     func queueSave() {
         saveTask?.cancel()
 
@@ -135,6 +138,7 @@ class DataController: ObservableObject {
         }
     }
 
+
     func deleteAll() {
         let request1: NSFetchRequest<NSFetchRequestResult> = Tag.fetchRequest()
         delete(request1)
@@ -144,6 +148,7 @@ class DataController: ObservableObject {
 
         save()
     }
+ 
 
     func recipesForSelectedFilter() -> [Recipe] {
         let filter = selectedFilter ?? .all

@@ -11,23 +11,39 @@ struct RecipeView: View {
     @EnvironmentObject var dataContoller: DataController
     @ObservedObject var recipe: Recipe
     @State private var editEnabled = false
+    @State private var showingImagePicker = false
     var body: some View {
         ScrollView {
             VStack {
                 HStack {
-                    Image("testPie")
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .padding()
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(.teal)
-                        )
+                    if recipe.recipeStoredImage != nil {
+                        Image(uiImage: recipe.recipeStoredImage!)
+                            .resizable()
+                            .scaledToFill()
+                            .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
+                            .frame(width: 150,
+                                   height: 150
+                                    )
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding()
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.teal)
+                            )
+                            .onTapGesture {
+                                showingImagePicker = true
+                            }
+                            .disabled(!editEnabled)
+                    } else {
+                        Button("Select Image") {
+                            showingImagePicker.toggle()
+                        }
+                    }
+
 
                     VStack {
-                        if editEnabled {TextField("Recipe Title", text:$recipe.recipeTitle)
+                        TextField("Recipe Title", text:$recipe.recipeTitle)
                                 .disabled(!editEnabled)
                                 .font(.title)
                                 .padding(.vertical)
@@ -36,7 +52,6 @@ struct RecipeView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(.teal)
                                 )
-                            }
 
                         Spacer()
 
@@ -116,9 +131,12 @@ struct RecipeView: View {
         }
         .navigationTitle(recipe.recipeTitle)
         .toolbar {
-            Button("Edit") {
+            Button(!editEnabled ? "Edit" : "Stop Editing") {
                 editEnabled.toggle()
             }
+        }
+        .sheet(isPresented: $showingImagePicker) {
+            ImagePicker(image: $recipe.recipeStoredImage)
         }
         .onReceive(recipe.objectWillChange) { _ in
             dataContoller.queueSave()

@@ -25,10 +25,25 @@ struct RecipeGridView: View {
                         RecipeView(recipe: recipe )
                     } label: {
                         VStack {
-                            Image("testPie")
-                                .resizable()
-                                .scaledToFit()
+                             if recipe.recipeStoredImage != nil {
+                                 Image(uiImage: recipe.recipeStoredImage!)
+                                    .resizable()
+                                    .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
+                                    .scaledToFill()
+                                    .frame(width: 150,
+                                           height: 150
+                                            )
 
+                             } else {
+                                ZStack{
+                                    Rectangle()
+                                        .frame(width: 150, height: 150)
+                                        .background(.secondary, ignoresSafeAreaEdges: .all)
+                                    Text("No Image")
+                                        .font(.title)
+                                        .background(.red)
+                                }
+                             }
                             VStack {
                                 Text(recipe.recipeTitle)
                                     .font(.headline)

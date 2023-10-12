@@ -6,11 +6,24 @@
 //
 
 import Foundation
+import UIKit
+import SwiftUI
 
 extension Recipe {
     var recipeTitle: String {
         get { title ?? ""}
         set { title = newValue}
+    }
+
+    var recipeStoredImage: UIImage? {
+        get {
+            if storedImage != nil{
+                let image = UIImage(data: storedImage!)
+                return image
+            }
+            return nil}
+
+        set { storedImage = newValue?.jpegData(compressionQuality: 1) }
     }
 
     var recipeInformation: String {
@@ -61,6 +74,7 @@ extension Recipe {
         return "\(String(format: "%g", servings)) servings"
     }
 
+
     var recipeTimeToMakeString: String {
         func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
             return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
@@ -74,6 +88,7 @@ extension Recipe {
         }
         return ("\(s) S")
     }
+
 
     static var example: Recipe {
         let controller = DataController(inMemory: true)

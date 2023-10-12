@@ -25,8 +25,8 @@ struct ContentView: View {
                 viewToggle.toggle()
             }
         }
-        .searchable(text: $dataController.filterText, tokens: $dataController.filterTokens, suggestedTokens: .constant(dataController.suggestedFilterTokens), prompt: "Filter issues, or type # to add tags") { tag in
-            Text(tag.tagName)
+        .searchable(text: $dataController.filterText, tokens: $dataController.filterTokens, suggestedTokens: .constant(dataController.suggestedFilterTokens), prompt: "Filter issues, or type # to add tags") { ingredient in
+            Text(ingredient.ingredientName)
         }
     }
 
