@@ -25,7 +25,6 @@ struct RecipeView: View {
                                    height: 150
                                     )
                             .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .padding()
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
@@ -43,8 +42,7 @@ struct RecipeView: View {
 
 
                     VStack {
-                        TextField("Recipe Title", text:$recipe.recipeTitle)
-                                .disabled(!editEnabled)
+                        Text(recipe.recipeTitle)
                                 .font(.title)
                                 .padding(.vertical)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -53,81 +51,89 @@ struct RecipeView: View {
                                         .stroke(.teal)
                                 )
 
-                        Spacer()
-
-                        HStack {
-
-                            Text(recipe.recipeTimeToMakeString)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(.teal)
-                                )
-
-                            VStack {
-                                Text(recipe.recipeServings)
-                                Text(recipe.recipeDifficultyString)
-                            }
-                            .font(.subheadline)
-                            .padding(.horizontal)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.teal)
-                            )
-                        }
-
-                        Spacer()
-
                     }
                     .padding()
                 }
+                .padding()
+                .frame(maxWidth: .infinity)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(.teal)
                 )
-            }
+                .padding()
+                //End of Picture and Title Block
 
-            VStack{
-                Text("Description:")
-                    .font(.headline)
-                Spacer()
-                Text(recipe.recipeInformation)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.teal)
-            )
 
-            VStack {
-                ForEach(recipe.recipeIngredients) { ingredient in
-                    Text(ingredient.ingredientName)
+                VStack {
+                    Text(recipe.recipeTimeToMakeString)
+
+                    Text(recipe.recipeServings)
+
+                    Text(recipe.recipeDifficultyString)
                 }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.teal)
-            )
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.teal)
+                    )
+                .padding()
+                //End of Basic Info
 
-            VStack {
-                ForEach(recipe.recipeSteps) { step in
-                    HStack {
-                        Text(String(Int(step.number)))
-                        Text(step.stepInstruction)
+                VStack {
+                    Text("Description:")
+                        .font(.headline)
+                    Spacer()
+                    TextField("Recipe Description", text:$recipe.recipeInformation)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.teal)
+                )
+                .padding()
+                //End of Description
+
+                VStack {
+
+                    Text("Ingredients")
+                    ForEach(recipe.recipeIngredients) { ingredient in
+                        Text(ingredient.ingredientName)
                     }
                 }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.teal)
+                )
+                .padding()
+                //End of Ingredients Lis
+
+                VStack {
+                    Text("Instructions")
+                        .font(.headline)
+
+                    ForEach(recipe.recipeSteps) { step in
+                        HStack {
+                            Text(String(Int(step.number)))
+                            Text(step.stepInstruction)
+                        }
+                    }
+                }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.teal)
+                )
+                .padding()
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.teal)
-            )
+
+
         }
         .navigationTitle(recipe.recipeTitle)
         .toolbar {
