@@ -144,6 +144,9 @@ struct RecipeView: View {
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $recipe.recipeStoredImage)
         }
+        .sheet(isPresented: $editEnabled){
+            New_EditRecipeView(recipe: recipe)
+        }
         .onReceive(recipe.objectWillChange) { _ in
             dataContoller.queueSave()
         }
