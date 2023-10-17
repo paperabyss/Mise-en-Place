@@ -10,6 +10,7 @@ import SwiftUI
 struct New_EditRecipeView: View {
     @EnvironmentObject var dataController: DataController
     @ObservedObject var recipe: Recipe
+    @State private var isEditing = false
 
     var body: some View {
         Form {
@@ -42,7 +43,7 @@ struct New_EditRecipeView: View {
                     Text(ingredient.ingredientName)
                 }
                 Button("Add an Ingredient"){
-                    //Something to create and add an ingredient to the recipe.
+                    dataController.newIngredient(recipe: recipe)
                 }
             }
             
@@ -50,11 +51,12 @@ struct New_EditRecipeView: View {
                 ForEach(recipe.recipeSteps) { step in
                     HStack {
                         Text(String(Int(step.number)))
-                        Text(step.stepInstruction)
+//                        TextField("Instruction", text: step.stepInstr, axis: .vertical)
                     }
                 }
                 Button("Add an instruction."){
-                    //Something to create and add a step to the recipe.
+                    dataController.newStep(recipe: recipe)
+                    isEditing.toggle()
                 }
             }
         }

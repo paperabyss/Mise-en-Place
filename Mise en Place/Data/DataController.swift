@@ -106,6 +106,29 @@ class DataController: ObservableObject {
         try? viewContext.save()
     }
 
+    func newStep(recipe: Recipe) {
+        let step = Step(context: container.viewContext)
+
+        step.number = Int16(recipe.recipeSteps.count + 1)
+        step.id = UUID()
+        step.stepInstruction = ""
+
+        recipe.addToSteps(step)
+        save()
+
+    }
+
+    func newIngredient(recipe: Recipe) {
+        let ingredient = Ingredient(context: container.viewContext)
+
+        ingredient.name = ""
+        ingredient.id = UUID()
+        ingredient.massValue = 0.0
+
+        recipe.addToIngredients(ingredient)
+        save()
+    }
+
     func save() {
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
