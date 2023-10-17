@@ -61,7 +61,18 @@ class DataController: ObservableObject {
         }
     }
 
-
+    var cookingUnits: [String] {
+        [
+            "gram",
+            "teaspoon",
+            "tablespoon",
+            "fluid ounce",
+            "cup",
+            "pint",
+            "quart",
+            "gallon",
+        ]
+    }
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
     }

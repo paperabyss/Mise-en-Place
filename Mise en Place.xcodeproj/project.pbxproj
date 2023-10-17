@@ -21,6 +21,7 @@
 		CC8D52D22A9D5EAF000C99DD /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D52D12A9D5EAF000C99DD /* DetailView.swift */; };
 		CC8D52D42A9D60A9000C99DD /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D52D32A9D60A9000C99DD /* Filter.swift */; };
 		CCABB7122AD61B310074BED8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCABB7112AD61B310074BED8 /* ImagePicker.swift */; };
+		CCB8607C2ADE1A58003ECD3A /* IngredientEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB8607B2ADE1A58003ECD3A /* IngredientEditor.swift */; };
 		CCC94E992AA69B750072473F /* Recipe-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC94E982AA69B750072473F /* Recipe-CoreDataHelpers.swift */; };
 		CCD07DEA2AB7AB08004432D6 /* NoRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD07DE92AB7AB08004432D6 /* NoRecipeView.swift */; };
 		CCDF32802AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF327F2AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift */; };
@@ -46,6 +47,7 @@
 		CC8D52D12A9D5EAF000C99DD /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		CC8D52D32A9D60A9000C99DD /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		CCABB7112AD61B310074BED8 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		CCB8607B2ADE1A58003ECD3A /* IngredientEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEditor.swift; sourceTree = "<group>"; };
 		CCC94E982AA69B750072473F /* Recipe-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		CCD07DE92AB7AB08004432D6 /* NoRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecipeView.swift; sourceTree = "<group>"; };
 		CCDF327F2AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				CC8B0BB12ADCA568001C0866 /* New:EditRecipeView.swift */,
+				CCB8607B2ADE1A58003ECD3A /* IngredientEditor.swift */,
 				CC7957C32AB7B9BC00392AD3 /* RecipeView.swift */,
 				CCD07DE92AB7AB08004432D6 /* NoRecipeView.swift */,
 			);
@@ -184,7 +187,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					CC8D52B62A9C0246000C99DD = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -243,6 +246,7 @@
 				CC8B0BB22ADCA568001C0866 /* New:EditRecipeView.swift in Sources */,
 				CC7957BF2AB7B8EC00392AD3 /* RecipeListView.swift in Sources */,
 				CC8D52BB2A9C0246000C99DD /* Mise_en_PlaceApp.swift in Sources */,
+				CCB8607C2ADE1A58003ECD3A /* IngredientEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,9 +286,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -340,9 +346,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -366,6 +374,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Mise en Place/Mise_en_Place.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Mise en Place/Preview Content\"";
 				DEVELOPMENT_TEAM = LTR2ZD3F66;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -405,6 +414,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Mise en Place/Mise_en_Place.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Mise en Place/Preview Content\"";
 				DEVELOPMENT_TEAM = LTR2ZD3F66;
 				ENABLE_HARDENED_RUNTIME = YES;
