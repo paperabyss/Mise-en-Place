@@ -82,11 +82,11 @@ extension Recipe {
         let (h,m,s) = secondsToHoursMinutesSeconds(Int(cookingTime))
 
         if h > 0 {
-            return ("\(h) H \(m) M \(s) S")
+            return ("\(h) H \(m)")
         } else if m > 0 {
-            return ("\(m) M, \(s) S")
+            return ("\(m) M")
         }
-        return ("\(s) S")
+        return ("0")
     }
 
 

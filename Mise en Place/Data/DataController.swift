@@ -151,7 +151,7 @@ class DataController: ObservableObject {
         saveTask?.cancel()
 
         saveTask = Task { @MainActor in
-            try await Task.sleep(for: .seconds(3))
+            try await Task.sleep(for: .seconds(0.3))
             save()
         }
     }

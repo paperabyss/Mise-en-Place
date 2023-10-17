@@ -16,21 +16,32 @@ struct IngredientEditor: View {
                 TextField("Ingredient", text: $ingredient.ingredientName, prompt: Text("Enter the name of your ingredient here"))
                     .font(.headline)
                     .foregroundColor(.white)
+                    .padding(.horizontal)
 
                 Stepper("Amount", value: $ingredient.massValue, in: 1...100)
                     .font(.caption)
                     .foregroundColor(.white.opacity(0.5))
                     .keyboardType(.decimalPad)
-                Picker("Unit", selection: $ingredient.ingredientMassUnit) {
-                    ForEach(dataController.cookingUnits, id: \.self) {
-                        Text($0)
+
+                HStack() {
+                    Text("Unit")
+                        .frame(alignment: .leading)
+                    Picker("Unit", selection: $ingredient.ingredientMassUnit) {
+                        ForEach(dataController.cookingUnits, id: \.self) {
+                            Text($0)
+                        }
                     }
+                    .frame(alignment: .trailing)
                 }
             }
-            .padding(.vertical)
+            .padding()
             .frame(maxWidth: .infinity)
             .background(.teal)
         }
+        .onReceive(ingredient.objectWillChange) { _ in
+            dataController.queueSave()
+        }
+        .onSubmit(dataController.save)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(
             RoundedRectangle(cornerRadius: 10)

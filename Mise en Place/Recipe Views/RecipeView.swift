@@ -86,7 +86,7 @@ struct RecipeView: View {
                     Text("Description:")
                         .font(.headline)
                     Spacer()
-                    TextField("Recipe Description", text:$recipe.recipeInformation)
+                    Text(recipe.recipeInformation)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -100,9 +100,11 @@ struct RecipeView: View {
                 VStack {
 
                     Text("Ingredients")
+                        .font(.headline)
                     ForEach(recipe.recipeIngredients) { ingredient in
                         Text(ingredient.ingredientName)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -122,6 +124,7 @@ struct RecipeView: View {
                             Text(String(Int(step.number)))
                             Text(step.stepInstruction)
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
                 .padding()
