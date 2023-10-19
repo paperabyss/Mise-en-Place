@@ -16,6 +16,7 @@ struct RecipeView: View {
         ScrollView {
             VStack {
                 HStack {
+                    Spacer()
                     if recipe.recipeStoredImage != nil {
                         Image(uiImage: recipe.recipeStoredImage!)
                             .resizable()
@@ -25,34 +26,36 @@ struct RecipeView: View {
                                    height: 150
                                     )
                             .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.teal)
-                            )
-                            .onTapGesture {
-                                showingImagePicker = true
-                            }
-                            .disabled(!editEnabled)
                     } else {
-                        Button("Select Image") {
+                        Button() {
                             showingImagePicker.toggle()
+                        } label: {
+                            ZStack {
+                                Rectangle()
+                                    .scaledToFill()
+                                    .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
+                                    .frame(width: 150,
+                                           height: 150
+                                            )
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                Text("Select an Image")
+                                    .foregroundStyle(.white)
+                                    .fontWeight(.bold)
+                            }
                         }
                     }
 
+                    Spacer()
 
-                    VStack {
                         Text(recipe.recipeTitle)
-                                .font(.title)
+                                .font(.headline)
                                 .padding(.vertical)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(.teal)
                                 )
-
-                    }
-                    .padding()
+                                .padding()
                 }
                 .padding()
                 .frame(maxWidth: .infinity)

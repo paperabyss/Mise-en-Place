@@ -24,26 +24,27 @@ struct RecipeGridView: View {
                     NavigationLink {
                         RecipeView(recipe: recipe )
                     } label: {
-                        VStack {
-                             if recipe.recipeStoredImage != nil {
-                                 Image(uiImage: recipe.recipeStoredImage!)
-                                    .resizable()
-                                    .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
-                                    .scaledToFill()
-                                    .frame(width: 150,
-                                           height: 150
-                                            )
+                        VStack(spacing: 0) {
+                            ZStack {
+                                Rectangle()
+                                    .aspectRatio(contentMode: .fill)
+                                    .scaledToFit()
+                                    .frame(maxWidth:.infinity)
 
-                             } else {
-                                ZStack{
-                                    Rectangle()
-                                        .frame(width: 150, height: 150)
-                                        .background(.secondary, ignoresSafeAreaEdges: .all)
-                                    Text("No Image")
-                                        .font(.title)
-                                        .background(.red)
+                                if recipe.recipeStoredImage != nil {
+                                    Image(uiImage: recipe.recipeStoredImage!)
+                                        .resizable()
+                                        .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
+                                        .scaledToFit()
+                                        .frame(maxWidth:.infinity)
+
+                                } else {
+                                        Text("No Image")
+                                            .foregroundStyle(.white)
+                                            .fontWeight(.bold)
                                 }
-                             }
+                            }
+
                             VStack {
                                 Text(recipe.recipeTitle)
                                     .font(.headline)
@@ -55,6 +56,7 @@ struct RecipeGridView: View {
                             }
                             .padding(.vertical)
                             .frame(maxWidth: .infinity)
+
                             .background(.teal)
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 10))
