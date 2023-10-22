@@ -156,6 +156,22 @@ class DataController: ObservableObject {
         }
     }
 
+    func newRecipe() {
+        let recipe = Recipe(context: container.viewContext)
+        recipe.title = "New Recipe"
+        recipe.creationDate = .now
+        recipe.difficulty = 0
+        recipe.cookingTime = 0
+
+        if let tag = selectedFilter?.tag {
+            recipe.addToTags(tag)
+        }
+
+        save()
+
+        selectedRecipe = recipe
+    }
+
     func delete(_ object: NSManagedObject) {
         objectWillChange.send()
         container.viewContext.delete(object)

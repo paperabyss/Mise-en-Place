@@ -16,11 +16,9 @@ struct RecipeGridView: View {
 
     var body: some View {
 
-        let recipes: [Recipe] = dataController.recipesForSelectedFilter()
-
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(recipes) { recipe in
+                ForEach(dataController.recipesForSelectedFilter()) { recipe in
                     NavigationLink {
                         RecipeView(recipe: recipe )
                     } label: {
