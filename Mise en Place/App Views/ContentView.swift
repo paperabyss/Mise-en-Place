@@ -17,74 +17,75 @@ struct ContentView: View {
     ]
 
     var body: some View {
-        RecipeGridView()
-//        ScrollView {
-//            LazyVGrid(columns: columns) {
-//                ForEach(dataController.recipesForSelectedFilter()) { recipe in
-//                    NavigationLink {
-//                        RecipeView(recipe: recipe )
-//                    } label: {
-//                        VStack(spacing: 0) {
-//                            ZStack {
-//                                Rectangle()
-//                                    .aspectRatio(contentMode: .fill)
-//                                    .scaledToFit()
-//                                    .frame(maxWidth:.infinity)
-//
-//                                if recipe.recipeStoredImage != nil {
-//                                    Image(uiImage: recipe.recipeStoredImage!)
-//                                        .resizable()
-//                                        .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
-//                                        .scaledToFit()
-//                                        .frame(maxWidth:.infinity)
-//
-//                                } else {
-//                                        Text("No Image")
-//                                            .foregroundStyle(.white)
-//                                            .fontWeight(.bold)
-//                                }
-//                            }
-//
-//                            VStack {
-//                                Text(recipe.recipeTitle)
-//                                    .font(.headline)
-//                                    .foregroundColor(.white)
-//
-//                                Text(recipe.recipeDifficultyString)
-//                                    .font(.caption)
-//                                    .foregroundColor(.white.opacity(0.5))
-//                            }
-//                            .padding(.vertical)
-//                            .frame(maxWidth: .infinity)
-//
-//                            .background(.teal)
-//                        }
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .stroke(.teal)
-//                        )
-//                        .accessibilityAddTraits(.isButton)
-//                        .accessibilityElement()
-//                        .accessibilityValue(recipe.recipeTitle)
-//                        .accessibilityHint(recipe.recipeDifficultyString)
-//                    }
-//                }
-//            }
-//            .padding([.horizontal, .bottom])
-//        }
+//        RecipeGridView()
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(dataController.recipesForSelectedFilter()) { recipe in
+                    NavigationLink {
+                        RecipeView(recipe: recipe )
+                    } label: {
+                        VStack(spacing: 0) {
+                            ZStack {
+                                Rectangle()
+                                    .aspectRatio(contentMode: .fill)
+                                    .scaledToFit()
+                                    .frame(maxWidth:.infinity)
+
+                                if recipe.recipeStoredImage != nil {
+                                    Image(uiImage: recipe.recipeStoredImage!)
+                                        .resizable()
+                                        .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
+                                        .scaledToFit()
+                                        .frame(maxWidth:.infinity)
+
+                                } else {
+                                        Text("No Image")
+                                            .foregroundStyle(.white)
+                                            .fontWeight(.bold)
+                                }
+                            }
+
+                            VStack {
+                                Text(recipe.recipeTitle)
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+
+                                Text(recipe.recipeDifficultyString)
+                                    .font(.caption)
+                                    .foregroundColor(.white.opacity(0.5))
+                            }
+                            .padding(.vertical)
+                            .frame(maxWidth: .infinity)
+
+                            .background(.teal)
+                        }
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.teal)
+                        )
+                        .accessibilityAddTraits(.isButton)
+
+        
+                        .accessibilityElement()
+                        .accessibilityValue(recipe.recipeTitle)
+                        .accessibilityHint(recipe.recipeDifficultyString)
+                    }
+                }
+            }
+            .padding([.horizontal, .bottom])
+        }
 
         .navigationTitle("Recipes")
         .toolbar {
             Button() {
                 dataController.newRecipe()
+                refresh.toggle()
             } label: {
             Label("New Recipe",systemImage: "square.and.pencil")
             }
         }
-        .searchable(text: $dataController.filterText, tokens: $dataController.filterTokens, suggestedTokens: .constant(dataController.suggestedFilterTokens), prompt: "Filter issues, or type # to add tags") { ingredient in
-            Text(ingredient.ingredientName)
-        }
+        .searchable(text: $dataController.filterText)
     }
 
     func delete(_ offsets: IndexSet){

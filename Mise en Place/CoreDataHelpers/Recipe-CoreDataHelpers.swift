@@ -26,6 +26,7 @@ extension Recipe {
         set { storedImage = newValue?.jpegData(compressionQuality: 1) }
     }
 
+
     var recipeInformation: String {
         get { information ?? ""}
         set { information = newValue}

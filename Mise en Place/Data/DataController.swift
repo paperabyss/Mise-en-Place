@@ -26,20 +26,20 @@ class DataController: ObservableObject {
         return dataController
     }()
 
-    var suggestedFilterTokens: [Ingredient] {
-//        guard filterText.starts(with: "#") else {
-//            return []
+//    var suggestedFilterTokens: [Ingredient] {
+////        guard filterText.starts(with: "#") else {
+////            return []
+////        }
+//
+//        let trimmedFilterText = String(filterText.dropFirst()).trimmingCharacters(in: .whitespaces)
+//        let request = Ingredient.fetchRequest()
+//
+//        if trimmedFilterText.isEmpty == false {
+//            request.predicate = NSPredicate(format: "name CONTAINS[c] %@", trimmedFilterText)
 //        }
-
-        let trimmedFilterText = String(filterText.dropFirst()).trimmingCharacters(in: .whitespaces)
-        let request = Ingredient.fetchRequest()
-
-        if trimmedFilterText.isEmpty == false {
-            request.predicate = NSPredicate(format: "name CONTAINS[c] %@", trimmedFilterText)
-        }
-
-        return (try? container.viewContext.fetch(request).sorted()) ?? []
-    }
+//
+//        return (try? container.viewContext.fetch(request).sorted()) ?? []
+//    }
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
@@ -208,26 +208,23 @@ class DataController: ObservableObject {
             let tagPredicate = NSPredicate(format: "tags CONTAINS %@", tag)
             predicates.append(tagPredicate)
         }
-        else {
-            let datePredicate = NSPredicate(format: "lastMade > %@", filter.minLastMade as NSDate)
-            predicates.append(datePredicate)
-        }
 
         let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
 
         if !trimmedFilterText.isEmpty {
             let titlePredicate = NSPredicate(format: "title CONTAINS[c] %@", trimmedFilterText)
             let informationPredicate = NSPredicate(format: "information CONTAINS[c] %@", trimmedFilterText)
-            let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, informationPredicate])
+            let ingredientPredicate = NSPredicate(format: "ingredients CONTAINS[c] %@", trimmedFilterText)
+            let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, informationPredicate, ingredientPredicate])
             predicates.append(combinedPredicate)
         }
 
-        if filterTokens.isEmpty == false {
-            for filterToken in filterTokens {
-                let tokenPredicate = NSPredicate(format: "tags CONTAINS %@", filterToken)
-                predicates.append(tokenPredicate)
-            }
-        }
+//        if filterTokens.isEmpty == false {
+//            for filterToken in filterTokens {
+//                let tokenPredicate = NSPredicate(format: "tags CONTAINS %@", filterToken)
+//                predicates.append(tokenPredicate)
+//            }
+//        }
 
         let request = Recipe.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
