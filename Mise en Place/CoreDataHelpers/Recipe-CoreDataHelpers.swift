@@ -15,6 +15,16 @@ extension Recipe {
         set { title = newValue}
     }
 
+    var recipeHours: Int16 {
+        get { cookingHours }
+        set { cookingHours = newValue }
+    }
+
+    var recipeMinutes: Int16 {
+        get { cookingMinutes }
+        set { cookingMinutes = newValue }
+    }
+
     var recipeStoredImage: UIImage? {
         get {
             if storedImage != nil{
@@ -75,15 +85,19 @@ extension Recipe {
         return "\(String(format: "%g", servings)) servings"
     }
 
+    func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60)
+    }
 
+    func updateCookingTime (_ hours: Int, _ minutes: Int) {
+        cookingTime = Int16(truncatingIfNeeded: ((hours * 3600) + (minutes * 60)))
+    }
     var recipeTimeToMakeString: String {
-        func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
-            return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-        }
-        let (h,m,s) = secondsToHoursMinutesSeconds(Int(cookingTime))
+
+        let (h,m) = secondsToHoursMinutesSeconds(Int(cookingTime))
 
         if h > 0 {
-            return ("\(h) H \(m)")
+            return ("\(h)h \(m)m")
         } else if m > 0 {
             return ("\(m) M")
         }

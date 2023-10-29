@@ -93,6 +93,8 @@ class DataController: ObservableObject {
                 recipe.difficulty = Int16(Int.random(in: 0...2))
                 recipe.recipeInformation = "This sure is a recipe"
                 recipe.lastMade = .now
+                recipe.cookingHours = Int16(Int.random(in: 0...23))
+                recipe.cookingMinutes = Int16(Int.random(in: 0...60))
                 recipe.cookingTime = Int16(Int.random(in: 0...7200))
                 tag.addToRecipes(recipe)
 
@@ -162,6 +164,8 @@ class DataController: ObservableObject {
         recipe.creationDate = .now
         recipe.difficulty = 0
         recipe.cookingTime = 0
+        recipe.cookingHours = 0
+        recipe.cookingMinutes = 0
 
         if let tag = selectedFilter?.tag {
             recipe.addToTags(tag)
@@ -170,6 +174,10 @@ class DataController: ObservableObject {
         save()
 
         selectedRecipe = recipe
+    }
+
+    func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60)
     }
 
     func delete(_ object: NSManagedObject) {

@@ -69,7 +69,10 @@ struct RecipeView: View {
 
 
                 VStack {
-                    Text(recipe.recipeTimeToMakeString)
+                    HStack {
+                        Text("\(recipe.cookingHours)H")
+                        Text("\(recipe.cookingMinutes)S")
+                    }
 
                     Text(recipe.recipeServings)
 
@@ -102,12 +105,12 @@ struct RecipeView: View {
 
                 VStack {
 
-                    Text("Ingredients")
+                    Text("Ingredients:")
                         .font(.headline)
                     ForEach(recipe.recipeIngredients) { ingredient in
                         Text(ingredient.ingredientName)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
