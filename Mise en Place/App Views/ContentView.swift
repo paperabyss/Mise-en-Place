@@ -11,6 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var dataController: DataController
     @State private var newIssueToggle = false
     @State private var refresh = false
+    @State private var isEditing = false
 
     let columns = [
         GridItem(.adaptive(minimum: 150))
@@ -71,12 +72,27 @@ struct ContentView: View {
                         .accessibilityValue(recipe.recipeTitle)
                         .accessibilityHint(recipe.recipeDifficultyString)
                     }
+                    .contextMenu {
+                        Button {
+                            dataController.selectedRecipe = recipe
+                            isEditing = true
+                        } label: {
+                            Label("Edit Recipe", systemImage: "square.and.pencil.circle")
+                        }
+
+                        Button(role: .destructive) {
+                            dataController.delete(recipe)
+                        } label: {
+                            Label("Delete Recipe", systemImage: "trash.circle")
+                        }
+                    }
                 }
             }
             .padding([.horizontal, .bottom])
         }
 
         .navigationTitle("Recipes")
+
         .toolbar {
             Button() {
                 dataController.newRecipe()
