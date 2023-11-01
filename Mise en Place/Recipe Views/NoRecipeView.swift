@@ -9,14 +9,16 @@ import SwiftUI
 
 struct NoRecipeView: View {
     @EnvironmentObject var dataController: DataController
-    
+    @State private var showingEditing = false
+
     var body: some View {
         Text("No Recipe Selected")
             .font(.title)
             .foregroundStyle(.secondary)
 
         Button("New Recipe") {
-            // make a new recipe
+            dataController.newRecipe()
+            showingEditing.toggle()
         }
     }
 }

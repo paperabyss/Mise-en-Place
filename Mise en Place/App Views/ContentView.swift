@@ -11,7 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var dataController: DataController
     @State private var newIssueToggle = false
     @State private var refresh = false
-    @State private var isEditing = false
+    @State private var editEnabled = false
 
     let columns = [
         GridItem(.adaptive(minimum: 150))
@@ -75,7 +75,7 @@ struct ContentView: View {
                     .contextMenu {
                         Button {
                             dataController.selectedRecipe = recipe
-                            isEditing = true
+                            editEnabled = true
                         } label: {
                             Label("Edit Recipe", systemImage: "square.and.pencil.circle")
                         }
@@ -92,10 +92,13 @@ struct ContentView: View {
         }
 
         .navigationTitle("Recipes")
-
+        .sheet(isPresented: $editEnabled){
+            New_EditRecipeView(recipe: dataController.selectedRecipe!)
+        }
         .toolbar {
             Button() {
                 dataController.newRecipe()
+                editEnabled.toggle()
                 refresh.toggle()
             } label: {
             Label("New Recipe",systemImage: "square.and.pencil")
