@@ -166,7 +166,7 @@ struct New_EditRecipeView: View {
                     dataController.save()
                     dismiss()
                 } label: {
-                Label("Save and Close",systemImage: "square.and.pencil")
+                Label("Save and Close",systemImage: "folder.badge.plus")
                 }
             }
         }

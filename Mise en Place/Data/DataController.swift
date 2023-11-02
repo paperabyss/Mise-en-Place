@@ -162,6 +162,7 @@ class DataController: ObservableObject {
         let recipe = Recipe(context: container.viewContext)
         recipe.title = "New Recipe"
         recipe.creationDate = .now
+        recipe.servings = 1
         recipe.difficulty = 0
         recipe.cookingTime = 0
         recipe.cookingHours = 0
