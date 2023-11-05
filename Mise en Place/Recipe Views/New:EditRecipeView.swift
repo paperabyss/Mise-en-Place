@@ -109,8 +109,6 @@ struct New_EditRecipeView: View {
 
                 //Difficulty of Recipe
                 Section(header: Text("Difficulty")) {
-                    Text("Difficulty:")
-                        .font(.headline)
                     Picker("Recipe Difficulty", selection: $recipe.difficulty) {
                         Text("Easy").tag(Int16(0))
                         Text("Medium").tag(Int16(1))
@@ -122,8 +120,6 @@ struct New_EditRecipeView: View {
 
                 Section(header:Text("Description")) {
                     //Description of Recipe
-                    Text("Description:")
-                        .font(.headline)
                     TextField("Description", text: $recipe.recipeInformation, axis: .vertical)
                 }
 

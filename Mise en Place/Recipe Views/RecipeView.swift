@@ -26,6 +26,7 @@ struct RecipeView: View {
                                    height: 150
                                     )
                             .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .shadow(color: Color("ColorBlackTransparentLight"), radius: 8,x: 0, y:0 )
                     } else {
                         Button() {
                             showingImagePicker.toggle()
@@ -42,103 +43,112 @@ struct RecipeView: View {
                                     .foregroundStyle(.white)
                                     .fontWeight(.bold)
                             }
+                            .shadow(color: Color("ColorBlackTransparentLight"), radius: 8,x: 0, y:0 )
                         }
                     }
 
                     Spacer()
 
-                        Text(recipe.recipeTitle)
-                                .font(.headline)
-                                .padding(.vertical)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(.teal)
-                                )
-                                .padding()
+                    VStack {
+                        HStack {
+                            Text("\(recipe.cookingHours)H")
+                            Text("\(recipe.cookingMinutes)M")
+                        }
+
+                        Text(recipe.recipeServings)
+
+                        Text(recipe.recipeDifficultyString)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.secondary)
+                        )
+                    .padding()
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(.teal)
+                        .stroke(.secondary)
                 )
                 .padding()
                 //End of Picture and Title Block
 
 
-                VStack {
-                    HStack {
-                        Text("\(recipe.cookingHours)H")
-                        Text("\(recipe.cookingMinutes)S")
-                    }
 
-                    Text(recipe.recipeServings)
-
-                    Text(recipe.recipeDifficultyString)
-                }
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.teal)
-                    )
-                .padding()
                 //End of Basic Info
 
                 VStack {
-                    Text("Description:")
-                        .font(.headline)
-                    Spacer()
                     Text(recipe.recipeInformation)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(.teal)
+                        .stroke(.secondary)
                 )
                 .padding()
                 //End of Description
 
-                VStack {
 
-                    Text("Ingredients:")
-                        .font(.headline)
-                    ForEach(recipe.recipeIngredients) { ingredient in
-                        Text(ingredient.ingredientName)
+                VStack {
+                    HStack {
+                        Text("Ingredients:")
+                            .font(.title2)
+                        Spacer()
                     }
+                    VStack{
+                        ForEach(recipe.recipeIngredients) { ingredient in
+                            HStack {
+                                Text(ingredient.ingredientName)
+                                    .font(.headline)
+                                Text("^[\(Int(ingredient.massValue)) \(ingredient.ingredientMassUnit)](inflect:true)")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.secondary)
+                    )
+                    .frame(maxWidth: .infinity, alignment: .leading)
 
                 }
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.teal)
-                )
+
                 .padding()
                 //End of Ingredients Lis
 
                 VStack {
-                    Text("Instructions")
-                        .font(.headline)
-
-                    ForEach(recipe.recipeSteps) { step in
-                        HStack {
-                            Text(String(Int(step.number)))
-                            Text(step.stepInstruction)
+                    HStack{
+                        Text("Instructions")
+                            .font(.title2)
+                        Spacer()
+                    }
+                    VStack{
+                        ForEach(recipe.recipeSteps) { step in
+                            HStack {
+                                Text("\(step.number). ")
+                                Text(step.stepInstruction)
+                            }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.secondary)
+                    )
                 }
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.teal)
-                )
+
                 .padding()
             }
 

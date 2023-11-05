@@ -137,6 +137,7 @@ class DataController: ObservableObject {
         ingredient.name = ""
         ingredient.id = UUID()
         ingredient.massValue = 0.0
+        ingredient.massUnit = "gram"
 
         recipe.addToIngredients(ingredient)
         save()

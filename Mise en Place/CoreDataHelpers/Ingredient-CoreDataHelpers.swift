@@ -22,10 +22,13 @@ extension Ingredient {
         set { massUnit = newValue}
     }
 
+
+
     var ingredientRecipes: [Recipe] {
         let result = recipes?.allObjects as? [Recipe] ?? []
         return result.sorted()
     }
+
 
     static var example: Ingredient {
         let controller = DataController(inMemory: true)
