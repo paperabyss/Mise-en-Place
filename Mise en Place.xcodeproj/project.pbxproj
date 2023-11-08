@@ -80,6 +80,7 @@
 		CC8B0BB32ADCB21C001C0866 /* Recipe Views */ = {
 			isa = PBXGroup;
 			children = (
+				CC7957C22AB7B90000392AD3 /* Recipe Picker Layouts */,
 				CC8B0BB12ADCA568001C0866 /* New:EditRecipeView.swift */,
 				CCB8607B2ADE1A58003ECD3A /* IngredientEditor.swift */,
 				CCB8607D2ADF3F67003ECD3A /* StepEditor.swift */,
@@ -92,9 +93,10 @@
 		CC8B0BB42ADCB251001C0866 /* App Views */ = {
 			isa = PBXGroup;
 			children = (
+				CC8D52CF2A9D5EA1000C99DD /* SidebarView.swift */,
 				CC8D52BC2A9C0246000C99DD /* ContentView.swift */,
 				CC8D52D12A9D5EAF000C99DD /* DetailView.swift */,
-				CC8D52CF2A9D5EA1000C99DD /* SidebarView.swift */,
+				CC8B0BB32ADCB21C001C0866 /* Recipe Views */,
 			);
 			path = "App Views";
 			sourceTree = "<group>";
@@ -130,10 +132,8 @@
 			children = (
 				CC8D52CE2A9C16D9000C99DD /* Mise-en-Place-Info.plist */,
 				CC8D52BA2A9C0246000C99DD /* Mise_en_PlaceApp.swift */,
-				CC8B0BB32ADCB21C001C0866 /* Recipe Views */,
 				CC8B0BB52ADCB262001C0866 /* Data */,
 				CC8B0BB42ADCB251001C0866 /* App Views */,
-				CC7957C22AB7B90000392AD3 /* Recipe Picker Layouts */,
 				CCDF32852AA6BF13008C4AE9 /* CoreDataHelpers */,
 				CC8D52C92A9C03D4000C99DD /* Main.xcdatamodeld */,
 				CC8D52BE2A9C0247000C99DD /* Assets.xcassets */,

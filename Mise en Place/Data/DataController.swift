@@ -119,6 +119,14 @@ class DataController: ObservableObject {
         try? viewContext.save()
     }
 
+    func newTag() {
+        let tag = Tag(context: container.viewContext)
+        tag.id = UUID()
+        tag.name = NSLocalizedString("New Tag", comment: "Creat a new tag")
+
+        save()
+    }
+
     func newStep(recipe: Recipe) {
         let step = Step(context: container.viewContext)
 
