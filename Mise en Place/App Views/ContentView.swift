@@ -9,102 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var dataController: DataController
-    @State private var newIssueToggle = false
-    @State private var refresh = false
-    @State private var editEnabled = false
-
-    let columns = [
-        GridItem(.adaptive(minimum: 150))
-    ]
 
     var body: some View {
-//        RecipeGridView()
-        ScrollView {
-            LazyVGrid(columns: columns) {
-                ForEach(dataController.recipesForSelectedFilter()) { recipe in
-                    NavigationLink {
-                        RecipeView(recipe: recipe )
-                    } label: {
-                        VStack(spacing: 0) {
-                            ZStack {
-                                Rectangle()
-                                    .aspectRatio(contentMode: .fill)
-                                    .scaledToFit()
-                                    .frame(maxWidth:.infinity)
-
-                                if recipe.recipeStoredImage != nil {
-                                    Image(uiImage: recipe.recipeStoredImage!)
-                                        .resizable()
-                                        .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
-                                        .scaledToFit()
-                                        .frame(maxWidth:.infinity)
-
-                                } else {
-                                        Text("No Image")
-                                            .foregroundStyle(.white)
-                                            .fontWeight(.bold)
-                                }
-                            }
-
-                            VStack {
-                                Text(recipe.recipeTitle)
-                                    .font(.headline)
-                                    .foregroundColor(.white)
-
-                                Text(recipe.recipeDifficultyString)
-                                    .font(.caption)
-                                    .foregroundColor(.white.opacity(0.5))
-                            }
-                            .padding(.vertical)
-                            .frame(maxWidth: .infinity)
-
-                            .background(.teal)
-                        }
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(.teal)
-                        )
-                        .accessibilityAddTraits(.isButton)
-
-        
-                        .accessibilityElement()
-                        .accessibilityValue(recipe.recipeTitle)
-                        .accessibilityHint(recipe.recipeDifficultyString)
-                    }
-                    .contextMenu {
-                        Button {
-                            dataController.selectedRecipe = recipe
-                            editEnabled = true
-                        } label: {
-                            Label("Edit Recipe", systemImage: "square.and.pencil.circle")
-                        }
-
-                        Button(role: .destructive) {
-                            dataController.delete(recipe)
-                        } label: {
-                            Label("Delete Recipe", systemImage: "trash.circle")
-                        }
-                    }
+        TabView {
+            
+            RecipeGridView()
+                .tabItem {
+                    Label("Recipes", systemImage: "book.pages")
                 }
-            }
-            .padding([.horizontal, .bottom])
-        }
 
-        .navigationTitle("Recipes")
-        .sheet(isPresented: $editEnabled){
-            New_EditRecipeView(recipe: dataController.selectedRecipe!)
+            MealPlannerView()
+                .tabItem{
+                    Label("Meal Planner", systemImage: "calendar")
+                }
         }
-        .toolbar {
-            Button() {
-                dataController.newRecipe()
-                editEnabled.toggle()
-                refresh.toggle()
-            } label: {
-            Label("New Recipe",systemImage: "square.and.pencil")
-            }
-        }
-        .searchable(text: $dataController.filterText)
     }
 
     func delete(_ offsets: IndexSet){

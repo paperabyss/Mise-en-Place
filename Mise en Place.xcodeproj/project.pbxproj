@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC60E9B02B140E070036761F /* MealPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC60E9AF2B140E070036761F /* MealPlannerView.swift */; };
 		CC7957BF2AB7B8EC00392AD3 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7957BE2AB7B8EC00392AD3 /* RecipeListView.swift */; };
 		CC7957C12AB7B8F700392AD3 /* RecipeGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7957C02AB7B8F700392AD3 /* RecipeGridView.swift */; };
 		CC7957C42AB7B9BC00392AD3 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7957C32AB7B9BC00392AD3 /* RecipeView.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC60E9AF2B140E070036761F /* MealPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlannerView.swift; sourceTree = "<group>"; };
 		CC7957BE2AB7B8EC00392AD3 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		CC7957C02AB7B8F700392AD3 /* RecipeGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeGridView.swift; sourceTree = "<group>"; };
 		CC7957C32AB7B9BC00392AD3 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				CC8D52CF2A9D5EA1000C99DD /* SidebarView.swift */,
 				CC8D52BC2A9C0246000C99DD /* ContentView.swift */,
+				CC60E9AF2B140E070036761F /* MealPlannerView.swift */,
 				CC8D52D12A9D5EAF000C99DD /* DetailView.swift */,
 				CC8B0BB32ADCB21C001C0866 /* Recipe Views */,
 			);
@@ -238,6 +241,7 @@
 				CCC94E992AA69B750072473F /* Recipe-CoreDataHelpers.swift in Sources */,
 				CCDF32822AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift in Sources */,
 				CC8D52D22A9D5EAF000C99DD /* DetailView.swift in Sources */,
+				CC60E9B02B140E070036761F /* MealPlannerView.swift in Sources */,
 				CC7957C12AB7B8F700392AD3 /* RecipeGridView.swift in Sources */,
 				CC8D52CD2A9C0C47000C99DD /* DataController.swift in Sources */,
 				CCDF32842AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift in Sources */,

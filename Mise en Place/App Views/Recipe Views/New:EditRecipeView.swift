@@ -9,6 +9,7 @@ import SwiftUI
 
 struct New_EditRecipeView: View {
     @EnvironmentObject var dataController: DataController
+    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
     @ObservedObject var recipe: Recipe
     @State private var isEditing = false
@@ -17,6 +18,7 @@ struct New_EditRecipeView: View {
 
 
     var body: some View {
+        @State var steps = recipe.recipeSteps
         NavigationView{
 
 
@@ -78,33 +80,33 @@ struct New_EditRecipeView: View {
                 //Time to Make
                 Section(header: Text("Time to Make")){
                     GeometryReader { geometry in
-                                HStack(spacing: 0) {
+                        HStack(spacing: 0) {
 
-                                    Text("Cooking Time:")
-                                        .lineLimit(nil)
+                            Text("Cooking Time:")
+                                .lineLimit(nil)
 
-                                    Spacer()
+                            Spacer()
 
-                                    Picker(selection: $recipe.recipeHours, label: Text("")) {
-                                        ForEach(0..<24) {
-                                            Text("\($0) h").tag(Int16($0))
-                                        }
-                                    }
-                                    .frame(width: geometry.size.width/4, height: geometry.size.height, alignment: .center)
-                                    .clipped()
-
-                                    Picker(selection: $recipe.recipeMinutes, label: Text("")) {
-                                        ForEach(0..<59) {
-                                            Text("\($0) m").tag(Int16($0))
-                                        }
-                                    }
-                                    .onSubmit {
-                                        dataController.save()
-                                    }
-                                    .frame(width: geometry.size.width/4, height: geometry.size.height, alignment: .center)
-                                    .clipped()
+                            Picker(selection: $recipe.recipeHours, label: Text("")) {
+                                ForEach(0..<24) {
+                                    Text("\($0) h").tag(Int16($0))
                                 }
                             }
+                            .frame(width: geometry.size.width/4, height: geometry.size.height, alignment: .center)
+                            .clipped()
+
+                            Picker(selection: $recipe.recipeMinutes, label: Text("")) {
+                                ForEach(0..<59) {
+                                    Text("\($0) m").tag(Int16($0))
+                                }
+                            }
+                            .onSubmit {
+                                dataController.save()
+                            }
+                            .frame(width: geometry.size.width/4, height: geometry.size.height, alignment: .center)
+                            .clipped()
+                        }
+                    }
                 }
 
                 //Difficulty of Recipe
@@ -118,8 +120,8 @@ struct New_EditRecipeView: View {
 
 
 
+                //Description of Recipe
                 Section(header:Text("Description")) {
-                    //Description of Recipe
                     TextField("Description", text: $recipe.recipeInformation, axis: .vertical)
                 }
 
@@ -138,21 +140,32 @@ struct New_EditRecipeView: View {
                     }
                 }
 
+
+                //Directions for Recipe
                 Section(header: Text("Directions")) {
-                    ForEach(recipe.recipeSteps) { step in
-                        NavigationLink {
-                            StepEditor(step: step)
-                        } label: {
-                            HStack{
-                                Text (String(Int(step.number)))
-                                Text (step.stepInstruction)
+                    List{
+                        ForEach(recipe.recipeSteps) { step in
+                            let index = recipe.recipeSteps.firstIndex(of:step)
+                            // NavigationLink {
+                                // StepEditor(step: step)
+                             Button {
+                                 print(index)
+                            } label: {
+                                HStack{
+                                    Text (String(Int(step.number)))
+                                    Text (step.stepInstruction)
+                                }
+                                .onTapGesture {
+                                    print(index)
+                                }
                             }
                         }
-                    }
-                    .onDelete(perform: deleteStep)
-                    Button("Add an instruction."){
-                        dataController.newStep(recipe: recipe)
-                        isEditing.toggle()
+                        .onMove(perform: moveStep)
+                        .onDelete(perform: deleteStep)
+                        Button("Add an instruction."){
+                            dataController.newStep(recipe: recipe)
+                            isEditing.toggle()
+                        }
                     }
                 }
             }
@@ -171,18 +184,54 @@ struct New_EditRecipeView: View {
     }
 
     func deleteIngredient(_ offsets: IndexSet) {
-        let ingredients = recipe.ingredients?.allObjects as! [Ingredient]
+        let ingredients = recipe.recipeIngredients
         for offset in offsets {
             let item = ingredients[offset]
             dataController.delete(item)
         }
     }
 
+    func moveStep(at sets: IndexSet, destination: Int){
+        viewContext.perform {
+            let itemToMove = sets.first!
+            print ("Grabbed item at index \(itemToMove)")
+
+            if itemToMove < destination{
+                var startIndex = itemToMove + 1
+                let endIndex = destination - 1
+                var startOrder = recipe.recipeSteps[itemToMove].stepNumber
+                while startIndex <= endIndex{
+                    recipe.recipeSteps[startIndex].stepNumber = startOrder
+                    startOrder = startOrder + 1
+                    startIndex = startIndex + 1
+                }
+                recipe.recipeSteps[itemToMove].stepNumber = startOrder
+            }
+            else if destination < itemToMove{
+                var startIndex = destination
+                let endIndex = itemToMove - 1
+                var startOrder = recipe.recipeSteps[destination].stepNumber + 1
+                let newOrder = recipe.recipeSteps[destination].stepNumber
+                while startIndex <= endIndex{
+                    recipe.recipeSteps[startIndex].stepNumber = startOrder
+                    startOrder = startOrder + 1
+                    startIndex = startIndex + 1
+                }
+                recipe.recipeSteps[itemToMove].number = newOrder
+            }
+
+            dataController.save()
+
+        }
+        dataController.save()
+    }
     func deleteStep(_ offsets: IndexSet) {
-        let steps = recipe.steps?.allObjects as! [Step]
-        for offset in offsets {
-            let item = steps[offset]
-            dataController.delete(item)
+        withAnimation{
+            let steps = recipe.recipeSteps
+            for offset in offsets {
+                let item = steps[offset]
+                dataController.delete(item)
+            }
         }
     }
 }

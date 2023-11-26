@@ -18,6 +18,11 @@ extension Step {
         id ?? UUID()
     }
 
+    var stepNumber: Int64 {
+        get { number }
+        set { number = newValue}
+    }
+
     static var example: Step {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
@@ -27,6 +32,8 @@ extension Step {
         step.instruction = "Example instruction."
         return step
     }
+
+    
 }
 
 extension Step: Comparable {

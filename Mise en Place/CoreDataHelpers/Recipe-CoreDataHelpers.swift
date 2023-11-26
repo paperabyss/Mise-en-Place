@@ -61,8 +61,10 @@ extension Recipe {
     }
 
     var recipeSteps: [Step] {
-        let result = steps?.allObjects as? [Step] ?? []
+        var result = steps?.allObjects as? [Step] ?? []
         return result.sorted()
+
+        
     }
 
     var recipeDifficultyString: String {

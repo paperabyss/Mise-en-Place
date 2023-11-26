@@ -26,7 +26,7 @@ struct RecipeView: View {
                                    height: 150
                                     )
                             .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .shadow(color: Color("ColorBlackTransparentLight"), radius: 8,x: 0, y:0 )
+                         //   .shadow(color: Color("ColorBlackTransparentLight"), radius: 8,x: 0, y:0 )
                     } else {
                         Button() {
                             showingImagePicker.toggle()
@@ -43,7 +43,7 @@ struct RecipeView: View {
                                     .foregroundStyle(.white)
                                     .fontWeight(.bold)
                             }
-                            .shadow(color: Color("ColorBlackTransparentLight"), radius: 8,x: 0, y:0 )
+                           // .shadow(color: Color("ColorBlackTransparentLight"), radius: 8,x: 0, y:0 )
                         }
                     }
 

@@ -107,12 +107,15 @@ class DataController: ObservableObject {
                     recipe.addToIngredients(ingredient)
                 }
 
-                for stepNumber in 1...5 {
+                for exampleStepNumber in 1...5 {
                     let step = Step(context: viewContext)
-                    step.number = Int16(stepNumber)
-                    step.instruction = "Example Instructions"
+                    step.id = UUID()
+                    step.instruction = "\(exampleStepNumber)"
+                    step.number = Int64(exampleStepNumber)
                     recipe.addToSteps(step)
                 }
+
+    
             }
         }
 
@@ -130,7 +133,7 @@ class DataController: ObservableObject {
     func newStep(recipe: Recipe) {
         let step = Step(context: container.viewContext)
 
-        step.number = Int16(recipe.recipeSteps.count + 1)
+        step.number = Int64((recipe.recipeSteps.last?.number ?? 0) + 1)
         step.id = UUID()
         step.stepInstruction = ""
 
@@ -243,6 +246,8 @@ class DataController: ObservableObject {
 //                predicates.append(tokenPredicate)
 //            }
 //        }
+
+        
 
         let request = Recipe.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
