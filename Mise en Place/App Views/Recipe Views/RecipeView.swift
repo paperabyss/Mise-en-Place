@@ -106,7 +106,7 @@ struct RecipeView: View {
                             HStack {
                                 Text(ingredient.ingredientName)
                                     .font(.headline)
-                                Text("^[\(Int(ingredient.massValue)) \(ingredient.ingredientMassUnit)](inflect:true)")
+                                Text("^[\(Int(ingredient.massValue)) \(ingredient.ingredientMassUnit)](inflect:true,partOfSpeech: noun)")
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
                             }

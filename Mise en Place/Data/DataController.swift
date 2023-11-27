@@ -101,6 +101,7 @@ class DataController: ObservableObject {
                 for ingredientNumber in 1...5 {
                     let ingredient = Ingredient(context: viewContext)
                     let unitNames = ["grams", "ounces", "mililitters"]
+                    ingredient.id = UUID()
                     ingredient.massUnit = unitNames[Int.random(in: 0...2)]
                     ingredient.massValue = Double(Int.random(in: 1...100))
                     ingredient.name = "Ingredient \(ingredientNumber) for recipe \(j)"
@@ -108,9 +109,10 @@ class DataController: ObservableObject {
                 }
 
                 for exampleStepNumber in 1...5 {
+                    var stepText = ["First", "Second", "Third", "Fourth", "Fifth"]
                     let step = Step(context: viewContext)
                     step.id = UUID()
-                    step.instruction = "\(exampleStepNumber)"
+                    step.instruction = stepText[exampleStepNumber-1]
                     step.number = Int64(exampleStepNumber)
                     recipe.addToSteps(step)
                 }
