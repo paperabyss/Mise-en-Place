@@ -85,6 +85,13 @@ class DataController: ObservableObject {
             tag.id = UUID()
             tag.name = "Tag \(i)"
 
+            let meal = Meal(context: viewContext)
+            meal.id = UUID()
+            let mealTypes = ["Breakfast", "Lunch", "Dinner"]
+            meal.type = mealTypes[Int.random(in: 0...2)]
+            meal.name = "Meal \(i)"
+            meal.time = .now.addingTimeInterval(TimeInterval(86400 * (Int.random(in: 0...7))))
+            
             for j in 1...5 {
                 let recipe = Recipe(context: viewContext)
                 recipe.title = "Recipe \(i)-\(j)"
@@ -98,6 +105,7 @@ class DataController: ObservableObject {
                 recipe.cookingTime = Int16(Int.random(in: 0...7200))
                 tag.addToRecipes(recipe)
 
+
                 for ingredientNumber in 1...5 {
                     let ingredient = Ingredient(context: viewContext)
                     let unitNames = ["grams", "ounces", "mililitters"]
@@ -109,7 +117,7 @@ class DataController: ObservableObject {
                 }
 
                 for exampleStepNumber in 1...5 {
-                    var stepText = ["First", "Second", "Third", "Fourth", "Fifth"]
+                    let stepText = ["First", "Second", "Third", "Fourth", "Fifth"]
                     let step = Step(context: viewContext)
                     step.id = UUID()
                     step.instruction = stepText[exampleStepNumber-1]
@@ -253,8 +261,33 @@ class DataController: ObservableObject {
 
         let request = Recipe.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        
 
         let allRecipes = (try? container.viewContext.fetch(request)) ?? []
         return allRecipes.sorted()
+    }
+
+    func mealsForTheWeek() -> [Meal] {
+        let calendar = Calendar(identifier: .iso8601)
+        var predicates = [NSPredicate]()
+
+
+
+        let fromDate = calendar.weekBoundary(for: .now)?.startOfWeek
+        let toDate = calendar.weekBoundary(for: .now)?.endOfWeek
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let startDate = dateFormatter.string(from: fromDate!)
+        let endDate = dateFormatter.string(from: toDate!)
+        let datePredicate = NSPredicate(format:"%@ >= time AND %@ <= time", startDate, endDate)
+
+        predicates.append(datePredicate)
+
+        let request = Meal.fetchRequest()
+        request.predicate = datePredicate
+
+
+        let allMeals = (try? container.viewContext.fetch(request)) ?? []
+        return allMeals.sorted()
     }
 }

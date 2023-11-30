@@ -62,7 +62,8 @@ extension Recipe {
 
     var recipeSteps: [Step] {
         var result = steps?.allObjects as? [Step] ?? []
-        return result.sorted()
+        result.sort { $0.number < $1.number}
+        return result
 
         
     }

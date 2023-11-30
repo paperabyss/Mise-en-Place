@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct MealPlannerView: View {
+    @EnvironmentObject var dataController: DataController
+
     var body: some View {
         NavigationView {
-            Text("More to come")
+            ForEach(dataController.mealsForTheWeek()) { meal in
+                HStack {
+                    Text(meal.mealName)
+                    Text(meal.type ?? "Food")
+                }
+            }
         }
         .navigationTitle("Meal Planner")
     }
