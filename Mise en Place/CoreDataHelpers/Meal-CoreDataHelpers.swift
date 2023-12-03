@@ -25,6 +25,15 @@ extension Meal {
     var mealTime: Date {
         time ?? .distantPast
     }
+
+    var mealTimeString: String {
+        let date = time ?? .now
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "EEEE, MMM d"
+        return dateFormatter.string(from: date)
+
+    }
 }
 
 extension Meal: Comparable {

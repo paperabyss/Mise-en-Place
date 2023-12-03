@@ -12,10 +12,23 @@ struct MealPlannerView: View {
 
     var body: some View {
         NavigationView {
-            ForEach(dataController.mealsForTheWeek()) { meal in
-                HStack {
-                    Text(meal.mealName)
-                    Text(meal.type ?? "Food")
+            Section {
+                List{
+                    ForEach(dataController.mealsForTheWeek()) { meal in
+                        NavigationLink {
+                            MealRowView()
+                        } label: {
+                            HStack{
+                                Text(meal.mealName)
+
+                                Text(meal.type ?? "Food")
+
+                                Text(" - ")
+
+                                Text(meal.mealTimeString)
+                            }
+                        }
+                    }
                 }
             }
         }

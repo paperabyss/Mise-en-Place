@@ -149,6 +149,7 @@ struct New_EditRecipeView: View {
                             // NavigationLink {
                                 // StepEditor(step: step)
                              Button {
+
                                  print(index)
                             } label: {
                                 HStack{

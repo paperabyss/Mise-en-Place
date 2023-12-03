@@ -227,6 +227,9 @@ class DataController: ObservableObject {
         let request2: NSFetchRequest<NSFetchRequestResult> = Recipe.fetchRequest()
         delete(request2)
 
+        let request3: NSFetchRequest<NSFetchRequestResult> = Meal.fetchRequest()
+        delete(request3)
+
         save()
     }
  
@@ -284,7 +287,7 @@ class DataController: ObservableObject {
         predicates.append(datePredicate)
 
         let request = Meal.fetchRequest()
-        request.predicate = datePredicate
+//        request.predicate = datePredicate
 
 
         let allMeals = (try? container.viewContext.fetch(request)) ?? []
