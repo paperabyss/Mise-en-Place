@@ -12,27 +12,44 @@ struct MealPlannerView: View {
 
     var body: some View {
         NavigationView {
-            Section {
-                List{
-                    ForEach(dataController.mealsForTheWeek()) { meal in
-                        NavigationLink {
-                            MealRowView()
-                        } label: {
-                            HStack{
-                                Text(meal.mealName)
-
-                                Text(meal.type ?? "Food")
-
-                                Text(" - ")
-
-                                Text(meal.mealTimeString)
-                            }
+            List{
+                ForEach(dataController.mealsForTheWeek()) { meal in
+                    NavigationLink {
+                        MealRowView()
+                    } label: {
+                        HStack{
+                            Text(meal.mealName)
+                            
+                            Text(meal.type ?? "Food")
+                            
+                            Text(" - ")
+                            
+                            Text(meal.mealTimeString)
                         }
                     }
                 }
+                .onDelete(perform: deleteMeal)
+            }
+            .navigationTitle("MealPlanner")
+            .toolbar {
+                Button {
+                    print("this is a button")
+                } label: {
+                    Label("Save and Close",systemImage: "folder.badge.plus")
+                }
             }
         }
-        .navigationTitle("Meal Planner")
+    }
+
+
+    func deleteMeal(_ offsets: IndexSet) {
+        withAnimation{
+            let steps = dataController.mealsForTheWeek()
+            for offset in offsets {
+                let item = steps[offset]
+                dataController.delete(item)
+            }
+        }
     }
 }
 

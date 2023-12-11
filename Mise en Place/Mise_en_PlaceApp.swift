@@ -11,6 +11,7 @@ import SwiftUI
 struct Mise_en_PlaceApp: App {
     @StateObject var dataController = DataController()
     @Environment(\.scenePhase) var scenePhase
+    @State var selection = 1
 
     var body: some Scene {
         WindowGroup {

@@ -18,6 +18,8 @@ class DataController: ObservableObject {
     @Published var filterText = "" 
     @Published var filterTokens = [Ingredient]()
 
+    @Published var selectedTab = "recipe"
+
     private var saveTask: Task<Void, Error>?
 
     static var preview: DataController = {

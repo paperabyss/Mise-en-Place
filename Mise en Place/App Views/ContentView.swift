@@ -9,19 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var dataController: DataController
+    @State var selection = 1
 
     var body: some View {
-        TabView {
-            
+        TabView(selection: $selection) {
+
             RecipeGridView()
                 .tabItem {
                     Label("Recipes", systemImage: "book.pages")
-                }
+                }.tag(1)
 
             MealPlannerView()
                 .tabItem{
                     Label("Meal Planner", systemImage: "calendar")
-                }
+                } .tag(2)
+
+
         }
     }
 
