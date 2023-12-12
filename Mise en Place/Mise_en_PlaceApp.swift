@@ -15,13 +15,7 @@ struct Mise_en_PlaceApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationSplitView{
-                SidebarView()
-            } content: {
-                ContentView()
-            } detail: {
-                DetailView()
-            }
+            ContentView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
                 .onChange(of: scenePhase) { phase in

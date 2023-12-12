@@ -93,6 +93,13 @@ struct RecipeGridView: View {
                 New_EditRecipeView(recipe: dataController.selectedRecipe!)
             }
             .toolbar {
+                Button {
+                    dataController.deleteAll()
+                    dataController.createSampleData()
+                } label: {
+                    Label("ADD SAMPLE DATA", systemImage: "flame")
+                }
+                
                 Button() {
                     dataController.newRecipe()
                     editEnabled.toggle()
