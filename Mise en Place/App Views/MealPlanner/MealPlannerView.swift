@@ -11,7 +11,7 @@ struct MealPlannerView: View {
     @EnvironmentObject var dataController: DataController
 
     var body: some View {
-        var week = ["Mon", "Tues", "Wed", "Thur", "Friday", "Sat", "Sun"]
+        var days = dataController.getCurrentWeekDatesFormatted()
         var meal = ["Breakfast", "Lunch", "Dinner"]
         NavigationView {
             ScrollView{
@@ -35,15 +35,8 @@ struct MealPlannerView: View {
                 //            }
 
                 VStack {
-                    ForEach(week, id: \.self) { day in
-                        VStack {
-                            Text ("Day \(day)")
-                            Spacer()
-                            ForEach(meal, id: \.self){ meal in
-                                Text(meal)
-                            }
-                            Spacer()
-                        }
+                    ForEach(days, id: \.self) { day in
+                        DayView(day: day)
                     }
                 }
                 .navigationTitle("MealPlanner")

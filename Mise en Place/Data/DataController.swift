@@ -272,6 +272,56 @@ class DataController: ObservableObject {
         return allRecipes.sorted()
     }
 
+    func getCurrentWeekDates() -> [Date] {
+        let calendar = Calendar.current
+        let currentDate = Date()
+
+        // Find the start of the current week (Monday)
+        let startOfWeekComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)
+        let startDate = calendar.date(from: startOfWeekComponents)!
+
+        // Find the end of the current week (Sunday)
+        let endOfWeekComponents = DateComponents(day: 6)
+        let endDate = calendar.date(byAdding: endOfWeekComponents, to: startDate)!
+
+        // Generate an array of dates for the current week
+        var weekDates: [Date] = []
+        var currentDatePointer = startDate
+
+        while currentDatePointer <= endDate {
+            weekDates.append(currentDatePointer)
+            currentDatePointer = calendar.date(byAdding: .day, value: 1, to: currentDatePointer)!
+        }
+
+        return weekDates
+    }
+    func getCurrentWeekDatesFormatted() -> [String] {
+        let calendar = Calendar.current
+        let currentDate = Date()
+
+        // Find the start of the current week (Monday)
+        let startOfWeekComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)
+        let startDate = calendar.date(from: startOfWeekComponents)!
+
+        // Find the end of the current week (Sunday)
+        let endOfWeekComponents = DateComponents(day: 6)
+        let endDate = calendar.date(byAdding: endOfWeekComponents, to: startDate)!
+
+        // Generate an array of formatted date strings for the current week
+        var weekDatesFormatted: [String] = []
+        var currentDatePointer = startDate
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+
+        while currentDatePointer <= endDate {
+            weekDatesFormatted.append(dateFormatter.string(from: currentDatePointer))
+            currentDatePointer = calendar.date(byAdding: .day, value: 1, to: currentDatePointer)!
+        }
+
+        return weekDatesFormatted
+    }
+
     func mealsForTheWeek() -> [Meal] {
         let calendar = Calendar(identifier: .iso8601)
         var predicates = [NSPredicate]()

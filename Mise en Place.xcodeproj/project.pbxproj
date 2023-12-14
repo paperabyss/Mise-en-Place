@@ -29,6 +29,7 @@
 		CCB8607E2ADF3F67003ECD3A /* StepEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB8607D2ADF3F67003ECD3A /* StepEditor.swift */; };
 		CCC94E992AA69B750072473F /* Recipe-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC94E982AA69B750072473F /* Recipe-CoreDataHelpers.swift */; };
 		CCD07DEA2AB7AB08004432D6 /* NoRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD07DE92AB7AB08004432D6 /* NoRecipeView.swift */; };
+		CCD488D42B2BC20300D529EA /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD488D32B2BC20300D529EA /* DayView.swift */; };
 		CCDF32802AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF327F2AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift */; };
 		CCDF32822AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF32812AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift */; };
 		CCDF32842AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF32832AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift */; };
@@ -60,6 +61,7 @@
 		CCB8607D2ADF3F67003ECD3A /* StepEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepEditor.swift; sourceTree = "<group>"; };
 		CCC94E982AA69B750072473F /* Recipe-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		CCD07DE92AB7AB08004432D6 /* NoRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecipeView.swift; sourceTree = "<group>"; };
+		CCD488D32B2BC20300D529EA /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		CCDF327F2AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		CCDF32812AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		CCDF32832AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Step-CoreDataHelpers.swift"; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				CC60E9AF2B140E070036761F /* MealPlannerView.swift */,
+				CCD488D32B2BC20300D529EA /* DayView.swift */,
 				CC60E9B32B16AEB20036761F /* MealRowView.swift */,
 			);
 			path = MealPlanner;
@@ -210,7 +213,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					CC8D52B62A9C0246000C99DD = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -253,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC8D52D42A9D60A9000C99DD /* Filter.swift in Sources */,
+				CCD488D42B2BC20300D529EA /* DayView.swift in Sources */,
 				CCDF32802AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift in Sources */,
 				CC8D52CB2A9C03D4000C99DD /* Main.xcdatamodeld in Sources */,
 				CCC94E992AA69B750072473F /* Recipe-CoreDataHelpers.swift in Sources */,
@@ -285,6 +289,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -345,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
