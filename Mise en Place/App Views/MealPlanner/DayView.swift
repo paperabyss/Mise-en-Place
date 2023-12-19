@@ -19,7 +19,8 @@ struct DayView: View {
                         .font(.headline)
 
                     // Line extending to the right
-                    Line()
+                    Rectangle()
+                        .foregroundColor(.black)
                         .frame(height: 2)
                         .background(Color.black)
                         .padding(.horizontal, 16)

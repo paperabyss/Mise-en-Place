@@ -93,7 +93,8 @@ class DataController: ObservableObject {
             meal.type = mealTypes[Int.random(in: 0...2)]
             meal.name = "Meal \(i)"
             meal.time = .now.addingTimeInterval(TimeInterval(86400 * (Int.random(in: 0...7))))
-            
+            meal.day = getCurrentWeekDatesFormatted(date: Date())[(Int.random(in: 0...6))]
+
             for j in 1...5 {
                 let recipe = Recipe(context: viewContext)
                 recipe.title = "Recipe \(i)-\(j)"
@@ -272,9 +273,9 @@ class DataController: ObservableObject {
         return allRecipes.sorted()
     }
 
-    func getCurrentWeekDates() -> [Date] {
+    func getCurrentWeekDates(date: Date) -> [Date] {
         let calendar = Calendar.current
-        let currentDate = Date()
+        let currentDate = date
 
         // Find the start of the current week (Monday)
         let startOfWeekComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)
@@ -295,9 +296,9 @@ class DataController: ObservableObject {
 
         return weekDates
     }
-    func getCurrentWeekDatesFormatted() -> [String] {
+    func getCurrentWeekDatesFormatted(date: Date) -> [String] {
         let calendar = Calendar.current
-        let currentDate = Date()
+        let currentDate = date
 
         // Find the start of the current week (Monday)
         let startOfWeekComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)
@@ -322,19 +323,20 @@ class DataController: ObservableObject {
         return weekDatesFormatted
     }
 
-    func mealsForTheWeek() -> [Meal] {
+    func mealsForTheWeek(date: Date?) -> [Meal] {
         let calendar = Calendar(identifier: .iso8601)
         var predicates = [NSPredicate]()
 
 
+        var days = getCurrentWeekDatesFormatted(date: date ?? Date())
 
-        let fromDate = calendar.weekBoundary(for: .now)?.startOfWeek
-        let toDate = calendar.weekBoundary(for: .now)?.endOfWeek
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let startDate = dateFormatter.string(from: fromDate!)
-        let endDate = dateFormatter.string(from: toDate!)
-        let datePredicate = NSPredicate(format:"%@ >= time AND %@ <= time", startDate, endDate)
+//        let fromDate = calendar.weekBoundary(for: .now)?.startOfWeek
+//        let toDate = calendar.weekBoundary(for: .now)?.endOfWeek
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//        let startDate = dateFormatter.string(from: fromDate!)
+//        let endDate = dateFormatter.string(from: toDate!)
+        let datePredicate = NSPredicate(format:"day IN %@", days)
 
         predicates.append(datePredicate)
 
