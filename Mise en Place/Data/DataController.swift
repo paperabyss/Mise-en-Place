@@ -20,6 +20,12 @@ class DataController: ObservableObject {
 
     @Published var selectedTab = "recipe"
 
+    @Published var mealTypes = ["Breakfast", "Lunch", "Dinner"]
+    @Published var plannedMeals = [""]
+    @Published var missingMeals = [""]
+
+    
+
     private var saveTask: Task<Void, Error>?
 
     static var preview: DataController = {
@@ -296,6 +302,14 @@ class DataController: ObservableObject {
 
         return weekDates
     }
+
+    func getDateFormatted(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "MM/dd"
+
+        return dateFormatter.string(from: date)
+    }
     func getCurrentWeekDatesFormatted(date: Date) -> [String] {
         let calendar = Calendar.current
         let currentDate = date
@@ -324,18 +338,11 @@ class DataController: ObservableObject {
     }
 
     func mealsForTheWeek(date: Date?) -> [Meal] {
-        let calendar = Calendar(identifier: .iso8601)
         var predicates = [NSPredicate]()
 
 
-        var days = getCurrentWeekDatesFormatted(date: date ?? Date())
+        let days = getCurrentWeekDatesFormatted(date: date ?? Date())
 
-//        let fromDate = calendar.weekBoundary(for: .now)?.startOfWeek
-//        let toDate = calendar.weekBoundary(for: .now)?.endOfWeek
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-//        let startDate = dateFormatter.string(from: fromDate!)
-//        let endDate = dateFormatter.string(from: toDate!)
         let datePredicate = NSPredicate(format:"day IN %@", days)
 
         predicates.append(datePredicate)
@@ -345,6 +352,22 @@ class DataController: ObservableObject {
 
 
         let allMeals = (try? container.viewContext.fetch(request)) ?? []
+        return allMeals.sorted()
+    }
+
+    func mealsForTheDay(day: String) -> [Meal] {
+        var predicates = [NSPredicate]()
+
+        let datePredicate = NSPredicate(format:"day CONTAINS[c] %@", day)
+
+        predicates.append(datePredicate)
+
+        let request = Meal.fetchRequest()
+        request.predicate = datePredicate
+
+
+        let allMeals = (try? container.viewContext.fetch(request)) ?? []
+
         return allMeals.sorted()
     }
 }

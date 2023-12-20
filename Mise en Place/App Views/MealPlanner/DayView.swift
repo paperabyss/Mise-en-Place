@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct DayView: View {
+    @EnvironmentObject var dataController: DataController
     var day: String
+
+
     var body: some View {
-        let meals = ["Breakfast", "Lunch", "Dinner"]
+        var meals = dataController.mealsForTheDay(day: day)
+        let mealTypes = ["Breakfast", "Lunch", "Dinner"]
             VStack {
                 // Date display in the top-left corner
                 HStack {
@@ -28,16 +32,33 @@ struct DayView: View {
                 }
                     // Meal selector
                     VStack {
-                        ForEach(meals,id: \.self) { meal in
-                            NavigationLink(destination: Text(meal)) {
-                                NavigationArea(text: meal)
+
+                        //Currently Planned Meals
+
+                        ForEach(mealTypes, id: \.self) { type in
+                            ForEach(meals) { meal in
+                                if meal.mealType == type {
+                                    NavigationLink(destination: Text(meal.mealName)) {
+                                        NavigationArea(text: "\(meal.mealType) - \(meal.mealName)")
+                                    }
+                                }
                             }
                         }
+
+
+                        //Button to add a meal
+                        Button {
+                            //Add a meal
+                        } label: {
+                            NavigationArea(text: "Plan a meal")
+                        }
+
                     }
                     .padding(.leading, 58)
                     .padding(.horizontal, 16)
             }
     }
+
 
     // Function to get the current date
     func getCurrentDate() -> String {
@@ -65,6 +86,7 @@ struct NavigationArea: View {
             .padding()
             .background(Color.blue)
             .foregroundColor(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 

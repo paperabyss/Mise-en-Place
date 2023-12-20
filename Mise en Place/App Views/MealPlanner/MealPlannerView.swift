@@ -15,11 +15,12 @@ struct MealPlannerView: View {
     var body: some View {
         @State var weeksMeals = dataController.mealsForTheWeek(date: currentDate)
         @State var days = dataController.getCurrentWeekDatesFormatted(date: currentDate)
-        let meals = ["Breakfast", "Lunch", "Dinner"]
         NavigationView {
             ScrollView{
 
                 HStack {
+
+                    //This button changes the meal list to the previous week.
                     Button {
                         currentDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: currentDate) ?? Date()
                         print(currentDate.formatted())
@@ -30,6 +31,7 @@ struct MealPlannerView: View {
 
                     Text("\(days[0]) - \(days[6])")
 
+                    //This button changes the meal list to the next week.
                     Button {
                         currentDate = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: currentDate) ?? Date()
                         print(currentDate.formatted())
@@ -39,14 +41,10 @@ struct MealPlannerView: View {
                     }
                 }
 
+                //This area shows the days of the week and the meals for them.
                 VStack {
                     ForEach(days, id: \.self) { day in
                         DayView(day: day)
-                    }
-
-                    ForEach(weeksMeals) { weeksMeal in
-                        Text(weeksMeal.day ?? "No day")
-                        Text(weeksMeal.mealType)
                     }
                 }
                 .navigationTitle("MealPlanner")
