@@ -13,7 +13,8 @@ class DataController: ObservableObject {
     let container: NSPersistentCloudKitContainer
 
     @Published var selectedFilter: Filter? = Filter.all
-    @Published var selectedRecipe: Recipe? 
+    @Published var selectedRecipe: Recipe?
+    @Published var selecetedMeal: Meal?
 
     @Published var filterText = "" 
     @Published var filterTokens = [Ingredient]()
@@ -149,6 +150,26 @@ class DataController: ObservableObject {
         save()
     }
 
+    func newRecipe() {
+        let recipe = Recipe(context: container.viewContext)
+        recipe.title = "New Recipe"
+        recipe.creationDate = .now
+        recipe.servings = 1
+        recipe.difficulty = 0
+        recipe.cookingTime = 0
+        recipe.cookingHours = 0
+        recipe.cookingMinutes = 0
+
+        if let tag = selectedFilter?.tag {
+            recipe.addToTags(tag)
+        }
+
+        save()
+
+        selectedRecipe = recipe
+    }
+
+
     func newStep(recipe: Recipe) {
         let step = Step(context: container.viewContext)
 
@@ -173,6 +194,19 @@ class DataController: ObservableObject {
         save()
     }
 
+    func newMeal(recipe: Recipe) {
+        let meal = Meal(context: container.viewContext)
+
+        meal.id = UUID()
+        meal.name = ""
+        meal.type = ""
+        meal.time = .now
+
+        save()
+
+        selecetedMeal = meal
+    }
+
     func save() {
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
@@ -187,25 +221,6 @@ class DataController: ObservableObject {
             try await Task.sleep(for: .seconds(0.3))
             save()
         }
-    }
-
-    func newRecipe() {
-        let recipe = Recipe(context: container.viewContext)
-        recipe.title = "New Recipe"
-        recipe.creationDate = .now
-        recipe.servings = 1
-        recipe.difficulty = 0
-        recipe.cookingTime = 0
-        recipe.cookingHours = 0
-        recipe.cookingMinutes = 0
-
-        if let tag = selectedFilter?.tag {
-            recipe.addToTags(tag)
-        }
-
-        save()
-
-        selectedRecipe = recipe
     }
 
     func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int) {

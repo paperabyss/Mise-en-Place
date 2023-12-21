@@ -30,6 +30,7 @@
 		CCC94E992AA69B750072473F /* Recipe-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC94E982AA69B750072473F /* Recipe-CoreDataHelpers.swift */; };
 		CCD07DEA2AB7AB08004432D6 /* NoRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD07DE92AB7AB08004432D6 /* NoRecipeView.swift */; };
 		CCD488D42B2BC20300D529EA /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD488D32B2BC20300D529EA /* DayView.swift */; };
+		CCDF14792B3504BB00794C10 /* NewMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF14782B3504BB00794C10 /* NewMealView.swift */; };
 		CCDF32802AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF327F2AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift */; };
 		CCDF32822AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF32812AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift */; };
 		CCDF32842AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF32832AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift */; };
@@ -62,6 +63,7 @@
 		CCC94E982AA69B750072473F /* Recipe-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		CCD07DE92AB7AB08004432D6 /* NoRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRecipeView.swift; sourceTree = "<group>"; };
 		CCD488D32B2BC20300D529EA /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		CCDF14782B3504BB00794C10 /* NewMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMealView.swift; sourceTree = "<group>"; };
 		CCDF327F2AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		CCDF32812AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		CCDF32832AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Step-CoreDataHelpers.swift"; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				CC60E9AF2B140E070036761F /* MealPlannerView.swift */,
 				CCD488D32B2BC20300D529EA /* DayView.swift */,
 				CC60E9B32B16AEB20036761F /* MealRowView.swift */,
+				CCDF14782B3504BB00794C10 /* NewMealView.swift */,
 			);
 			path = MealPlanner;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				CC8D52CD2A9C0C47000C99DD /* DataController.swift in Sources */,
 				CC60E9B42B16AEB20036761F /* MealRowView.swift in Sources */,
 				CCDF32842AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift in Sources */,
+				CCDF14792B3504BB00794C10 /* NewMealView.swift in Sources */,
 				CC7957C42AB7B9BC00392AD3 /* RecipeView.swift in Sources */,
 				CC8D52D02A9D5EA1000C99DD /* SidebarView.swift in Sources */,
 				CCD07DEA2AB7AB08004432D6 /* NoRecipeView.swift in Sources */,

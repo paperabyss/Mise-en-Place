@@ -13,7 +13,7 @@ struct DayView: View {
 
 
     var body: some View {
-        var meals = dataController.mealsForTheDay(day: day)
+        let meals = dataController.mealsForTheDay(day: day)
         let mealTypes = ["Breakfast", "Lunch", "Dinner"]
             VStack {
                 // Date display in the top-left corner

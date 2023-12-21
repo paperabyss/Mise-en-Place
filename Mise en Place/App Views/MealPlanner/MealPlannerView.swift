@@ -48,6 +48,9 @@ struct MealPlannerView: View {
                     }
                 }
                 .navigationTitle("MealPlanner")
+                .sheet(isPresented: $editEnabled){
+                    NewMealView(meal: dataController.selectedMeal)
+                }
                 .toolbar {
                     Button {
                         print("this is a button")
