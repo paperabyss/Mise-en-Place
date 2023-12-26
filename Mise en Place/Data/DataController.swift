@@ -14,7 +14,7 @@ class DataController: ObservableObject {
 
     @Published var selectedFilter: Filter? = Filter.all
     @Published var selectedRecipe: Recipe?
-    @Published var selecetedMeal: Meal?
+    @Published var selectedMeal: Meal?
 
     @Published var filterText = "" 
     @Published var filterTokens = [Ingredient]()
@@ -194,7 +194,7 @@ class DataController: ObservableObject {
         save()
     }
 
-    func newMeal(recipe: Recipe) {
+    func newMeal() {
         let meal = Meal(context: container.viewContext)
 
         meal.id = UUID()
@@ -204,7 +204,7 @@ class DataController: ObservableObject {
 
         save()
 
-        selecetedMeal = meal
+        selectedMeal = meal
     }
 
     func save() {

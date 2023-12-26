@@ -14,7 +14,42 @@ struct NewMealView: View {
     @ObservedObject var meal: Meal
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        @State var date: Date = .now
+        @State var recipes = dataController.recipesForSelectedFilter()
+        NavigationView{
+            VStack {
+                List {
+                    Section {
+                        TextField(meal.mealName, text: $meal.mealName)
+                    }
+
+                    Section {
+                        DatePicker (
+                            "Meal Date",
+                            selection: $date,
+                            displayedComponents: .date
+                        )
+                        .datePickerStyle(.graphical)
+
+                        Picker("Meal Type", selection: $meal.type) {
+                            Text("Breakfast").tag(dataController.mealTypes[0])
+                            Text("Lunch").tag(dataController.mealTypes[1])
+                            Text("Dinner").tag(dataController.mealTypes[2])
+                        }
+                    }
+
+                    Section{
+                        Picker("Recipe", selection: $meal.recipe){
+                            ForEach(recipes) { recipe in
+                                Text(recipe.recipeTitle)
+                            }
+                        }
+
+                        Text("Selected recipe: \(meal.recipe?.title ?? "")")
+                    }
+                }
+            }
+        }
     }
 }
 

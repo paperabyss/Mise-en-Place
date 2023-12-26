@@ -12,9 +12,12 @@ struct MealPlannerView: View {
     @State private var currentDate = Date()
 
 
+
     var body: some View {
         @State var weeksMeals = dataController.mealsForTheWeek(date: currentDate)
         @State var days = dataController.getCurrentWeekDatesFormatted(date: currentDate)
+
+        @State var showingMealPlanner = false
         NavigationView {
             ScrollView{
 
@@ -48,12 +51,15 @@ struct MealPlannerView: View {
                     }
                 }
                 .navigationTitle("MealPlanner")
-                .sheet(isPresented: $editEnabled){
-                    NewMealView(meal: dataController.selectedMeal)
+                .sheet(isPresented: $showingMealPlanner){
+                    NewMealView(meal: dataController.selectedMeal!)
                 }
                 .toolbar {
                     Button {
-                        print("this is a button")
+                        dataController.newMeal()
+                        showingMealPlanner.toggle()
+
+
                     } label: {
                         Label("Save and Close",systemImage: "folder.badge.plus")
                     }

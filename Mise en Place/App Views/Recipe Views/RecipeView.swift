@@ -11,6 +11,7 @@ struct RecipeView: View {
     @EnvironmentObject var dataContoller: DataController
     @ObservedObject var recipe: Recipe
     @State private var editEnabled = false
+    @State private var showingMealPlanner = false
     @State private var showingImagePicker = false
     var body: some View {
         ScrollView {
@@ -159,10 +160,17 @@ struct RecipeView: View {
             Button(!editEnabled ? "Edit" : "Stop Editing") {
                 editEnabled.toggle()
             }
+
+            Button("Add to a meal.") {
+                showingMealPlanner.toggle()
+            }
         }
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $recipe.recipeStoredImage)
         }
+//        .sheet(isPresented: $showingMealPlanner){
+//            NewMealView(recipe: recipe)
+//        }
         .sheet(isPresented: $editEnabled){
             New_EditRecipeView(recipe: recipe)
         }

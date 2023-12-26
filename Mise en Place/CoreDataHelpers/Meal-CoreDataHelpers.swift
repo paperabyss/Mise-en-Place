@@ -14,12 +14,13 @@ extension Meal {
     }
 
     var mealType: String {
-        let mealTypes = ["Breakfast", "Lunch", "Dinner"]
-        return type ?? mealTypes[Int.random(in: 0...2)]
+        get { type ?? ""}
+        set { type = newValue}
     }
 
     var mealName: String {
-        name ?? type ?? "Food"
+        get { name ?? ""}
+        set { name = newValue}
     }
 
     var mealTime: Date {
