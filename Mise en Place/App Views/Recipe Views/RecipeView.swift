@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipeView: View {
-    @EnvironmentObject var dataContoller: DataController
+    @EnvironmentObject var dataController: DataController
     @ObservedObject var recipe: Recipe
     @State private var editEnabled = false
     @State private var showingMealPlanner = false
@@ -168,17 +168,14 @@ struct RecipeView: View {
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $recipe.recipeStoredImage)
         }
-//        .sheet(isPresented: $showingMealPlanner){
-//            NewMealView(recipe: recipe)
-//        }
         .sheet(isPresented: $editEnabled){
             New_EditRecipeView(recipe: recipe)
         }
         .onReceive(recipe.objectWillChange) { _ in
-            dataContoller.queueSave()
+            dataController.queueSave()
         }
         .onAppear {
-            dataContoller.selectedRecipe = recipe
+            dataController.selectedRecipe = recipe
         }
     }
 }

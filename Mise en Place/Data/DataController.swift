@@ -194,12 +194,12 @@ class DataController: ObservableObject {
         save()
     }
 
-    func newMeal() {
+    func newMeal(date: String) {
         let meal = Meal(context: container.viewContext)
 
         meal.id = UUID()
         meal.name = ""
-        meal.type = ""
+        meal.type = "Breakfast"
         meal.time = .now
 
         save()

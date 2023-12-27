@@ -10,14 +10,16 @@ import SwiftUI
 struct MealPlannerView: View {
     @EnvironmentObject var dataController: DataController
     @State private var currentDate = Date()
+    @State private var showingMealPlanner = false
 
 
 
     var body: some View {
+        @State var meal: Meal?
         @State var weeksMeals = dataController.mealsForTheWeek(date: currentDate)
         @State var days = dataController.getCurrentWeekDatesFormatted(date: currentDate)
 
-        @State var showingMealPlanner = false
+
         NavigationView {
             ScrollView{
 
@@ -50,20 +52,10 @@ struct MealPlannerView: View {
                         DayView(day: day)
                     }
                 }
-                .navigationTitle("MealPlanner")
-                .sheet(isPresented: $showingMealPlanner){
-                    NewMealView(meal: dataController.selectedMeal!)
-                }
-                .toolbar {
-                    Button {
-                        dataController.newMeal()
-                        showingMealPlanner.toggle()
-
-
-                    } label: {
-                        Label("Save and Close",systemImage: "folder.badge.plus")
-                    }
-                }
+            }
+            .navigationTitle("MealPlanner")
+            .sheet(isPresented: $showingMealPlanner) {
+                NewMealView(meal: dataController.selectedMeal!)
             }
         }
     }

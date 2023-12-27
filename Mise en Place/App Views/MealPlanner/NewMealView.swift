@@ -13,9 +13,10 @@ struct NewMealView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var meal: Meal
 
+    @State var date: Date = .now
+
     var body: some View {
-        @State var date: Date = .now
-        @State var recipes = dataController.recipesForSelectedFilter()
+
         NavigationView{
             VStack {
                 List {
@@ -31,16 +32,17 @@ struct NewMealView: View {
                         )
                         .datePickerStyle(.graphical)
 
-                        Picker("Meal Type", selection: $meal.type) {
-                            Text("Breakfast").tag(dataController.mealTypes[0])
-                            Text("Lunch").tag(dataController.mealTypes[1])
-                            Text("Dinner").tag(dataController.mealTypes[2])
+                        Picker("Meal Type", selection: $meal.mealType) {
+                            Text("Breakfast").tag("Breakfast")
+                            Text("Lunch").tag("Lunch")
+                            Text("Dinner").tag("Dinner")
                         }
+                        Text(meal.mealType)
                     }
 
                     Section{
                         Picker("Recipe", selection: $meal.recipe){
-                            ForEach(recipes) { recipe in
+                            ForEach(dataController.recipesForSelectedFilter()) { recipe in
                                 Text(recipe.recipeTitle)
                             }
                         }

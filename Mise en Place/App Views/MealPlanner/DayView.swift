@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DayView: View {
     @EnvironmentObject var dataController: DataController
+    @State private var showingMealPlanner = false
     var day: String
 
 
@@ -48,7 +49,8 @@ struct DayView: View {
 
                         //Button to add a meal
                         Button {
-                            //Add a meal
+                            dataController.newMeal(date: day)
+                            showingMealPlanner.toggle()
                         } label: {
                             NavigationArea(text: "Plan a meal")
                         }
@@ -56,6 +58,9 @@ struct DayView: View {
                     }
                     .padding(.leading, 58)
                     .padding(.horizontal, 16)
+            }
+            .sheet(isPresented: $showingMealPlanner) {
+                NewMealView(meal: dataController.selectedMeal!)
             }
     }
 
