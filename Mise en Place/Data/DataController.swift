@@ -105,6 +105,7 @@ class DataController: ObservableObject {
             for j in 1...5 {
                 let recipe = Recipe(context: viewContext)
                 recipe.title = "Recipe \(i)-\(j)"
+                recipe.id = UUID()
                 recipe.servings = Double(Int.random(in: 1...3))
                 recipe.creationDate = .now
                 recipe.difficulty = Int16(Int.random(in: 0...2))

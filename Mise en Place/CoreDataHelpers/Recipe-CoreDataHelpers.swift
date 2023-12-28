@@ -15,6 +15,11 @@ extension Recipe {
         set { title = newValue}
     }
 
+    var recipeId: UUID {
+        get { id ?? UUID()}
+        set { id = newValue}
+    }
+
     var recipeHours: Int16 {
         get { cookingHours }
         set { cookingHours = newValue }

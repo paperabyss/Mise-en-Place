@@ -14,8 +14,10 @@ struct NewMealView: View {
     @ObservedObject var meal: Meal
 
     @State var date: Date = .now
+    @State var recipe: Recipe
 
     var body: some View {
+
 
         NavigationView{
             VStack {
@@ -41,13 +43,13 @@ struct NewMealView: View {
                     }
 
                     Section{
-                        Picker("Recipe", selection: $meal.recipe){
-                            ForEach(dataController.recipesForSelectedFilter()) { recipe in
-                                Text(recipe.recipeTitle)
+                        Picker("Recipe", selection: $recipe){
+                            ForEach(dataController.recipesForSelectedFilter(), id: \.self) { recipe in
+                                Text(recipe.recipeTitle).tag(recipe)
                             }
                         }
 
-                        Text("Selected recipe: \(meal.recipe?.title ?? "")")
+                        Text("Selected recipe: \(recipe.title ?? "")")
                     }
                 }
             }

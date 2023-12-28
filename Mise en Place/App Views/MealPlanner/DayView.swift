@@ -60,7 +60,7 @@ struct DayView: View {
                     .padding(.horizontal, 16)
             }
             .sheet(isPresented: $showingMealPlanner) {
-                NewMealView(meal: dataController.selectedMeal!)
+                NewMealView(meal: dataController.selectedMeal!, recipe: dataController.recipesForSelectedFilter()[0])
             }
     }
 
