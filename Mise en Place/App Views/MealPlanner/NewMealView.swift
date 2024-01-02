@@ -13,7 +13,8 @@ struct NewMealView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var meal: Meal
 
-    @State var date: Date = .now
+//    @State var date: Date
+    @State  var day: String
     @State var recipe: Recipe
 
     var body: some View {
@@ -22,17 +23,14 @@ struct NewMealView: View {
         NavigationView{
             VStack {
                 List {
-                    Section {
-                        TextField(meal.mealName, text: $meal.mealName)
-                    }
 
                     Section {
-                        DatePicker (
-                            "Meal Date",
-                            selection: $date,
-                            displayedComponents: .date
-                        )
-                        .datePickerStyle(.graphical)
+//                        DatePicker (
+//                            "Meal Date",
+//                            selection: $date,
+//                            displayedComponents: .date
+//                        )
+//                        .datePickerStyle(.graphical)
 
                         Picker("Meal Type", selection: $meal.mealType) {
                             Text("Breakfast").tag("Breakfast")
@@ -51,6 +49,15 @@ struct NewMealView: View {
 
                         Text("Selected recipe: \(recipe.title ?? "")")
                     }
+                }
+            }
+            .toolbar {
+                Button() {
+                    meal.day = day
+                    dataController.save()
+                    dismiss()
+                } label: {
+                Label("Save and Close",systemImage: "folder.badge.plus")
                 }
             }
         }

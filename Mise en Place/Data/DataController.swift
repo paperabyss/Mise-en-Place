@@ -195,13 +195,14 @@ class DataController: ObservableObject {
         save()
     }
 
-    func newMeal(date: String) {
+    func newMeal(day: String) {
         let meal = Meal(context: container.viewContext)
 
         meal.id = UUID()
         meal.name = ""
         meal.type = "Breakfast"
         meal.time = .now
+        meal.day = day
 
         save()
 
@@ -351,6 +352,25 @@ class DataController: ObservableObject {
         }
 
         return weekDatesFormatted
+    }
+
+    func createDateFromDateString(_ dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+
+        // Get the current year
+        let currentYear = Calendar.current.component(.year, from: Date())
+
+        // Append the current year to the input string
+        let dateStringWithCurrentYear = "\(currentYear)/\(dateString)"
+
+        // Try to convert the string to a Date
+        if let date = dateFormatter.date(from: dateStringWithCurrentYear) {
+            return date
+        } else {
+            // Return nil if the conversion fails
+            return nil
+        }
     }
 
     func mealsForTheWeek(date: Date?) -> [Meal] {

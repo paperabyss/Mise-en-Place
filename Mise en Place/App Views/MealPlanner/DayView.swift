@@ -40,7 +40,7 @@ struct DayView: View {
                             ForEach(meals) { meal in
                                 if meal.mealType == type {
                                     NavigationLink(destination: Text(meal.mealName)) {
-                                        NavigationArea(text: "\(meal.mealType) - \(meal.mealName)")
+                                        NavigationArea(text: "\(meal.mealType) - \(meal.recipe?.recipeTitle ?? "")")
                                     }
                                 }
                             }
@@ -49,7 +49,11 @@ struct DayView: View {
 
                         //Button to add a meal
                         Button {
-                            dataController.newMeal(date: day)
+                            print(day)
+
+                            dataController.newMeal(day: day)
+                            print(dataController.createDateFromDateString(day))
+
                             showingMealPlanner.toggle()
                         } label: {
                             NavigationArea(text: "Plan a meal")
@@ -60,7 +64,7 @@ struct DayView: View {
                     .padding(.horizontal, 16)
             }
             .sheet(isPresented: $showingMealPlanner) {
-                NewMealView(meal: dataController.selectedMeal!, recipe: dataController.recipesForSelectedFilter()[0])
+                NewMealView(meal: dataController.selectedMeal!, day: day, recipe: dataController.recipesForSelectedFilter()[0])
             }
     }
 

@@ -54,9 +54,6 @@ struct MealPlannerView: View {
                 }
             }
             .navigationTitle("MealPlanner")
-            .sheet(isPresented: $showingMealPlanner) {
-                NewMealView(meal: dataController.selectedMeal!, recipe: dataController.recipesForSelectedFilter()[0])
-            }
         }
     }
 
