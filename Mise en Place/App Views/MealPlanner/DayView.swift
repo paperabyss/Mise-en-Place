@@ -11,6 +11,7 @@ struct DayView: View {
     @EnvironmentObject var dataController: DataController
     @State private var showingMealPlanner = false
     var day: String
+    var date: Date 
 
 
     var body: some View {
@@ -52,7 +53,6 @@ struct DayView: View {
                             print(day)
 
                             dataController.newMeal(day: day)
-                            print(dataController.createDateFromDateString(day))
 
                             showingMealPlanner.toggle()
                         } label: {
@@ -64,7 +64,7 @@ struct DayView: View {
                     .padding(.horizontal, 16)
             }
             .sheet(isPresented: $showingMealPlanner) {
-                NewMealView(meal: dataController.selectedMeal!, day: day, recipe: dataController.recipesForSelectedFilter()[0])
+                NewMealView(meal: dataController.selectedMeal!,date: date, day: day, recipe: dataController.recipesForSelectedFilter()[0] )
             }
     }
 

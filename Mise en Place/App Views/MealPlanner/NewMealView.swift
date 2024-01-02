@@ -13,7 +13,7 @@ struct NewMealView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var meal: Meal
 
-//    @State var date: Date
+    @State var date: Date
     @State  var day: String
     @State var recipe: Recipe
 
@@ -25,12 +25,12 @@ struct NewMealView: View {
                 List {
 
                     Section {
-//                        DatePicker (
-//                            "Meal Date",
-//                            selection: $date,
-//                            displayedComponents: .date
-//                        )
-//                        .datePickerStyle(.graphical)
+                        DatePicker (
+                            "Meal Date",
+                            selection: $date,
+                            displayedComponents: .date
+                        )
+                        .datePickerStyle(.graphical)
 
                         Picker("Meal Type", selection: $meal.mealType) {
                             Text("Breakfast").tag("Breakfast")
@@ -53,7 +53,7 @@ struct NewMealView: View {
             }
             .toolbar {
                 Button() {
-                    meal.day = day
+                    meal.day = dataController.getDateFormatted(date: date)
                     dataController.save()
                     dismiss()
                 } label: {

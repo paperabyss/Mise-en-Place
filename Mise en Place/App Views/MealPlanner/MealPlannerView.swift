@@ -17,6 +17,7 @@ struct MealPlannerView: View {
     var body: some View {
         @State var meal: Meal?
         @State var weeksMeals = dataController.mealsForTheWeek(date: currentDate)
+        @State var dates = dataController.getCurrentWeekDates(date: currentDate)
         @State var days = dataController.getCurrentWeekDatesFormatted(date: currentDate)
 
 
@@ -48,8 +49,8 @@ struct MealPlannerView: View {
 
                 //This area shows the days of the week and the meals for them.
                 VStack {
-                    ForEach(days, id: \.self) { day in
-                        DayView(day: day)
+                    ForEach(Array(days.enumerated()), id: \.1) { (index, day) in
+                        DayView(day: day, date: dates[index] )
                     }
                 }
             }
