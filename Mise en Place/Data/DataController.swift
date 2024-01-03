@@ -51,7 +51,7 @@ class DataController: ObservableObject {
 //    }
 
     init(inMemory: Bool = false) {
-       static container = NSPersistentCloudKitContainer(name: "Main")
+        container = NSPersistentCloudKitContainer(name: "Main")
 
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
