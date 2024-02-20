@@ -13,38 +13,45 @@ struct IngredientEditor: View {
     var body: some View {
         VStack {
             VStack {
-                TextField("Ingredient", text: $ingredient.ingredientName, prompt: Text("Enter the name of your ingredient here"))
+                TextField("Ingredient", text: $ingredient.ingredientName, prompt: Text("Ingredient name"))
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(.secondary)
                     .padding(.horizontal)
 
-                Stepper("Amount \(ingredient.massValue.formatted())", value: $ingredient.massValue, in: 1...100)
-                    .font(.caption)
-                    .foregroundColor(.white.opacity(0.5))
-                    .keyboardType(.decimalPad)
+                Rectangle()
+                    .fill(.secondary)
+                    .frame(height: 2)
+
 
                 HStack() {
-                    Picker("Unit", selection: $ingredient.ingredientMassUnit) {
+                    Spacer()
+                    TextField("Amount \(ingredient.massValue.formatted())", value: $ingredient.massValue, format: .number)
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
+                        .keyboardType(.decimalPad)
+                        .frame(alignment: .trailing)
+
+                    Picker("Unit:", selection: $ingredient.ingredientMassUnit) {
                         ForEach(dataController.cookingUnits, id: \.self) {
                             Text($0)
                         }
                     }
-                    .frame(alignment: .trailing)
+                    .labelsHidden()
                 }
             }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(.teal)
+            .padding(.horizontal)
+            .frame(maxWidth: .infinity, maxHeight: 80)
+
         }
         .onReceive(ingredient.objectWillChange) { _ in
             dataController.queueSave()
         }
-        .onSubmit(dataController.save)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(.teal)
-        )
+//        .onSubmit(dataController.save)
+//        .clipShape(RoundedRectangle(cornerRadius: 10))
+//        .overlay(
+//            RoundedRectangle(cornerRadius: 10)
+//                .stroke(.teal)
+//        )
     }
 }
 

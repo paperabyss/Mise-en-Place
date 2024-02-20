@@ -42,6 +42,13 @@ struct DayView: View {
                                 if meal.mealType == type {
                                     NavigationLink(destination: RecipeView(recipe: meal.recipe ?? Recipe.example)) {
                                         NavigationArea(text: "\(meal.mealType) - \(meal.recipe?.recipeTitle ?? "")")
+                                    }                               
+                                    .contextMenu {
+                                        Button(role: .destructive) {
+                                            dataController.delete(meal)
+                                        } label: {
+                                            Label("Delete Meal", systemImage: "trash")
+                                        }
                                     }
                                 }
                             }
