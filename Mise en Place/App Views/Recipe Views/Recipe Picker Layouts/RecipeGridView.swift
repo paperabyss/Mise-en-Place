@@ -35,10 +35,15 @@ struct RecipeGridView: View {
                                     if recipe.recipeStoredImage != nil {
                                         Image(uiImage: recipe.recipeStoredImage!)
                                             .resizable()
-                                            .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
-                                            .scaledToFit()
-                                            .frame(maxWidth:.infinity)
                                         
+                                            .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
+                                            .scaledToFill()
+                                            .frame(
+                                                maxWidth:150,
+                                                maxHeight: 150
+                                                    )
+
+
                                     } else {
                                         Text("No Image")
                                             .foregroundStyle(.white)

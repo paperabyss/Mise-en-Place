@@ -127,11 +127,9 @@ struct New_EditRecipeView: View {
 
                 Section(header: Text("Ingredients")) {
                     ForEach(recipe.recipeIngredients) { ingredient in
-                        NavigationLink {
+                     
                             IngredientEditor(ingredient: ingredient)
-                        } label: {
-                            Text(ingredient.ingredientName)
-                        }
+
                     }
                     .onDelete(perform: deleteIngredient)
 

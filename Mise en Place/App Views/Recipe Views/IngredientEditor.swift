@@ -18,14 +18,12 @@ struct IngredientEditor: View {
                     .foregroundColor(.white)
                     .padding(.horizontal)
 
-                Stepper("Amount", value: $ingredient.massValue, in: 1...100)
+                Stepper("Amount \(ingredient.massValue.formatted())", value: $ingredient.massValue, in: 1...100)
                     .font(.caption)
                     .foregroundColor(.white.opacity(0.5))
                     .keyboardType(.decimalPad)
 
                 HStack() {
-                    Text("Unit")
-                        .frame(alignment: .leading)
                     Picker("Unit", selection: $ingredient.ingredientMassUnit) {
                         ForEach(dataController.cookingUnits, id: \.self) {
                             Text($0)
