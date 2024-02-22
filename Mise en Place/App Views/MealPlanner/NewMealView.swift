@@ -30,6 +30,7 @@ struct NewMealView: View {
                             displayedComponents: .date
                         )
                         .datePickerStyle(.graphical)
+                        .accentColor(Theme.interactiveElements)
 
                         Picker("Meal Type", selection: $meal.mealType) {
                             Text("Breakfast").tag("Breakfast")
@@ -59,6 +60,8 @@ struct NewMealView: View {
                 } label: {
                 Label("Save and Close",systemImage: "folder.badge.plus")
                 }
+                .foregroundStyle(Theme.interactiveElements)
+                .accentColor(Theme.interactiveElements)
             }
         }
     }

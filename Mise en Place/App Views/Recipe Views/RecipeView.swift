@@ -94,7 +94,7 @@ struct RecipeView: View {
                         RoundedRectangle(cornerRadius: 10)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .opacity(0.3)
-                            .foregroundStyle(.red)
+                            .foregroundStyle(Theme.interactiveElements)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(.pink)

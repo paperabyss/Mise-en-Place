@@ -17,15 +17,18 @@ struct ContentView: View {
             RecipeGridView()
                 .tabItem {
                     Label("Recipes", systemImage: "book.pages")
+                        .foregroundColor(Theme.interactiveElements)
                 }.tag(1)
 
             MealPlannerView()
                 .tabItem{
                     Label("Meal Planner", systemImage: "calendar")
+                        .foregroundColor(Theme.interactiveElements)
                 } .tag(2)
 
 
         }
+        .accentColor(Theme.interactiveElements)
     }
 
     func delete(_ offsets: IndexSet){

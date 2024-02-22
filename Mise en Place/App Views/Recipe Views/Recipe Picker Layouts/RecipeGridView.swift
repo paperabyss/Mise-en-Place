@@ -31,7 +31,8 @@ struct RecipeGridView: View {
                                         .aspectRatio(contentMode: .fill)
                                         .scaledToFit()
                                         .frame(maxWidth:.infinity)
-                                    
+                                        .opacity(0.3)
+
                                     if recipe.recipeStoredImage != nil {
                                         Image(uiImage: recipe.recipeStoredImage!)
                                             .resizable()
@@ -63,12 +64,12 @@ struct RecipeGridView: View {
                                 .padding(.vertical)
                                 .frame(maxWidth: .infinity)
                                 
-                                .background(.teal)
+                                .background(Theme.interactiveElements)
                             }
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.teal)
+                                    .stroke(Theme.outlines)
                             )
                             .accessibilityAddTraits(.isButton)
                             .accessibilityElement()
@@ -103,6 +104,7 @@ struct RecipeGridView: View {
                     dataController.createSampleData()
                 } label: {
                     Label("ADD SAMPLE DATA", systemImage: "flame")
+                        .foregroundColor(Theme.interactiveElements)
                 }
                 
                 Button() {

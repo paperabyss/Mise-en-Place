@@ -30,9 +30,11 @@ struct MealPlannerView: View {
                     Button {
                         currentDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: currentDate) ?? Date()
                         print(currentDate.formatted())
+                        Theme.lilacTheme()
                         if weeksMeals.isEmpty {print("Empty meal list")}
                     } label: {
                         Image(systemName: "arrowshape.left.fill")
+                            .foregroundColor(Theme.interactiveElements)
                     }
 
                     Text("\(days[0]) - \(days[6])")
@@ -40,10 +42,12 @@ struct MealPlannerView: View {
                     //This button changes the meal list to the next week.
                     Button {
                         currentDate = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: currentDate) ?? Date()
+                        Theme.lilacTheme()
                         print(currentDate.formatted())
                         if weeksMeals.isEmpty {print("Empty meal list")}
                     } label: {
                         Image(systemName: "arrowshape.right.fill")
+                            .foregroundColor(Theme.interactiveElements)
                     }
                 }
 

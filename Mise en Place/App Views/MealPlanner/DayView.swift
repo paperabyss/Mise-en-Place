@@ -57,14 +57,11 @@ struct DayView: View {
 
                         //Button to add a meal
                         Button {
-
                             dataController.newMeal(day: day)
-
                             showingMealPlanner.toggle()
                         } label: {
                             NavigationArea(text: "Plan a meal")
                         }
-
                     }
                     .padding(.leading, 58)
                     .padding(.horizontal, 16)
@@ -85,7 +82,7 @@ struct NavigationArea: View {
         Text(text)
             .frame(maxWidth: .infinity)
             .padding()
-            .background(Color.blue)
+            .background(Theme.interactiveElements)
             .foregroundColor(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
     }
