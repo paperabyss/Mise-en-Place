@@ -141,31 +141,32 @@ struct New_EditRecipeView: View {
 
                 //Directions for Recipe
                 Section(header: Text("Directions")) {
-                    List{
-                        ForEach(recipe.recipeSteps) { step in
-                            let index = recipe.recipeSteps.firstIndex(of:step)
-                            // NavigationLink {
-                                // StepEditor(step: step)
-                             Button {
-
-                                 print(index)
-                            } label: {
-                                HStack{
-                                    Text (String(Int(step.number)))
-                                    Text (step.stepInstruction)
-                                }
-                                .onTapGesture {
-                                    print(index)
-                                }
-                            }
-                        }
-                        .onMove(perform: moveStep)
-                        .onDelete(perform: deleteStep)
-                        Button("Add an instruction."){
-                            dataController.newStep(recipe: recipe)
-                            isEditing.toggle()
-                        }
-                    }
+                    TextField("How to cook this recipe:", text: $recipe.recipeInstructions, axis: .vertical)
+//                    List{
+//                        ForEach(recipe.recipeSteps) { step in
+//                            let index = recipe.recipeSteps.firstIndex(of:step)
+//                            // NavigationLink {
+//                                // StepEditor(step: step)
+//                             Button {
+//
+//                                 print(index)
+//                            } label: {
+//                                HStack{
+//                                    Text (String(Int(step.number)))
+//                                    Text (step.stepInstruction)
+//                                }
+//                                .onTapGesture {
+//                                    print(index)
+//                                }
+//                            }
+//                        }
+//                        .onMove(perform: moveStep)
+//                        .onDelete(perform: deleteStep)
+//                        Button("Add an instruction."){
+//                            dataController.newStep(recipe: recipe)
+//                            isEditing.toggle()
+//                        }
+//                    }
                 }
             }
             .navigationTitle("Editing")

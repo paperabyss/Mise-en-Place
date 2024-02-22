@@ -55,6 +55,11 @@ extension Recipe {
         lastMade ?? .now
     }
 
+    var recipeInstructions: String {
+        get { instructions ?? "" }
+        set { instructions = newValue }
+    }
+
     var recipeTags: [Tag] {
         let result = tags?.allObjects as? [Tag] ?? []
         return result.sorted()
@@ -90,7 +95,7 @@ extension Recipe {
     }
 
     var recipeServings: String {
-        return "\(String(format: "%g", servings)) servings"
+        return "\(String(format: "%g", servings)) serving\(servings > 1 ? "s" : "")"
     }
 
     func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int) {

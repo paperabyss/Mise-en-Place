@@ -26,9 +26,9 @@ struct DayView: View {
 
                     // Line extending to the right
                     Rectangle()
-                        .foregroundColor(.black)
+                        .foregroundColor(.secondary)
                         .frame(height: 2)
-                        .background(Color.black)
+                        .background(.primary)
                         .padding(.horizontal, 16)
 
                 }

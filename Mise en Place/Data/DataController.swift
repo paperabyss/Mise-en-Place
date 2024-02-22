@@ -72,16 +72,21 @@ class DataController: ObservableObject {
 
     var cookingUnits: [String] {
         [
+            "",
             "gram",
             "teaspoon",
             "tablespoon",
-            "fluid ounce",
+            "mililitter",
+            "litter",
+            "ounce",
             "cup",
             "pint",
             "quart",
             "gallon",
         ]
     }
+
+    
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
     }
@@ -109,8 +114,9 @@ class DataController: ObservableObject {
                 recipe.servings = Double(Int.random(in: 1...3))
                 recipe.creationDate = .now
                 recipe.difficulty = Int16(Int.random(in: 0...2))
-                recipe.recipeInformation = "This sure is a recipe"
+                recipe.recipeInformation = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum. Congue nisi vitae suscipit tellus. Neque viverra justo nec ultrices dui sapien eget mi. Congue quisque egestas diam in arcu cursus euismod quis. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan. Adipiscing enim eu turpis egestas pretium aenean pharetra magna ac. Ut aliquam purus sit amet luctus venenatis lectus magna. Viverra adipiscing at in tellus integer feugiat scelerisque varius. Arcu vitae elementum curabitur vitae nunc sed."
                 recipe.lastMade = .now
+                recipe.recipeInstructions = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu non sodales neque sodales ut etiam sit. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui. Amet commodo nulla facilisi nullam. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Purus faucibus ornare suspendisse sed. Magna eget est lorem ipsum dolor sit amet consectetur. Sit amet purus gravida quis blandit turpis cursus in hac. Suspendisse faucibus interdum posuere lorem ipsum dolor sit amet consectetur. Ultrices mi tempus imperdiet nulla malesuada. Dui id ornare arcu odio ut sem. Sed arcu non odio euismod. Pulvinar mattis nunc sed blandit libero. Risus viverra adipiscing at in tellus integer feugiat scelerisque. Tempor nec feugiat nisl pretium fusce id velit ut. Tellus id interdum velit laoreet id donec. Duis ultricies lacus sed turpis tincidunt id aliquet risus. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. Vel pharetra vel turpis nunc eget lorem dolor sed viverra.\nSit amet consectetur adipiscing elit duis. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel. Ultricies tristique nulla aliquet enim tortor at. Eu lobortis elementum nibh tellus molestie. Commodo odio aenean sed adipiscing diam donec. Amet luctus venenatis lectus magna fringilla urna. Tincidunt praesent semper feugiat nibh sed. Elementum nibh tellus molestie nunc. Nisl nunc mi ipsum faucibus vitae. Orci porta non pulvinar neque laoreet suspendisse interdum consectetur. Purus in mollis nunc sed id semper. Vestibulum morbi blandit cursus risus at ultrices mi. Viverra aliquet eget sit amet tellus cras adipiscing.\nFeugiat scelerisque varius morbi enim nunc faucibus a pellentesque. Tristique risus nec feugiat in. Iaculis urna id volutpat lacus laoreet. Nullam ac tortor vitae purus. Tellus cras adipiscing enim eu. Amet porttitor eget dolor morbi non arcu risus quis. At varius vel pharetra vel turpis nunc eget lorem. Sit amet nulla facilisi morbi. Sed vulputate odio ut enim blandit volutpat maecenas. Viverra nibh cras pulvinar mattis nunc sed blandit libero. Potenti nullam ac tortor vitae. Ipsum a arcu cursus vitae congue mauris rhoncus aenean vel. Et netus et malesuada fames ac turpis. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Venenatis a condimentum vitae sapien pellentesque habitant. Vel risus commodo viverra maecenas. Tristique risus nec feugiat in fermentum posuere urna nec tincidunt. Orci nulla pellentesque dignissim enim sit. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus."
                 recipe.cookingHours = Int16(Int.random(in: 0...23))
                 recipe.cookingMinutes = Int16(Int.random(in: 0...60))
                 recipe.cookingTime = Int16(Int.random(in: 0...7200))
@@ -119,22 +125,21 @@ class DataController: ObservableObject {
 
                 for ingredientNumber in 1...5 {
                     let ingredient = Ingredient(context: viewContext)
-                    let unitNames = ["grams", "ounces", "mililitters"]
                     ingredient.id = UUID()
-                    ingredient.massUnit = unitNames[Int.random(in: 0...2)]
+                    ingredient.massUnit = cookingUnits[Int.random(in: 0...8)]
                     ingredient.massValue = Double(Int.random(in: 1...100))
                     ingredient.name = "Ingredient \(ingredientNumber) for recipe \(j)"
                     recipe.addToIngredients(ingredient)
                 }
 
-                for exampleStepNumber in 1...5 {
-                    let stepText = ["First", "Second", "Third", "Fourth", "Fifth"]
-                    let step = Step(context: viewContext)
-                    step.id = UUID()
-                    step.instruction = stepText[exampleStepNumber-1]
-                    step.number = Int64(exampleStepNumber)
-                    recipe.addToSteps(step)
-                }
+//                for exampleStepNumber in 1...5 {
+//                    let stepText = ["First", "Second", "Third", "Fourth", "Fifth"]
+//                    let step = Step(context: viewContext)
+//                    step.id = UUID()
+//                    step.instruction = stepText[exampleStepNumber-1]
+//                    step.number = Int64(exampleStepNumber)
+//                    recipe.addToSteps(step)
+//                }
 
     
             }

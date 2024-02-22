@@ -33,7 +33,7 @@ struct IngredientEditor: View {
 
                     Picker("Unit:", selection: $ingredient.ingredientMassUnit) {
                         ForEach(dataController.cookingUnits, id: \.self) {
-                            Text($0)
+                            Text("\($0)\(ingredient.massValue > 1 ? "s": "")")
                         }
                     }
                     .labelsHidden()

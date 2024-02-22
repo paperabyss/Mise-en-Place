@@ -83,16 +83,37 @@ struct RecipeView: View {
 
 
                 //End of Basic Info
-
                 VStack {
-                    Text(recipe.recipeInformation)
+                    HStack {
+                        Text("About:")
+                            .font(.title2)
+                            .foregroundStyle(.primary)
+                        Spacer()
+                    }
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .opacity(0.3)
+                            .foregroundStyle(.red)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.pink)
+                                    .opacity(0.3)
+                            )
+                        VStack {
+                            Text(recipe.recipeInformation)
+                                .foregroundStyle(.primary)
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.pink)
+                        )
+                    }
                 }
-                .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.secondary)
-                )
                 .padding()
                 //End of Description
 
@@ -108,7 +129,8 @@ struct RecipeView: View {
                             HStack {
                                 Text(ingredient.ingredientName)
                                     .font(.headline)
-                                Text("^[\(Int(ingredient.massValue)) \(ingredient.ingredientMassUnit)](inflect:true,partOfSpeech: noun)")
+                                Text(
+                                    "\(Int(ingredient.massValue)) \(ingredient.ingredientMassUnit)\(ingredient.massValue > 1 ? "s": "")")
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
                             }
@@ -130,18 +152,12 @@ struct RecipeView: View {
 
                 VStack {
                     HStack{
-                        Text("Instructions")
+                        Text("Instructions:")
                             .font(.title2)
                         Spacer()
                     }
                     VStack{
-                        ForEach(recipe.recipeSteps) { step in
-                            HStack {
-                                Text("\(step.number). ")
-                                Text(step.stepInstruction)
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        Text(recipe.recipeInstructions)
                     }
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
