@@ -25,7 +25,13 @@ class DataController: ObservableObject {
     @Published var plannedMeals = [""]
     @Published var missingMeals = [""]
 
-    
+    var theme = "blue" {
+        didSet {
+            print(theme)
+            Theme.loadTheme(theme: theme)
+            }
+        }
+
 
     private var saveTask: Task<Void, Error>?
 
