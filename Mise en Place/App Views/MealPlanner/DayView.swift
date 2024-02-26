@@ -21,8 +21,11 @@ struct DayView: View {
                 // Date display in the top-left corner
                 HStack {
                     Spacer()
-                    Text(day)
-                        .font(.headline)
+                    VStack {
+                        Text(date.dayOfWeek() ?? "MON")
+                        Text(day)
+                            .font(.headline)
+                    }
 
                     // Line extending to the right
                     Rectangle()

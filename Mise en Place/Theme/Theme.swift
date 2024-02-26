@@ -11,12 +11,17 @@ import SwiftUI
 struct Theme {
     static var outlines = Color.primary
     static var interactiveElements = Color.primary
+    @EnvironmentObject var dataController: DataController
 
-    static func loadTheme(theme: String){
+    static func loadTheme(){
+        let defaults = UserDefaults.standard
+        let theme = defaults.string(forKey: "Theme")
         switch theme {
         case "lilac": lilacTheme()
 
         case "blue": blueTheme()
+
+        case "default": defaultTheme()
 
         default: defaultTheme()
         }
@@ -36,7 +41,7 @@ struct Theme {
     }
 
     static func defaultTheme() {
-        outlines = .primary
-        interactiveElements = .secondary
+        outlines = .secondary
+        interactiveElements = .primary
     }
 }

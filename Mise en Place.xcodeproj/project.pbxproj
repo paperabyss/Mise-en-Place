@@ -15,6 +15,8 @@
 		CC7957C42AB7B9BC00392AD3 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7957C32AB7B9BC00392AD3 /* RecipeView.swift */; };
 		CC848A052B86E927008CF6AF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC848A042B86E927008CF6AF /* Theme.swift */; };
 		CC848A072B870333008CF6AF /* HexColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC848A062B870333008CF6AF /* HexColorExtention.swift */; };
+		CC848A0A2B8C5048008CF6AF /* DateExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC848A092B8C5048008CF6AF /* DateExtentions.swift */; };
+		CC848A0E2B8C55A9008CF6AF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC848A0D2B8C55A9008CF6AF /* SettingsView.swift */; };
 		CC8B0BB22ADCA568001C0866 /* New:EditRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8B0BB12ADCA568001C0866 /* New:EditRecipeView.swift */; };
 		CC8D52BB2A9C0246000C99DD /* Mise_en_PlaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D52BA2A9C0246000C99DD /* Mise_en_PlaceApp.swift */; };
 		CC8D52BD2A9C0246000C99DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D52BC2A9C0246000C99DD /* ContentView.swift */; };
@@ -46,6 +48,8 @@
 		CC7957C32AB7B9BC00392AD3 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		CC848A042B86E927008CF6AF /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		CC848A062B870333008CF6AF /* HexColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColorExtention.swift; sourceTree = "<group>"; };
+		CC848A092B8C5048008CF6AF /* DateExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtentions.swift; sourceTree = "<group>"; };
+		CC848A0D2B8C55A9008CF6AF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CC8B0BB12ADCA568001C0866 /* New:EditRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New:EditRecipeView.swift"; sourceTree = "<group>"; };
 		CC8D52B72A9C0246000C99DD /* Mise en Place.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mise en Place.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC8D52BA2A9C0246000C99DD /* Mise_en_PlaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mise_en_PlaceApp.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				CC8D52CF2A9D5EA1000C99DD /* SidebarView.swift */,
 				CC8D52D12A9D5EAF000C99DD /* DetailView.swift */,
 				CC8D52BC2A9C0246000C99DD /* ContentView.swift */,
+				CC848A0D2B8C55A9008CF6AF /* SettingsView.swift */,
 				CC60E9B52B16AEBB0036761F /* MealPlanner */,
 				CC8B0BB32ADCB21C001C0866 /* Recipe Views */,
 			);
@@ -141,6 +146,7 @@
 				CC8D52CC2A9C0C47000C99DD /* DataController.swift */,
 				CC60E9B62B16B3910036761F /* CalendarExtensions.swift */,
 				CCABB7112AD61B310074BED8 /* ImagePicker.swift */,
+				CC848A092B8C5048008CF6AF /* DateExtentions.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -275,6 +281,7 @@
 				CC8D52CB2A9C03D4000C99DD /* Main.xcdatamodeld in Sources */,
 				CCC94E992AA69B750072473F /* Recipe-CoreDataHelpers.swift in Sources */,
 				CCDF32822AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift in Sources */,
+				CC848A0A2B8C5048008CF6AF /* DateExtentions.swift in Sources */,
 				CC8D52D22A9D5EAF000C99DD /* DetailView.swift in Sources */,
 				CC60E9B22B16A97B0036761F /* Meal-CoreDataHelpers.swift in Sources */,
 				CC60E9B02B140E070036761F /* MealPlannerView.swift in Sources */,
@@ -289,6 +296,7 @@
 				CC8D52BD2A9C0246000C99DD /* ContentView.swift in Sources */,
 				CCABB7122AD61B310074BED8 /* ImagePicker.swift in Sources */,
 				CCB8607E2ADF3F67003ECD3A /* StepEditor.swift in Sources */,
+				CC848A0E2B8C55A9008CF6AF /* SettingsView.swift in Sources */,
 				CC8B0BB22ADCA568001C0866 /* New:EditRecipeView.swift in Sources */,
 				CC7957BF2AB7B8EC00392AD3 /* RecipeListView.swift in Sources */,
 				CC8D52BB2A9C0246000C99DD /* Mise_en_PlaceApp.swift in Sources */,

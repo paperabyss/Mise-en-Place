@@ -12,6 +12,11 @@ struct ContentView: View {
     @State var selection = 1
 
     var body: some View {
+        var loadTheme: Bool = {
+            Theme.loadTheme()
+            return true
+        }()
+
         TabView(selection: $selection) {
 
             RecipeGridView()
@@ -25,6 +30,12 @@ struct ContentView: View {
                     Label("Meal Planner", systemImage: "calendar")
                         .foregroundColor(Theme.interactiveElements)
                 } .tag(2)
+
+            SettingsView()
+                .tabItem{
+                    Label("Seetings", systemImage: "gear")
+                        .foregroundStyle(Theme.interactiveElements)
+                } .tag(3)
 
 
         }

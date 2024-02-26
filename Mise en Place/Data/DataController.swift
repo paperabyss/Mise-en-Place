@@ -11,6 +11,7 @@ import SwiftUI
 
 class DataController: ObservableObject {
     let container: NSPersistentCloudKitContainer
+    let userDefault = UserDefaults.standard
 
     @Published var selectedFilter: Filter? = Filter.all
     @Published var selectedRecipe: Recipe?
@@ -25,12 +26,23 @@ class DataController: ObservableObject {
     @Published var plannedMeals = [""]
     @Published var missingMeals = [""]
 
-    var theme = "blue" {
+    @Published var theme = "blue" {
         didSet {
             print(theme)
-            Theme.loadTheme(theme: theme)
+            userDefault.set(theme.lowercased(), forKey: "Theme")
+            Theme.loadTheme()
+            save()
             }
         }
+
+    @Published var themes = [
+        "Default",
+        "Blue",
+        "Forest",
+        "Lilac",
+        "Cherry Blossom"
+    ]
+
 
 
     private var saveTask: Task<Void, Error>?
