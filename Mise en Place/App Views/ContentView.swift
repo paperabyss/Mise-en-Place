@@ -12,7 +12,7 @@ struct ContentView: View {
     @State var selection = 1
 
     var body: some View {
-        var loadTheme: Bool = {
+        var _: Bool = {
             Theme.loadTheme()
             return true
         }()
@@ -22,19 +22,19 @@ struct ContentView: View {
             RecipeGridView()
                 .tabItem {
                     Label("Recipes", systemImage: "book.pages")
-                        .foregroundColor(Theme.interactiveElements)
+                        .foregroundColor(Theme.outlines)
                 }.tag(1)
 
             MealPlannerView()
                 .tabItem{
                     Label("Meal Planner", systemImage: "calendar")
-                        .foregroundColor(Theme.interactiveElements)
+                        .foregroundColor(Theme.outlines)
                 } .tag(2)
 
             SettingsView()
                 .tabItem{
                     Label("Seetings", systemImage: "gear")
-                        .foregroundStyle(Theme.interactiveElements)
+                        .foregroundStyle(Theme.outlines)
                 } .tag(3)
 
 

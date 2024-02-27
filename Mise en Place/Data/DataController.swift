@@ -26,10 +26,10 @@ class DataController: ObservableObject {
     @Published var plannedMeals = [""]
     @Published var missingMeals = [""]
 
-    @Published var theme = "blue" {
+    @Published var theme = "Default" {
         didSet {
             print(theme)
-            userDefault.set(theme.lowercased(), forKey: "Theme")
+            userDefault.set(theme, forKey: "Theme")
             Theme.loadTheme()
             save()
             }
@@ -37,10 +37,10 @@ class DataController: ObservableObject {
 
     @Published var themes = [
         "Default",
-        "Blue",
+        "Blue", // Done
+        "Lilac", // Done
+        "Cherry Blossom", // Done
         "Forest",
-        "Lilac",
-        "Cherry Blossom"
     ]
 
 
@@ -53,20 +53,6 @@ class DataController: ObservableObject {
         return dataController
     }()
 
-//    var suggestedFilterTokens: [Ingredient] {
-////        guard filterText.starts(with: "#") else {
-////            return []
-////        }
-//
-//        let trimmedFilterText = String(filterText.dropFirst()).trimmingCharacters(in: .whitespaces)
-//        let request = Ingredient.fetchRequest()
-//
-//        if trimmedFilterText.isEmpty == false {
-//            request.predicate = NSPredicate(format: "name CONTAINS[c] %@", trimmedFilterText)
-//        }
-//
-//        return (try? container.viewContext.fetch(request).sorted()) ?? []
-//    }
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")

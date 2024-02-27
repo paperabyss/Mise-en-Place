@@ -11,17 +11,22 @@ import SwiftUI
 struct Theme {
     static var outlines = Color.primary
     static var interactiveElements = Color.primary
+    static var text = Color.primary
     @EnvironmentObject var dataController: DataController
 
     static func loadTheme(){
         let defaults = UserDefaults.standard
         let theme = defaults.string(forKey: "Theme")
         switch theme {
-        case "lilac": lilacTheme()
+        case "Default": defaultTheme()
 
-        case "blue": blueTheme()
+        case "Blue": blueTheme()
 
-        case "default": defaultTheme()
+        case "Lilac": lilacTheme()
+
+        case "Cherry Blossom": cherryBlossomTheme()
+
+        case "Forest": forestTheme()
 
         default: defaultTheme()
         }
@@ -31,17 +36,34 @@ struct Theme {
 
 
     static func blueTheme() {
-        outlines = Color(hex: "0E9594")
-        interactiveElements = Color(hex: "127475")
+        outlines = Color(hex: "1B3C73")
+        interactiveElements = Color(hex: "40679E")
+        text = .white
     }
 
     static func lilacTheme() {
-        outlines = Color(hex: "bfacc8")
-        interactiveElements = Color(hex:"783F8E")
+        outlines = Color(hex: "B785B7")
+        interactiveElements = Color(hex:"D3B5E5")
+        text = .primary
+    }
+
+    static func cherryBlossomTheme() {
+        outlines = Color(hex:"FF9EB0")
+        interactiveElements = Color(hex: "FFB7C5")
+        text = .primary
+    }
+
+    static func forestTheme() {
+        outlines = Color(hex: "12372A")
+        interactiveElements = Color(hex: "436850")
+        text = .primary
     }
 
     static func defaultTheme() {
-        outlines = .secondary
-        interactiveElements = .primary
+        outlines = .primary
+        interactiveElements = Color(UIColor.label)
+
+        text = Color(UIColor.systemBackground)
+
     }
 }

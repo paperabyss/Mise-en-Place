@@ -79,6 +79,7 @@ struct DayView: View {
 
 // Custom view for the navigation areas
 struct NavigationArea: View {
+    @EnvironmentObject var dataController: DataController
     var text: String
 
     var body: some View {
@@ -86,7 +87,7 @@ struct NavigationArea: View {
             .frame(maxWidth: .infinity)
             .padding()
             .background(Theme.interactiveElements)
-            .foregroundColor(Color.white)
+            .foregroundColor(Theme.text)
             .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }

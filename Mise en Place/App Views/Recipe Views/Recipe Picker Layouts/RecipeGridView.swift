@@ -10,14 +10,17 @@ import SwiftUI
 struct RecipeGridView: View {
     @EnvironmentObject var dataController: DataController
 
-    let columns = [
-        GridItem(.adaptive(minimum: 150))
-    ]
+    @State  var columnSize = 100
+
     @State private var newIssueToggle = false
     @State private var refresh = false
     @State private var editEnabled = false
 
     var body: some View {
+        var columns = [
+            GridItem(.adaptive(minimum: CGFloat(columnSize)))
+        ]
+
         NavigationView{
             ScrollView {
                 LazyVGrid(columns: columns) {
@@ -39,15 +42,12 @@ struct RecipeGridView: View {
                                         
                                             .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
                                             .scaledToFill()
-                                            .frame(
-                                                maxWidth:150,
-                                                maxHeight: 150
-                                                    )
+                                            .frame(minWidth: CGFloat(columnSize), minHeight: CGFloat(columnSize))
 
 
                                     } else {
                                         Text("No Image")
-                                            .foregroundStyle(.white)
+                                            .foregroundStyle(Theme.text)
                                             .fontWeight(.bold)
                                     }
                                 }
@@ -55,11 +55,11 @@ struct RecipeGridView: View {
                                 VStack {
                                     Text(recipe.recipeTitle)
                                         .font(.headline)
-                                        .foregroundColor(.white)
-                                    
+                                        .foregroundColor(Theme.text)
+
                                     Text(recipe.recipeDifficultyString)
                                         .font(.caption)
-                                        .foregroundColor(.white.opacity(0.5))
+                                        .foregroundColor(Theme.text.opacity(0.5))
                                 }
                                 .padding(.vertical)
                                 .frame(maxWidth: .infinity)
@@ -113,6 +113,18 @@ struct RecipeGridView: View {
                     refresh.toggle()
                 } label: {
                     Label("New Recipe",systemImage: "square.and.pencil")
+                }
+
+                Button() {
+                    if columnSize == 100 {
+                        columnSize = 150
+                    } else if columnSize == 150 {
+                        columnSize = 200
+                    } else {
+                        columnSize = 100
+                    }
+                } label : {
+                    Label("Change Grid Size", systemImage: "circle.grid.3x3.circle")
                 }
             }
             .searchable(text: $dataController.filterText)
