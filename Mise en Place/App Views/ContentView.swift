@@ -13,7 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         var _: Bool = {
-            Theme.loadTheme()
+            loadDefaults()
             return true
         }()
 
@@ -49,6 +49,11 @@ struct ContentView: View {
             let item = recipes[offset]
             dataController.delete(item)
         }
+    }
+
+    func loadDefaults(){
+        let userDefault = UserDefaults.standard
+                Theme.loadTheme()
     }
 }
 

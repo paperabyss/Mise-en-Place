@@ -10,7 +10,6 @@ import SwiftUI
 struct RecipeGridView: View {
     @EnvironmentObject var dataController: DataController
 
-    @State  var columnSize = 100
 
     @State private var newIssueToggle = false
     @State private var refresh = false
@@ -18,7 +17,7 @@ struct RecipeGridView: View {
 
     var body: some View {
         var columns = [
-            GridItem(.adaptive(minimum: CGFloat(columnSize)))
+            GridItem(.adaptive(minimum: CGFloat(dataController.columnSize)))
         ]
 
         NavigationView{
@@ -32,7 +31,7 @@ struct RecipeGridView: View {
                                 ZStack {
                                     Rectangle()
                                         .aspectRatio(contentMode: .fill)
-                                        .scaledToFit()
+                                        .scaledToFill()
                                         .frame(maxWidth:.infinity)
                                         .opacity(0.3)
 
@@ -42,7 +41,7 @@ struct RecipeGridView: View {
                                         
                                             .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
                                             .scaledToFill()
-                                            .frame(minWidth: CGFloat(columnSize), minHeight: CGFloat(columnSize))
+                                            .frame(minWidth: CGFloat(dataController.columnSize), minHeight: CGFloat(dataController.columnSize))
 
 
                                     } else {
@@ -55,15 +54,21 @@ struct RecipeGridView: View {
                                 VStack {
                                     Text(recipe.recipeTitle)
                                         .font(.headline)
+                                        .lineLimit(2)
+                                        .minimumScaleFactor(0.75)
                                         .foregroundColor(Theme.text)
+                                        .padding(.horizontal)
 
-                                    Text(recipe.recipeDifficultyString)
-                                        .font(.caption)
-                                        .foregroundColor(Theme.text.opacity(0.5))
+                                    if dataController.showRecipeDifficulty{
+                                        Text(recipe.recipeDifficultyString)
+                                            .font(.caption)
+                                            .foregroundColor(Theme.text.opacity(0.5))
+                                    }
+
                                 }
                                 .padding(.vertical)
-                                .frame(maxWidth: .infinity)
-                                
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
                                 .background(Theme.interactiveElements)
                             }
                             .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -116,13 +121,7 @@ struct RecipeGridView: View {
                 }
 
                 Button() {
-                    if columnSize == 100 {
-                        columnSize = 150
-                    } else if columnSize == 150 {
-                        columnSize = 200
-                    } else {
-                        columnSize = 100
-                    }
+                    dataController.changeSize()
                 } label : {
                     Label("Change Grid Size", systemImage: "circle.grid.3x3.circle")
                 }

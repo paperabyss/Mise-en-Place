@@ -17,67 +17,81 @@ struct RecipeView: View {
     var body: some View {
         ScrollView {
             VStack {
-                HStack {
-                    Spacer()
-                    if recipe.recipeStoredImage != nil {
-                        Image(uiImage: recipe.recipeStoredImage!)
-                            .resizable()
-                            .scaledToFill()
-                            .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
-                            .frame(width: 150,
-                                   height: 150
-                                    )
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                         //   .shadow(color: Color("ColorBlackTransparentLight"), radius: 8,x: 0, y:0 )
-                    } else {
-                        Button() {
-                            showingImagePicker.toggle()
-                        } label: {
-                            ZStack {
-                                Rectangle()
-                                    .scaledToFill()
-                                    .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
-                                    .frame(width: 150,
-                                           height: 150
-                                            )
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                Text("Select an Image")
-                                    .foregroundStyle(.white)
-                                    .fontWeight(.bold)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .opacity(0.3)
+                        .foregroundStyle(Theme.interactiveElements)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Theme.outlines)
+                                .opacity(0.3)
+                        )
+                        .padding()
+                    HStack {
+                        Spacer()
+                        if recipe.recipeStoredImage != nil {
+                            Image(uiImage: recipe.recipeStoredImage!)
+                                .resizable()
+                                .scaledToFill()
+                                .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
+                                .frame(width: 150,
+                                       height: 150
+                                )
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                        } else {
+                            Button() {
+                                showingImagePicker.toggle()
+                            } label: {
+                                ZStack {
+                                    Rectangle()
+                                        .scaledToFill()
+                                        .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
+                                        .frame(width: 150,
+                                               height: 150
+                                        )
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    Text("Select an Image")
+                                        .foregroundStyle(.white)
+                                        .fontWeight(.bold)
+                                }
                             }
-                           // .shadow(color: Color("ColorBlackTransparentLight"), radius: 8,x: 0, y:0 )
-                        }
-                    }
-
-                    Spacer()
-
-                    VStack {
-                        HStack {
-                            Text("\(recipe.cookingHours)H")
-                            Text("\(recipe.cookingMinutes)M")
                         }
 
-                        Text(recipe.recipeServings)
+                        Spacer()
 
-                        Text(recipe.recipeDifficultyString)
+                        VStack {
+                            Text("Cooking Time:")
+                                .font(.footnote)
+                            HStack {
+                                Text("\(recipe.cookingHours)H")
+                                Text("\(recipe.cookingMinutes)M")
+                            }
+                        
+                            Text("Servings:")
+                                .font(.footnote)
+                            Text(recipe.recipeServings)
+
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Theme.outlines)
+                        )
+                        .padding(1)
                     }
+
                     .padding()
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(maxWidth: .infinity)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(.secondary)
-                        )
+                            .stroke(Theme.outlines)
+                    )
                     .padding()
                 }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.secondary)
-                )
-                .padding()
                 //End of Picture and Title Block
 
 
@@ -97,7 +111,7 @@ struct RecipeView: View {
                             .foregroundStyle(Theme.interactiveElements)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.pink)
+                                    .stroke(Theme.outlines)
                                     .opacity(0.3)
                             )
                         VStack {
@@ -109,7 +123,7 @@ struct RecipeView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(.pink)
+                                .stroke(Theme.outlines)
                         )
                     }
                 }

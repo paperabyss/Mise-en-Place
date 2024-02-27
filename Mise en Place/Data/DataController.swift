@@ -36,13 +36,19 @@ class DataController: ObservableObject {
         }
 
     @Published var themes = [
-        "Default",
+        "Default", // Done
         "Blue", // Done
         "Lilac", // Done
         "Cherry Blossom", // Done
-        "Forest",
+        "Forest", //Done
     ]
 
+    @Published var columnSize = 100
+    @Published var showRecipeDifficulty: Bool = UserDefaults.standard.bool(forKey: "ShowDifficulty") {
+        didSet {
+            userDefault.set(showRecipeDifficulty, forKey: "ShowDifficulty" )
+        }
+    }
 
 
     private var saveTask: Task<Void, Error>?
@@ -90,7 +96,9 @@ class DataController: ObservableObject {
         ]
     }
 
-    
+    func loadDefaults() {
+//        showRecipeDifficulty = userDefault.bool(forKey: "ShowDifficulty")
+    }
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
     }
@@ -395,5 +403,15 @@ class DataController: ObservableObject {
         let allMeals = (try? container.viewContext.fetch(request)) ?? []
 
         return allMeals.sorted()
+    }
+
+    func changeSize() {
+        if columnSize == 100 {
+            columnSize = 150
+        } else if columnSize == 150 {
+            columnSize = 200
+        } else {
+            columnSize = 100
+        }
     }
 }

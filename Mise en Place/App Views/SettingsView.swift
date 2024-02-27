@@ -11,10 +11,25 @@ struct SettingsView: View {
     @EnvironmentObject var dataController: DataController
 
     var body: some View {
-        Picker("Unit:", selection: $dataController.theme) {
-            ForEach(dataController.themes, id: \.self) {
-                Text($0)
-            }
+        NavigationView {
+            List {
+                Section(header: Text("App Appearance")) {
+                    Picker("Theme:", selection: $dataController.theme) {
+                        ForEach(dataController.themes, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                }
+
+                Section(header: Text("Recipe Layout")) {
+                    Picker("Recipe Size", selection: $dataController.columnSize) {
+                        Text("Compact").tag(100)
+                        Text("Default").tag(150)
+                        Text("Large").tag(200)
+                    }
+                    Toggle("Show recipe difficulty", isOn: $dataController.showRecipeDifficulty)
+                }
+            }        .navigationTitle("Settings")
         }
     }
 }
