@@ -13,7 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         var _: Bool = {
-            loadDefaults()
+            Theme.loadTheme()
             return true
         }()
 
@@ -33,7 +33,7 @@ struct ContentView: View {
 
             SettingsView()
                 .tabItem{
-                    Label("Seetings", systemImage: "gear")
+                    Label("Setings", systemImage: "gear")
                         .foregroundStyle(Theme.outlines)
                 } .tag(3)
 
@@ -49,11 +49,6 @@ struct ContentView: View {
             let item = recipes[offset]
             dataController.delete(item)
         }
-    }
-
-    func loadDefaults(){
-        let userDefault = UserDefaults.standard
-                Theme.loadTheme()
     }
 }
 

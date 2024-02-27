@@ -26,7 +26,7 @@ class DataController: ObservableObject {
     @Published var plannedMeals = [""]
     @Published var missingMeals = [""]
 
-    @Published var theme = "Default" {
+    @Published var theme: String = (UserDefaults.standard.string(forKey: "Theme") ?? "Default") {
         didSet {
             print(theme)
             userDefault.set(theme, forKey: "Theme")
