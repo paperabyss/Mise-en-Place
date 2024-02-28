@@ -28,12 +28,27 @@ struct Theme {
 
         case "Forest": forestTheme()
 
+        case "Burnt Orange" : burntOrangeTheme()
+
+        case "Code Green": codeGreenTheme()
+
         default: defaultTheme()
         }
 
     }
 
 
+    static func codeGreenTheme() {
+        outlines = .black
+        interactiveElements = Color(hex: "4CBB17")
+        text = Color(UIColor.systemBackground)
+
+    }
+    static func burntOrangeTheme() {
+        outlines = Color(hex: "BF3100")
+        interactiveElements = Color(hex: "FF4E00")
+        text = .primary
+    }
 
     static func blueTheme() {
         outlines = Color(hex: "1B3C73")
@@ -62,7 +77,6 @@ struct Theme {
     static func defaultTheme() {
         outlines = .primary
         interactiveElements = Color(UIColor.label)
-
         text = Color(UIColor.systemBackground)
 
     }

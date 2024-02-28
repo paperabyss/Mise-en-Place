@@ -21,42 +21,44 @@ struct MealPlannerView: View {
         @State var days = dataController.getCurrentWeekDatesFormatted(date: currentDate)
 
 
-        NavigationView {
-            ScrollView{
+        if dataController.recipesForSelectedFilter().count == 0 {
+                Text("Please make a recipe first.")
+        } else {
+            NavigationView {
+                ScrollView{
+                    HStack {
+                        //This button changes the meal list to the previous week.
+                        Button {
+                            currentDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: currentDate) ?? Date()
+                            print(currentDate.formatted())
+                            if weeksMeals.isEmpty {print("Empty meal list")}
+                        } label: {
+                            Image(systemName: "arrowshape.left.fill")
+                                .foregroundColor(Theme.interactiveElements)
+                        }
 
-                HStack {
+                        Text("\(days[0]) - \(days[6])")
 
-                    //This button changes the meal list to the previous week.
-                    Button {
-                        currentDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: currentDate) ?? Date()
-                        print(currentDate.formatted())
-                        if weeksMeals.isEmpty {print("Empty meal list")}
-                    } label: {
-                        Image(systemName: "arrowshape.left.fill")
-                            .foregroundColor(Theme.interactiveElements)
+                        //This button changes the meal list to the next week.
+                        Button {
+                            currentDate = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: currentDate) ?? Date()
+                            print(currentDate.formatted())
+                            if weeksMeals.isEmpty {print("Empty meal list")}
+                        } label: {
+                            Image(systemName: "arrowshape.right.fill")
+                                .foregroundColor(Theme.interactiveElements)
+                        }
                     }
 
-                    Text("\(days[0]) - \(days[6])")
-
-                    //This button changes the meal list to the next week.
-                    Button {
-                        currentDate = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: currentDate) ?? Date()
-                        print(currentDate.formatted())
-                        if weeksMeals.isEmpty {print("Empty meal list")}
-                    } label: {
-                        Image(systemName: "arrowshape.right.fill")
-                            .foregroundColor(Theme.interactiveElements)
+                    //This area shows the days of the week and the meals for them.
+                    VStack {
+                        ForEach(Array(days.enumerated()), id: \.1) { (index, day) in
+                            DayView(day: day, date: dates[index] )
+                        }
                     }
                 }
-
-                //This area shows the days of the week and the meals for them.
-                VStack {
-                    ForEach(Array(days.enumerated()), id: \.1) { (index, day) in
-                        DayView(day: day, date: dates[index] )
-                    }
-                }
+                .navigationTitle("MealPlanner")
             }
-            .navigationTitle("MealPlanner")
         }
     }
 
