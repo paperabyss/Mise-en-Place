@@ -27,6 +27,9 @@ struct ContentView: View {
 
             MealPlannerView()
                 .tabItem{
+                    if dataController.recipesForSelectedFilter().count == 0 {
+                        Text("Please make a recipe first.")
+                    }
                     Label("Meal Planner", systemImage: "calendar")
                         .foregroundColor(Theme.outlines)
                 } .tag(2)

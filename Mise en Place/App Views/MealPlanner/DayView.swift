@@ -44,7 +44,14 @@ struct DayView: View {
                             ForEach(meals) { meal in
                                 if meal.mealType == type {
                                     NavigationLink(destination: RecipeView(recipe: meal.recipe ?? Recipe.example)) {
-                                        NavigationArea(text: "\(meal.mealType) - \(meal.recipe?.recipeTitle ?? "")")
+
+                                        Text("\(meal.mealType) - \(meal.recipe?.recipeTitle ?? "")")
+                                            .frame(maxWidth: .infinity)
+                                            .padding()
+                                            .background(Theme.interactiveElements)
+                                            .foregroundColor(Theme.text)
+                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+
                                     }                               
                                     .contextMenu {
                                         Button(role: .destructive) {
@@ -63,7 +70,12 @@ struct DayView: View {
                             dataController.newMeal(day: day)
                             showingMealPlanner.toggle()
                         } label: {
-                            NavigationArea(text: "Plan a meal")
+                            Text("Plan a meal")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Theme.interactiveElements)
+                                .foregroundColor(Theme.text)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                         }
                     }
                     .padding(.leading, 58)
@@ -71,26 +83,10 @@ struct DayView: View {
             }
             .sheet(isPresented: $showingMealPlanner) {
                 NewMealView(meal: dataController.selectedMeal!,date: date, day: day, recipe: dataController.recipesForSelectedFilter()[0] )
-            }
+        }
     }
 }
 
-
-
-// Custom view for the navigation areas
-struct NavigationArea: View {
-    @EnvironmentObject var dataController: DataController
-    var text: String
-
-    var body: some View {
-        Text(text)
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Theme.interactiveElements)
-            .foregroundColor(Theme.text)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-}
 
 //#Preview {
 //    DayView()

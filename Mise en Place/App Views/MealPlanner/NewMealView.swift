@@ -16,7 +16,10 @@ struct NewMealView: View {
     @State  var day: String
     @State var recipe: Recipe
 
+
+
     var body: some View {
+        var recipes = dataController.recipesForSelectedFilter()
 
 
         NavigationView{
@@ -42,7 +45,7 @@ struct NewMealView: View {
 
                     Section{
                         Picker("Recipe", selection: $recipe){
-                            ForEach(dataController.recipesForSelectedFilter(), id: \.self) { recipe in
+                            ForEach(recipes, id: \.self) { recipe in
                                 Text(recipe.recipeTitle).tag(recipe)
                             }
                         }

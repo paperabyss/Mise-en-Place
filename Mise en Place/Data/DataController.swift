@@ -26,6 +26,7 @@ class DataController: ObservableObject {
     @Published var plannedMeals = [""]
     @Published var missingMeals = [""]
 
+
     @Published var theme: String = (UserDefaults.standard.string(forKey: "Theme") ?? "Default") {
         didSet {
             print(theme)
@@ -98,9 +99,6 @@ class DataController: ObservableObject {
         ]
     }
 
-    func loadDefaults() {
-//        showRecipeDifficulty = userDefault.bool(forKey: "ShowDifficulty")
-    }
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
     }
