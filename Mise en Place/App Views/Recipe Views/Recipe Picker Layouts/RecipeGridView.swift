@@ -50,7 +50,8 @@ struct RecipeGridView: View {
                                             .fontWeight(.bold)
                                     }
                                 }
-                                
+                                .accessibilityHidden(true)
+
                                 VStack {
                                     Text(recipe.recipeTitle)
                                         .font(.headline)
@@ -71,14 +72,15 @@ struct RecipeGridView: View {
 
                                 .background(Theme.interactiveElements)
                             }
+
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Theme.outlines)
                             )
-                            .accessibilityAddTraits(.isButton)
                             .accessibilityElement()
-                            .accessibilityValue(recipe.recipeTitle)
+                            .accessibilityAddTraits(.isButton)
+                            .accessibilityLabel(recipe.recipeTitle)
                             .accessibilityHint(recipe.recipeDifficultyString)
                         }
                         .contextMenu {

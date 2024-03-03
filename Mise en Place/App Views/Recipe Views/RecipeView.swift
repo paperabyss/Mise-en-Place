@@ -39,6 +39,7 @@ struct RecipeView: View {
                                        height: 150
                                 )
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .accessibilityHidden(true)
                         } else {
                             Button() {
                                 showingImagePicker.toggle()
@@ -55,22 +56,32 @@ struct RecipeView: View {
                                         .foregroundStyle(.white)
                                         .fontWeight(.bold)
                                 }
+                                .accessibilityElement()
+                                .accessibilityLabel("Add an Image")
                             }
                         }
 
                         Spacer()
 
                         VStack {
-                            Text("Cooking Time:")
-                                .font(.footnote)
-                            HStack {
-                                Text("\(recipe.cookingHours)H")
-                                Text("\(recipe.cookingMinutes)M")
+                            VStack {
+                                Text("Cooking Time:")
+                                    .font(.footnote)
+                                HStack {
+                                    Text("\(recipe.cookingHours)H")
+                                    Text("\(recipe.cookingMinutes)M")
+                                }
                             }
-                        
-                            Text("Servings:")
-                                .font(.footnote)
-                            Text(recipe.recipeServings)
+                            .accessibilityElement()
+                            .accessibilityLabel("The cooking time is \(recipe.cookingHours) hours and \(recipe.cookingMinutes) minutes.")
+
+                            VStack {
+                                Text("Servings:")
+                                    .font(.footnote)
+                                Text(recipe.recipeServings)
+                            }
+                            .accessibilityElement()
+                            .accessibilityLabel( "\(recipe.recipeServings) servings")
 
                         }
                         .padding()
@@ -194,7 +205,7 @@ struct RecipeView: View {
                 editEnabled.toggle()
             }
             if !fromMealPlanner {
-                Button("Add to a meal.") {
+                Button("Add to a meal") {
                     showingMealPlanner.toggle()
                 }
             }

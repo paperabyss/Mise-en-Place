@@ -67,13 +67,16 @@ struct New_EditRecipeView: View {
                     VStack(alignment: .leading) {
 
                         //Title
-                        Text("Title:")
-                            .font(.headline)
-                        TextField("Title", text: $recipe.recipeTitle, prompt: Text("Enter ther recipe title here"))
+                        VStack {
+                            Text("Title:")
+                                .font(.headline)
+                            TextField("Title", text: $recipe.recipeTitle, prompt: Text("Enter ther recipe title here"))
+                        }
 
                         //Servings
                         Divider()
                         Stepper("Servings: \(Int(recipe.servings))", value: $recipe.servings, in: 1...16 )
+
                     }
                 }
 
@@ -92,6 +95,8 @@ struct New_EditRecipeView: View {
                                     Text("\($0) h").tag(Int16($0))
                                 }
                             }
+                            .accessibilityLabel("Hours")
+                            .accessibilityInputLabels(["Hours", "Cooking Hours"])
                             .frame(width: geometry.size.width/4, height: geometry.size.height, alignment: .center)
                             .clipped()
 
@@ -100,6 +105,8 @@ struct New_EditRecipeView: View {
                                     Text("\($0) m").tag(Int16($0))
                                 }
                             }
+                            .accessibilityLabel("Minutes")
+                            .accessibilityInputLabels(["Minutes, Cooking Minutes"])
                             .onSubmit {
                                 dataController.save()
                             }
@@ -142,31 +149,6 @@ struct New_EditRecipeView: View {
                 //Directions for Recipe
                 Section(header: Text("Directions")) {
                     TextField("How to cook this recipe:", text: $recipe.recipeInstructions, axis: .vertical)
-//                    List{
-//                        ForEach(recipe.recipeSteps) { step in
-//                            let index = recipe.recipeSteps.firstIndex(of:step)
-//                            // NavigationLink {
-//                                // StepEditor(step: step)
-//                             Button {
-//
-//                                 print(index)
-//                            } label: {
-//                                HStack{
-//                                    Text (String(Int(step.number)))
-//                                    Text (step.stepInstruction)
-//                                }
-//                                .onTapGesture {
-//                                    print(index)
-//                                }
-//                            }
-//                        }
-//                        .onMove(perform: moveStep)
-//                        .onDelete(perform: deleteStep)
-//                        Button("Add an instruction."){
-//                            dataController.newStep(recipe: recipe)
-//                            isEditing.toggle()
-//                        }
-//                    }
                 }
             }
             .navigationTitle("Editing")
@@ -189,41 +171,6 @@ struct New_EditRecipeView: View {
             let item = ingredients[offset]
             dataController.delete(item)
         }
-    }
-
-    func moveStep(at sets: IndexSet, destination: Int){
-        viewContext.perform {
-            let itemToMove = sets.first!
-            print ("Grabbed item at index \(itemToMove)")
-
-            if itemToMove < destination{
-                var startIndex = itemToMove + 1
-                let endIndex = destination - 1
-                var startOrder = recipe.recipeSteps[itemToMove].stepNumber
-                while startIndex <= endIndex{
-                    recipe.recipeSteps[startIndex].stepNumber = startOrder
-                    startOrder = startOrder + 1
-                    startIndex = startIndex + 1
-                }
-                recipe.recipeSteps[itemToMove].stepNumber = startOrder
-            }
-            else if destination < itemToMove{
-                var startIndex = destination
-                let endIndex = itemToMove - 1
-                var startOrder = recipe.recipeSteps[destination].stepNumber + 1
-                let newOrder = recipe.recipeSteps[destination].stepNumber
-                while startIndex <= endIndex{
-                    recipe.recipeSteps[startIndex].stepNumber = startOrder
-                    startOrder = startOrder + 1
-                    startIndex = startIndex + 1
-                }
-                recipe.recipeSteps[itemToMove].number = newOrder
-            }
-
-            dataController.save()
-
-        }
-        dataController.save()
     }
     func deleteStep(_ offsets: IndexSet) {
         withAnimation{

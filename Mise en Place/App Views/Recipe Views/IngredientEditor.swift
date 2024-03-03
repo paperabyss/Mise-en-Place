@@ -11,7 +11,7 @@ struct IngredientEditor: View {
     @EnvironmentObject var dataController: DataController
     @ObservedObject var ingredient: Ingredient
     var body: some View {
-        VStack {
+
             VStack {
                 TextField("Ingredient", text: $ingredient.ingredientName, prompt: Text("Ingredient name"))
                     .font(.headline)
@@ -21,6 +21,7 @@ struct IngredientEditor: View {
                 Rectangle()
                     .fill(.secondary)
                     .frame(height: 2)
+                    .accessibilityHidden(true)
 
 
                 HStack() {
@@ -39,19 +40,12 @@ struct IngredientEditor: View {
                     .labelsHidden()
                 }
             }
+            .accessibilityLabel(ingredient.ingredientName)
             .padding(.horizontal)
             .frame(maxWidth: .infinity, maxHeight: 80)
-
-        }
-        .onReceive(ingredient.objectWillChange) { _ in
+            .onReceive(ingredient.objectWillChange) { _ in
             dataController.queueSave()
         }
-//        .onSubmit(dataController.save)
-//        .clipShape(RoundedRectangle(cornerRadius: 10))
-//        .overlay(
-//            RoundedRectangle(cornerRadius: 10)
-//                .stroke(.teal)
-//        )
     }
 }
 
