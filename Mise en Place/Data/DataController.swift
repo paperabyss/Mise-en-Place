@@ -44,6 +44,7 @@ class DataController: ObservableObject {
         "Forest", //Done
         "Burnt Orange", //Done
         "Code Green", // Done
+        "Sunset" // Done
     ]
 
     @Published var columnSize = 100

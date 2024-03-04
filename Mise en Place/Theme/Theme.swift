@@ -32,6 +32,8 @@ struct Theme {
 
         case "Code Green": codeGreenTheme()
 
+        case "Sunset": sunsetTheme()
+
         default: defaultTheme()
         }
 
@@ -79,5 +81,11 @@ struct Theme {
         interactiveElements = Color(UIColor.label)
         text = Color(UIColor.systemBackground)
 
+    }
+
+    static func sunsetTheme() {
+        outlines = Color(hex:"E78895")
+        interactiveElements = Color(hex: "FFE4C9")
+        text = Color(.black)
     }
 }
