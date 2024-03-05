@@ -36,6 +36,8 @@ struct MealPlannerView: View {
                             Image(systemName: "arrowshape.left.fill")
                                 .foregroundColor(Theme.interactiveElements)
                         }
+                        .accessibilityLabel("Last Week")
+                        .accessibilityInputLabels(["Last", "Last Week"])
 
                         Text("\(days[0]) - \(days[6])")
 
@@ -48,6 +50,8 @@ struct MealPlannerView: View {
                             Image(systemName: "arrowshape.right.fill")
                                 .foregroundColor(Theme.interactiveElements)
                         }
+                        .accessibilityLabel("Next Week")
+                        .accessibilityInputLabels(["Next", "Next Week",])
                     }
 
                     //This area shows the days of the week and the meals for them.

@@ -84,8 +84,8 @@ struct Theme {
     }
 
     static func sunsetTheme() {
-        outlines = Color(hex:"E78895")
-        interactiveElements = Color(hex: "FFE4C9")
+        outlines = Color(hex:"FF9843")
+        interactiveElements = Color(hex: "FFDD95")
         text = Color(.black)
     }
 }

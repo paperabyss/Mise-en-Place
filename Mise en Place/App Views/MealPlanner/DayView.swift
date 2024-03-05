@@ -52,7 +52,8 @@ struct DayView: View {
                                             .foregroundColor(Theme.text)
                                             .clipShape(RoundedRectangle(cornerRadius: 10))
 
-                                    }                               
+                                    }
+                                    .accessibilityLabel("\(date.dayOfWeek() ?? "Monday")   \(meal.mealType)")
                                     .contextMenu {
                                         Button(role: .destructive) {
                                             dataController.delete(meal)
@@ -62,6 +63,7 @@ struct DayView: View {
                                     }
                                 }
                             }
+
                         }
 
 
@@ -77,6 +79,8 @@ struct DayView: View {
                                 .foregroundColor(Theme.text)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                         }
+                        .accessibilityLabel("Plan a meal")
+                        .accessibilityInputLabels(["Plan a meal \(date.dayOfWeek() ?? "Monday")", "Plan \(date.dayOfWeek() ?? "Monday")"])
                     }
                     .padding(.leading, 58)
                     .padding(.horizontal, 16)

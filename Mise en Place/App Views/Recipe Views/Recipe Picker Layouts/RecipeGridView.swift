@@ -16,7 +16,7 @@ struct RecipeGridView: View {
     @State private var editEnabled = false
 
     var body: some View {
-        var columns = [
+        let columns = [
             GridItem(.adaptive(minimum: CGFloat(dataController.columnSize)))
         ]
 

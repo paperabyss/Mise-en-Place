@@ -19,7 +19,7 @@ struct NewMealView: View {
 
 
     var body: some View {
-        var recipes = dataController.recipesForSelectedFilter()
+        let recipes = dataController.recipesForSelectedFilter()
 
 
         NavigationView{
