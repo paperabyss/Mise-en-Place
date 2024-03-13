@@ -29,8 +29,10 @@ struct SettingsView: View {
                     }
                     Toggle("Show recipe difficulty", isOn: $dataController.showRecipeDifficulty)
                 }
-            }        .navigationTitle("Settings")
+            }       
+            .navigationTitle("Settings")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

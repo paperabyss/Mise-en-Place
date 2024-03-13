@@ -63,6 +63,7 @@ struct MealPlannerView: View {
                 }
                 .navigationTitle("MealPlanner")
             }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 
