@@ -63,9 +63,21 @@ class DataController: ObservableObject {
         return dataController
     }()
 
+    static let model: NSManagedObjectModel = {
+        guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
+            fatalError("Failed to locate model file")
+        }
+
+        guard let managedObjectModel = NSManagedObjectModel(contentsOf: url) else {
+            fatalError("Failed to load model file")
+        }
+
+        return managedObjectModel
+    }()
+
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "Main")
+        container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
 
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
@@ -111,14 +123,6 @@ class DataController: ObservableObject {
             let tag = Tag(context: viewContext)
             tag.id = UUID()
             tag.name = "Tag \(i)"
-
-//            let meal = Meal(context: viewContext)
-//            meal.id = UUID()
-//            let mealTypes = ["Breakfast", "Lunch", "Dinner"]
-//            meal.type = mealTypes[Int.random(in: 0...2)]
-//            meal.name = "Meal \(i)"
-//            meal.time = .now.addingTimeInterval(TimeInterval(86400 * (Int.random(in: 0...7))))
-//            meal.day = getCurrentWeekDatesFormatted(date: Date())[(Int.random(in: 0...6))]
 
             for j in 1...5 {
                 let recipe = Recipe(context: viewContext)
@@ -273,6 +277,8 @@ class DataController: ObservableObject {
 
         let request3: NSFetchRequest<NSFetchRequestResult> = Meal.fetchRequest()
         delete(request3)
+
+        
 
         save()
     }

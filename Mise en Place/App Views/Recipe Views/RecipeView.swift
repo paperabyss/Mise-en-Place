@@ -204,11 +204,6 @@ struct RecipeView: View {
             Button(!editEnabled ? "Edit" : "Stop Editing") {
                 editEnabled.toggle()
             }
-            if !fromMealPlanner {
-                Button("Add to a meal") {
-                    showingMealPlanner.toggle()
-                }
-            }
         }
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $recipe.recipeStoredImage)
@@ -216,6 +211,7 @@ struct RecipeView: View {
         .sheet(isPresented: $editEnabled){
             New_EditRecipeView(recipe: recipe)
         }
+
         .onReceive(recipe.objectWillChange) { _ in
             dataController.queueSave()
         }
