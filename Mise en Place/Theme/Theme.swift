@@ -34,6 +34,8 @@ struct Theme {
 
         case "Sunset": sunsetTheme()
 
+        case "Purple and Pink": purpleAndPinkTheme()
+
         default: defaultTheme()
         }
 
@@ -87,5 +89,11 @@ struct Theme {
         outlines = Color(hex:"FF9843")
         interactiveElements = Color(hex: "FFDD95")
         text = Color(.black)
+    }
+
+    static func purpleAndPinkTheme() {
+        outlines = Color(hex: "D60270")
+        interactiveElements = Color(hex: "9B4F96")
+        text = .primary
     }
 }
