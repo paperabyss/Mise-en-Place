@@ -14,6 +14,7 @@ struct RecipeView: View {
     @State private var editEnabled = false
     @State private var showingMealPlanner = false
     @State private var showingImagePicker = false
+    @State private var showingShareSheet = false
     var body: some View {
         ScrollView {
             VStack {
@@ -203,6 +204,10 @@ struct RecipeView: View {
         .toolbar {
             Button(!editEnabled ? "Edit" : "Stop Editing") {
                 editEnabled.toggle()
+            }
+            Button("Export") {
+                dataController.exportRecipe(recipe: recipe)
+//                dataController.convertToJSONArray(moArray: [recipe])
             }
         }
         .sheet(isPresented: $showingImagePicker) {
