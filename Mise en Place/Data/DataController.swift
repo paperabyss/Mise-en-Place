@@ -177,6 +177,7 @@ class DataController: ObservableObject {
     func newRecipe() {
         let recipe = Recipe(context: container.viewContext)
         recipe.title = "New Recipe"
+        recipe.id = UUID()
         recipe.creationDate = .now
         recipe.servings = 1
         recipe.difficulty = 0
@@ -427,9 +428,21 @@ class DataController: ObservableObject {
         do {
             let data = try JSONEncoder().encode(RecipeContainer(recipe: recipe))
             let decodedRecipe = try JSONDecoder().decode(RecipeContainer.self, from: data)
+
             print(decodedRecipe.recipe)
+        }  catch let DecodingError.dataCorrupted(context) {
+            print(context)
+        } catch let DecodingError.keyNotFound(key, context) {
+            print("Key '\(key)' not found:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch let DecodingError.valueNotFound(value, context) {
+            print("Value '\(value)' not found:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch let DecodingError.typeMismatch(type, context)  {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
         } catch {
-            print(error.localizedDescription)
+            print("error: ", error)
         }
     }
 

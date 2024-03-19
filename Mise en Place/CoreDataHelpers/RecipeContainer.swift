@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 class RecipeContainer: Codable {
+    @EnvironmentObject var dataController: DataController
     let recipe: Recipe
 
     init(recipe: Recipe) {
@@ -20,16 +22,20 @@ class RecipeContainer: Codable {
         let cookingMinutes = try container.decode(Int16.self, forKey: .cookingMinutes)
         let cookingTime = try container.decode(Int16.self, forKey: .cookingTime)
         let creationDate = try container.decode(Date.self, forKey: .creationDate)
+        let difficulty = try container.decode(Int16.self, forKey: .difficulty)
         let id = try container.decode(UUID.self, forKey: .id)
         let information = try container.decode(String.self, forKey: .information)
         let instructions = try container.decode(String.self, forKey: .instructions)
         let lastMade = try container.decode(Date.self, forKey: .lastMade)
         let servings = try container.decode(Double.self, forKey: .lastMade)
+        let storedImage = try container.decode(Data.self, forKey: .storedImage)
         let title = try container.decode(String.self, forKey: .title)
+        recipe = Recipe(context: dataController.container.viewContext)
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(recipe.difficulty, forKey: .difficulty)
         try container.encode(recipe.cookingHours, forKey: .cookingHours)
         try container.encode(recipe.cookingMinutes, forKey: .cookingMinutes)
         try container.encode(recipe.cookingTime, forKey: .cookingTime)
@@ -39,6 +45,7 @@ class RecipeContainer: Codable {
         try container.encode(recipe.instructions, forKey: .instructions)
         try container.encode(recipe.lastMade, forKey: .lastMade)
         try container.encode(recipe.servings, forKey: .lastMade)
+        try container.encode(recipe.storedImage, forKey: .storedImage)
         try container.encode(recipe.title, forKey: .title)
     }
 

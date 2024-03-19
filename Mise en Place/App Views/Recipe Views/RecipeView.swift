@@ -209,6 +209,10 @@ struct RecipeView: View {
                 dataController.exportRecipe(recipe: recipe)
 //                dataController.convertToJSONArray(moArray: [recipe])
             }
+
+            Button("Print Value"){
+                print(recipe.id)
+            }
         }
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $recipe.recipeStoredImage)

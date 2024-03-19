@@ -149,6 +149,3 @@ extension Recipe: Comparable {
     }
 }
 
-extension Recipe: Codable {
-
-}
