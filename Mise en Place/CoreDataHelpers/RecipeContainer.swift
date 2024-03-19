@@ -30,16 +30,16 @@ class RecipeContainer: Codable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        let cookingHours = try container.encode(recipe.cookingHours, forKey: .cookingHours)
-        let cookingMinutes = try container.encode(recipe.cookingMinutes, forKey: .cookingMinutes)
-        let cookingTime = try container.encode(recipe.cookingTime, forKey: .cookingTime)
-        let creationDate = try container.encode(recipe.creationDate, forKey: .creationDate)
-        let id = try container.encode(recipe.id, forKey: .id)
-        let information = try container.encode(recipe.information, forKey: .information)
-        let instructions = try container.encode(recipe.instructions, forKey: .instructions)
-        let lastMade = try container.encode(recipe.lastMade, forKey: .lastMade)
-        let servings = try container.encode(recipe.servings, forKey: .lastMade)
-        let title = try container.encode(recipe.title, forKey: .title)
+        try container.encode(recipe.cookingHours, forKey: .cookingHours)
+        try container.encode(recipe.cookingMinutes, forKey: .cookingMinutes)
+        try container.encode(recipe.cookingTime, forKey: .cookingTime)
+        try container.encode(recipe.creationDate, forKey: .creationDate)
+        try container.encode(recipe.id, forKey: .id)
+        try container.encode(recipe.information, forKey: .information)
+        try container.encode(recipe.instructions, forKey: .instructions)
+        try container.encode(recipe.lastMade, forKey: .lastMade)
+        try container.encode(recipe.servings, forKey: .lastMade)
+        try container.encode(recipe.title, forKey: .title)
     }
 
     enum CodingKeys: String, CodingKey {
