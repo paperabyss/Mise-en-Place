@@ -36,6 +36,8 @@ struct Theme {
 
         case "Purple and Pink": purpleAndPinkTheme()
 
+        case "Mint": mintTheme()
+
         default: defaultTheme()
         }
 
@@ -47,6 +49,12 @@ struct Theme {
         interactiveElements = Color(hex: "4CBB17")
         text = Color(UIColor.systemBackground)
 
+    }
+
+    static func mintTheme() {
+        outlines = Color(hex: "52FFEE")
+        interactiveElements = Color(hex: "DCFFFD")
+        text = .primary
     }
     static func burntOrangeTheme() {
         outlines = Color(hex: "BF3100")
