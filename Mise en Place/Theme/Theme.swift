@@ -40,12 +40,18 @@ struct Theme {
 
         case "Nana": nanaTheme()
 
+        case "Momo": momoTheme()
+
         default: defaultTheme()
         }
 
     }
 
 
+    static func momoTheme() {
+        outlines = Color(hex: "D2CAC5")
+        interactiveElements = Color(hex: "e9e0d4")
+    }
     static func nanaTheme() {
         outlines = .orange
         interactiveElements = .white
