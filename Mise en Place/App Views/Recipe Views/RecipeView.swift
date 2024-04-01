@@ -206,7 +206,7 @@ struct RecipeView: View {
                 editEnabled.toggle()
             }
             Button("Export") {
-                dataController.exportRecipe(recipe: recipe)
+//                dataController.exportRecipe(recipe: recipe)
 //                dataController.convertToJSONArray(moArray: [recipe])
             }
 

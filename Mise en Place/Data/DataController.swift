@@ -46,7 +46,8 @@ class DataController: ObservableObject {
         "Code Green", // Done
         "Sunset", // Done
         "Purple and Pink", // Done
-        "Mint" //Done
+        "Mint", //Done
+        "Nana", //Done
     ]
 
     @Published var columnSize = 100
@@ -425,27 +426,27 @@ class DataController: ObservableObject {
         }
     }
 
-    func exportRecipe(recipe: Recipe) {
-        do {
-            let data = try JSONEncoder().encode(RecipeContainer(recipe: recipe))
-            let decodedRecipe = try JSONDecoder().decode(RecipeContainer.self, from: data)
-
-            print(decodedRecipe.recipe)
-        }  catch let DecodingError.dataCorrupted(context) {
-            print(context)
-        } catch let DecodingError.keyNotFound(key, context) {
-            print("Key '\(key)' not found:", context.debugDescription)
-            print("codingPath:", context.codingPath)
-        } catch let DecodingError.valueNotFound(value, context) {
-            print("Value '\(value)' not found:", context.debugDescription)
-            print("codingPath:", context.codingPath)
-        } catch let DecodingError.typeMismatch(type, context)  {
-            print("Type '\(type)' mismatch:", context.debugDescription)
-            print("codingPath:", context.codingPath)
-        } catch {
-            print("error: ", error)
-        }
-    }
+//    func exportRecipe(recipe: Recipe) {
+//        do {
+//            let data = try JSONEncoder().encode(RecipeContainer(recipe: recipe))
+//            let decodedRecipe = try JSONDecoder().decode(RecipeContainer.self, from: data)
+//
+//            print(decodedRecipe.recipe)
+//        }  catch let DecodingError.dataCorrupted(context) {
+//            print(context)
+//        } catch let DecodingError.keyNotFound(key, context) {
+//            print("Key '\(key)' not found:", context.debugDescription)
+//            print("codingPath:", context.codingPath)
+//        } catch let DecodingError.valueNotFound(value, context) {
+//            print("Value '\(value)' not found:", context.debugDescription)
+//            print("codingPath:", context.codingPath)
+//        } catch let DecodingError.typeMismatch(type, context)  {
+//            print("Type '\(type)' mismatch:", context.debugDescription)
+//            print("codingPath:", context.codingPath)
+//        } catch {
+//            print("error: ", error)
+//        }
+//    }
 
     func convertToJSONArray(moArray: [NSManagedObject]) -> Any {
         var jsonArray: [[String: Any]] = []

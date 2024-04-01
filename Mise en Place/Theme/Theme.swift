@@ -38,12 +38,19 @@ struct Theme {
 
         case "Mint": mintTheme()
 
+        case "Nana": nanaTheme()
+
         default: defaultTheme()
         }
 
     }
 
 
+    static func nanaTheme() {
+        outlines = .orange
+        interactiveElements = .white
+        text = .black
+    }
     static func codeGreenTheme() {
         outlines = .black
         interactiveElements = Color(hex: "4CBB17")
