@@ -145,32 +145,43 @@ struct RecipeView: View {
 
 
                 VStack {
+
                     HStack {
                         Text("Ingredients:")
                             .font(.title2)
                         Spacer()
                     }
-                    VStack{
-                        ForEach(recipe.recipeIngredients) { ingredient in
-                            HStack {
-                                Text(ingredient.ingredientName)
-                                    .font(.headline)
-                                Text(
-                                    "\(Int(ingredient.massValue)) \(ingredient.ingredientMassUnit)\(ingredient.massValue > 1 ? "s": "")")
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .opacity(0.3)
+                            .foregroundStyle(Theme.interactiveElements)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Theme.outlines)
+                                    .opacity(0.3)
+                            )
+                        VStack{
+                            ForEach(recipe.recipeIngredients) { ingredient in
+                                HStack {
+                                    Text(ingredient.ingredientName)
+                                        .font(.headline)
+                                    Text(
+                                        "\(Int(ingredient.massValue)) \(ingredient.ingredientMassUnit)\(ingredient.massValue > 1 ? "s": "")")
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
+                                }
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.secondary)
+                        )
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(.secondary)
-                    )
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
                 }
 
                 .padding()
@@ -182,16 +193,26 @@ struct RecipeView: View {
                             .font(.title2)
                         Spacer()
                     }
-                    VStack{
-                        Text(recipe.recipeInstructions)
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .overlay(
+                    ZStack{
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(.secondary)
-                    )
-                }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .opacity(0.3)
+                            .foregroundStyle(Theme.interactiveElements)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Theme.outlines)
+                                    .opacity(0.3)
+                            )
+                        VStack{
+                            Text(recipe.recipeInstructions)
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.secondary)
+                        )
+                    }}
 
                 .padding()
             }
