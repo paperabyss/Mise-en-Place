@@ -47,11 +47,71 @@ struct Theme {
 
     }
 
+    static func circleOne(name: String) -> Color {
+        switch name {
+        case "Default": return Color(UIColor.label)
+
+        case "Blue": return Color(hex: "40679E")
+
+        case "Lilac": return Color(hex:"D3B5E5")
+
+        case "Cherry Blossom": return Color(hex: "FFB7C5")
+
+        case "Forest": return Color(hex: "436850")
+
+        case "Burnt Orange" : return Color(hex: "FF4E00")
+
+        case "Code Green": return Color(hex: "4CBB17")
+
+        case "Sunset": return Color(hex: "FFDD95")
+
+        case "Purple and Pink": return Color(hex: "9B4F96")
+
+        case "Mint": return Color(hex: "DCFFFD")
+
+        case "Nana": return .white
+
+        case "Momo": return Color(hex: "e9e0d4")
+
+        default: return Color(UIColor.label)
+        }
+    }
+
+    static func circleTwo(name: String) -> Color {
+        switch name {
+        case "Default": return .primary
+
+        case "Blue": return Color(hex: "1B3C73")
+
+        case "Lilac": return Color(hex: "B785B7")
+
+        case "Cherry Blossom": return Color(hex:"FF9EB0")
+
+        case "Forest": return Color(hex: "12372A")
+
+        case "Burnt Orange" : return Color(hex: "BF3100")
+
+        case "Code Green": return .black
+
+        case "Sunset": return Color(hex:"FF9843")
+
+        case "Purple and Pink": return Color(hex: "D60270")
+
+        case "Mint": return Color(hex: "52FFEE")
+
+        case "Nana": return .orange
+
+        case "Momo": return Color(hex: "D2CAC5")
+
+        default: return .primary
+        }
+    }
 
     static func momoTheme() {
         outlines = Color(hex: "D2CAC5")
         interactiveElements = Color(hex: "e9e0d4")
     }
+
     static func nanaTheme() {
         outlines = .orange
         interactiveElements = .white

@@ -16,7 +16,7 @@ struct SettingsView: View {
                 Section(header: Text("App Appearance")) {
                     Picker("Theme:", selection: $dataController.theme) {
                         ForEach(dataController.themes, id: \.self) {
-                            Text($0)
+                            ColorPickerView(colorName: $0)
                         }
                     }
                 }

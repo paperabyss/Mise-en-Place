@@ -17,7 +17,11 @@ struct RecipeView: View {
     @State private var showingShareSheet = false
     var body: some View {
         ScrollView {
+
+            //Start of Picture and Title Block
             VStack {
+
+                //Color Background
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -29,9 +33,11 @@ struct RecipeView: View {
                                 .opacity(0.3)
                         )
                         .padding()
+
+                    //Picture / Picture Picker
                     HStack {
                         Spacer()
-                        if recipe.recipeStoredImage != nil {
+                        if recipe.recipeStoredImage != nil { // If an there is an image for the recipe, this box will be filled with the picture.
                             Image(uiImage: recipe.recipeStoredImage!)
                                 .resizable()
                                 .scaledToFill()
@@ -42,6 +48,7 @@ struct RecipeView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .accessibilityHidden(true)
                         } else {
+                            // If there is no picture, the app will display a blue box that, when clicked, allows the user to pick an image.
                             Button() {
                                 showingImagePicker.toggle()
                             } label: {
@@ -63,8 +70,10 @@ struct RecipeView: View {
                         }
 
                         Spacer()
-
+                        
                         VStack {
+
+                            //Start of cooking time block
                             VStack {
                                 Text("Cooking Time:")
                                     .font(.footnote)
@@ -75,7 +84,9 @@ struct RecipeView: View {
                             }
                             .accessibilityElement()
                             .accessibilityLabel("The cooking time is \(recipe.cookingHours) hours and \(recipe.cookingMinutes) minutes.")
+                            //End of cooking time block
 
+                            //Start of servings block.
                             VStack {
                                 Text("Servings:")
                                     .font(.footnote)
@@ -83,6 +94,7 @@ struct RecipeView: View {
                             }
                             .accessibilityElement()
                             .accessibilityLabel( "\(recipe.recipeServings) servings")
+                            //End of servings block.
 
                         }
                         .padding()
@@ -105,10 +117,9 @@ struct RecipeView: View {
                     .padding()
                 }
                 //End of Picture and Title Block
-
-
-
                 //End of Basic Info
+
+                //Start of about description.
                 VStack {
                     HStack {
                         Text("About:")
@@ -144,8 +155,9 @@ struct RecipeView: View {
                 //End of Description
 
 
-                VStack {
 
+                //Start of Ingredients block
+                VStack {
                     HStack {
                         Text("Ingredients:")
                             .font(.title2)
@@ -183,10 +195,10 @@ struct RecipeView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
-
                 .padding()
                 //End of Ingredients Lis
 
+                //Start of Instructions block
                 VStack {
                     HStack{
                         Text("Instructions:")
@@ -216,8 +228,7 @@ struct RecipeView: View {
 
                 .padding()
             }
-
-
+            //End of Instructions block.
         }
         .navigationTitle(recipe.recipeTitle)
 
@@ -225,14 +236,6 @@ struct RecipeView: View {
         .toolbar {
             Button(!editEnabled ? "Edit" : "Stop Editing") {
                 editEnabled.toggle()
-            }
-            Button("Export") {
-//                dataController.exportRecipe(recipe: recipe)
-//                dataController.convertToJSONArray(moArray: [recipe])
-            }
-
-            Button("Print Value"){
-                print(recipe.id)
             }
         }
         .sheet(isPresented: $showingImagePicker) {

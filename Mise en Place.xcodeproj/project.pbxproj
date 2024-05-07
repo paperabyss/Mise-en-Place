@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC3C480C2BA904C8004BE4F4 /* RecipeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3C480B2BA904C8004BE4F4 /* RecipeContainer.swift */; };
+		CC59E6272BE9F4410082ED57 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC59E6262BE9F4410082ED57 /* ColorPickerView.swift */; };
 		CC60E9B02B140E070036761F /* MealPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC60E9AF2B140E070036761F /* MealPlannerView.swift */; };
 		CC60E9B22B16A97B0036761F /* Meal-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC60E9B12B16A97B0036761F /* Meal-CoreDataHelpers.swift */; };
 		CC60E9B72B16B3910036761F /* CalendarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC60E9B62B16B3910036761F /* CalendarExtensions.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		CC3C480B2BA904C8004BE4F4 /* RecipeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeContainer.swift; sourceTree = "<group>"; };
+		CC59E6262BE9F4410082ED57 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		CC60E9AF2B140E070036761F /* MealPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlannerView.swift; sourceTree = "<group>"; };
 		CC60E9B12B16A97B0036761F /* Meal-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		CC60E9B62B16B3910036761F /* CalendarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtensions.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				CC848A062B870333008CF6AF /* HexColorExtention.swift */,
 				CC848A042B86E927008CF6AF /* Theme.swift */,
+				CC59E6262BE9F4410082ED57 /* ColorPickerView.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				CC8D52CD2A9C0C47000C99DD /* DataController.swift in Sources */,
 				CCDF32842AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift in Sources */,
 				CC848A052B86E927008CF6AF /* Theme.swift in Sources */,
+				CC59E6272BE9F4410082ED57 /* ColorPickerView.swift in Sources */,
 				CCDF14792B3504BB00794C10 /* NewMealView.swift in Sources */,
 				CC7957C42AB7B9BC00392AD3 /* RecipeView.swift in Sources */,
 				CC8D52D02A9D5EA1000C99DD /* SidebarView.swift in Sources */,
