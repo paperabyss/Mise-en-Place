@@ -60,6 +60,7 @@ struct RecipeGridView: View {
                                         .foregroundColor(Theme.text)
                                         .padding(.horizontal)
 
+
                                     if dataController.showRecipeDifficulty{
                                         Text(recipe.recipeDifficultyString)
                                             .font(.caption)
@@ -69,6 +70,10 @@ struct RecipeGridView: View {
                                 }
                                 .padding(.vertical)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .overlay(
+                                    Rectangle()
+                                        .stroke(Theme.outlines)
+                                )
 
                                 .background(Theme.interactiveElements)
                             }

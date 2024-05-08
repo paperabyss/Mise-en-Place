@@ -51,6 +51,10 @@ struct DayView: View {
                                             .background(Theme.interactiveElements)
                                             .foregroundColor(Theme.text)
                                             .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .stroke(Theme.outlines)
+                                        )
 
                                     }
                                     .accessibilityLabel("\(date.dayOfWeek() ?? "Monday")   \(meal.mealType)")
@@ -78,6 +82,10 @@ struct DayView: View {
                                 .background(Theme.interactiveElements)
                                 .foregroundColor(Theme.text)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Theme.outlines)
+                                )
                         }
                         .accessibilityLabel("Plan a meal")
                         .accessibilityInputLabels(["Plan a meal \(date.dayOfWeek() ?? "Monday")", "Plan \(date.dayOfWeek() ?? "Monday")"])

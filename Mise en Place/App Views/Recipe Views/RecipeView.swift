@@ -60,8 +60,12 @@ struct RecipeView: View {
                                                height: 150
                                         )
                                         .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Theme.outlines)
+                                        )
                                     Text("Select an Image")
-                                        .foregroundStyle(.white)
+                                        .foregroundStyle(Theme.text)
                                         .fontWeight(.bold)
                                 }
                                 .accessibilityElement()
@@ -190,7 +194,7 @@ struct RecipeView: View {
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(.secondary)
+                                .stroke(Theme.outlines)
                         )
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -222,7 +226,7 @@ struct RecipeView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(.secondary)
+                                .stroke(Theme.outlines)
                         )
                     }}
 
