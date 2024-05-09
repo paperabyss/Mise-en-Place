@@ -127,11 +127,11 @@ struct RecipeGridView: View {
                     Label("New Recipe",systemImage: "square.and.pencil")
                 }
 
-                Button() {
-                    dataController.changeSize()
-                } label : {
-                    Label("Change Grid Size", systemImage: "circle.grid.3x3.circle")
-                }
+//                Button() {
+//                    dataController.changeSize()
+//                } label : {
+//                    Label("Change Grid Size", systemImage: "circle.grid.3x3.circle")
+//                }
             }
             .searchable(text: $dataController.filterText)
         }

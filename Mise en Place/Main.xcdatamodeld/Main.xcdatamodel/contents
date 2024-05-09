@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="massUnit" optional="YES" attributeType="String"/>
@@ -29,7 +29,7 @@
         <attribute name="storedImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="recipes" inverseEntity="Ingredient"/>
-        <relationship name="meals" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="recipe" inverseEntity="Meal"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meal" inverseName="recipe" inverseEntity="Meal"/>
         <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Step" inverseName="recipe" inverseEntity="Step"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="recipes" inverseEntity="Tag"/>
     </entity>
