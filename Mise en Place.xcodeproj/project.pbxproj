@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC3C480C2BA904C8004BE4F4 /* RecipeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3C480B2BA904C8004BE4F4 /* RecipeContainer.swift */; };
 		CC59E6272BE9F4410082ED57 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC59E6262BE9F4410082ED57 /* ColorPickerView.swift */; };
 		CC60E9B02B140E070036761F /* MealPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC60E9AF2B140E070036761F /* MealPlannerView.swift */; };
 		CC60E9B22B16A97B0036761F /* Meal-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC60E9B12B16A97B0036761F /* Meal-CoreDataHelpers.swift */; };
@@ -42,7 +41,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CC3C480B2BA904C8004BE4F4 /* RecipeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeContainer.swift; sourceTree = "<group>"; };
 		CC59E6262BE9F4410082ED57 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		CC60E9AF2B140E070036761F /* MealPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlannerView.swift; sourceTree = "<group>"; };
 		CC60E9B12B16A97B0036761F /* Meal-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal-CoreDataHelpers.swift"; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 				CCDF327F2AA69FE7008C4AE9 /* Tag-CoreDataHelpers.swift */,
 				CCDF32832AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift */,
 				CCDF32812AA6A10C008C4AE9 /* Ingredient-CoreDataHelpers.swift */,
-				CC3C480B2BA904C8004BE4F4 /* RecipeContainer.swift */,
 			);
 			path = CoreDataHelpers;
 			sourceTree = "<group>";
@@ -300,7 +297,6 @@
 				CC7957C42AB7B9BC00392AD3 /* RecipeView.swift in Sources */,
 				CC8D52D02A9D5EA1000C99DD /* SidebarView.swift in Sources */,
 				CCD07DEA2AB7AB08004432D6 /* NoRecipeView.swift in Sources */,
-				CC3C480C2BA904C8004BE4F4 /* RecipeContainer.swift in Sources */,
 				CC8D52BD2A9C0246000C99DD /* ContentView.swift in Sources */,
 				CCABB7122AD61B310074BED8 /* ImagePicker.swift in Sources */,
 				CCB8607E2ADF3F67003ECD3A /* StepEditor.swift in Sources */,

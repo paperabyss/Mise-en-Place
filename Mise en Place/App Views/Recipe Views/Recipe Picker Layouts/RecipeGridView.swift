@@ -39,7 +39,7 @@ struct RecipeGridView: View {
                                         Image(uiImage: recipe.recipeStoredImage!)
                                             .resizable()
                                         
-                                            .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
+                                            .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
                                             .scaledToFill()
                                             .frame(minWidth: CGFloat(dataController.columnSize), minHeight: CGFloat(dataController.columnSize))
 
@@ -111,6 +111,7 @@ struct RecipeGridView: View {
                 New_EditRecipeView(recipe: dataController.selectedRecipe!)
             }
             .toolbar {
+                #if DEBUG
                 Button {
                     dataController.deleteAll()
                     dataController.createSampleData()
@@ -118,6 +119,7 @@ struct RecipeGridView: View {
                     Label("ADD SAMPLE DATA", systemImage: "flame")
                         .foregroundColor(Theme.interactiveElements)
                 }
+                #endif
                 
                 Button() {
                     dataController.newRecipe()
@@ -126,12 +128,6 @@ struct RecipeGridView: View {
                 } label: {
                     Label("New Recipe",systemImage: "square.and.pencil")
                 }
-
-//                Button() {
-//                    dataController.changeSize()
-//                } label : {
-//                    Label("Change Grid Size", systemImage: "circle.grid.3x3.circle")
-//                }
             }
             .searchable(text: $dataController.filterText)
         }

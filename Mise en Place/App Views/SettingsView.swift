@@ -24,12 +24,12 @@ struct SettingsView: View {
                 Section(header: Text("Recipe Layout")) {
                     Picker("Recipe Size", selection: $dataController.columnSize) {
                         Text("Compact").tag(100)
-                        Text("Default").tag(150)
+                        Text("Normal").tag(150)
                         Text("Large").tag(200)
                     }
                     Toggle("Show recipe difficulty", isOn: $dataController.showRecipeDifficulty)
                 }
-            }       
+            }
             .navigationTitle("Settings")
         }
         .navigationViewStyle(StackNavigationViewStyle())
