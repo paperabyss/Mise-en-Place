@@ -120,7 +120,17 @@ struct RecipeGridView: View {
                         .foregroundColor(Theme.interactiveElements)
                 }
                 #endif
-                
+
+//                Menu("Filter") {
+//                    Picker {
+//                        ForEach(dataController.selectedTags) { tag in
+//                            Button{
+//                                dataController.selectedTags.remove(Tag)
+//                            }
+//                        }
+//                    }
+//                }
+
                 Button() {
                     dataController.newRecipe()
                     editEnabled.toggle()

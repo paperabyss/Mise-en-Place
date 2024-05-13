@@ -65,19 +65,6 @@ extension Recipe {
         return result.sorted()
     }
 
-    var recipeIngredientsList: String {
-        get {
-            var ingredientList = ""
-            let results = ingredients?.allObjects as? [Ingredient] ?? []
-            for ingredient in results {
-                ingredientList.append(ingredient.name ?? "")
-            }
-            return ingredientList
-        }
-
-        set { ingredientList = newValue}
-    }
-
     var recipeIngredients: [Ingredient] {
         let result = ingredients?.allObjects as? [Ingredient] ?? []
         return result.sorted()
@@ -93,13 +80,13 @@ extension Recipe {
 
     var recipeDifficultyString: String {
         switch difficulty{
-        case 0:
+        case "Easy":
             return "Easy"
 
-        case 1:
+        case "Medium":
             return "Medium"
 
-        case 2:
+        case "Hard":
             return "Hard"
 
         default:
@@ -140,7 +127,7 @@ extension Recipe {
         recipe.information = "This is an example recipe"
         recipe.creationDate = .now
         recipe.cookingTime = 3600
-        recipe.difficulty = 0
+        recipe.difficulty = "Easy"
         recipe.lastMade = .now
         recipe.id = UUID()
         recipe.recipeHours = 1

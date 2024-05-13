@@ -67,7 +67,7 @@ struct New_EditRecipeView: View {
                     VStack(alignment: .leading) {
 
                         //Title
-                        VStack {
+                        HStack {
                             Text("Title:")
                                 .font(.headline)
                             TextField("Title", text: $recipe.recipeTitle, prompt: Text("Enter ther recipe title here"))
@@ -119,9 +119,9 @@ struct New_EditRecipeView: View {
                 //Difficulty of Recipe
                 Section(header: Text("Difficulty")) {
                     Picker("Recipe Difficulty", selection: $recipe.difficulty) {
-                        Text("Easy").tag(Int16(0))
-                        Text("Medium").tag(Int16(1))
-                        Text("Hard").tag(Int16(2))
+                        Text("Easy")
+                        Text("Medium")
+                        Text("Hard")
                     }
                 }
 

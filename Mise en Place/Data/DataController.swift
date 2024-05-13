@@ -121,6 +121,8 @@ class DataController: ObservableObject {
     }
 
     func createSampleData() {
+
+
         let viewContext = container.viewContext
 
         for i in 1...5{
@@ -129,12 +131,13 @@ class DataController: ObservableObject {
             tag.name = "Tag \(i)"
 
             for j in 1...5 {
+                let difficulties = ["Easy", "Medium", "Hard"]
                 let recipe = Recipe(context: viewContext)
                 recipe.title = "Recipe \(i)-\(j)"
                 recipe.id = UUID()
                 recipe.servings = Double(Int.random(in: 1...3))
                 recipe.creationDate = .now
-                recipe.difficulty = Int16(Int.random(in: 0...2))
+                recipe.difficulty = difficulties[Int.random(in: 0...2)]
                 recipe.recipeInformation = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum. Congue nisi vitae suscipit tellus. Neque viverra justo nec ultrices dui sapien eget mi. Congue quisque egestas diam in arcu cursus euismod quis. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan. Adipiscing enim eu turpis egestas pretium aenean pharetra magna ac. Ut aliquam purus sit amet luctus venenatis lectus magna. Viverra adipiscing at in tellus integer feugiat scelerisque varius. Arcu vitae elementum curabitur vitae nunc sed."
                 recipe.lastMade = .now
                 recipe.recipeInstructions = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu non sodales neque sodales ut etiam sit. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui. Amet commodo nulla facilisi nullam. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Purus faucibus ornare suspendisse sed. Magna eget est lorem ipsum dolor sit amet consectetur. Sit amet purus gravida quis blandit turpis cursus in hac. Suspendisse faucibus interdum posuere lorem ipsum dolor sit amet consectetur. Ultrices mi tempus imperdiet nulla malesuada. Dui id ornare arcu odio ut sem. Sed arcu non odio euismod. Pulvinar mattis nunc sed blandit libero. Risus viverra adipiscing at in tellus integer feugiat scelerisque. Tempor nec feugiat nisl pretium fusce id velit ut. Tellus id interdum velit laoreet id donec. Duis ultricies lacus sed turpis tincidunt id aliquet risus. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. Vel pharetra vel turpis nunc eget lorem dolor sed viverra.\nSit amet consectetur adipiscing elit duis. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel. Ultricies tristique nulla aliquet enim tortor at. Eu lobortis elementum nibh tellus molestie. Commodo odio aenean sed adipiscing diam donec. Amet luctus venenatis lectus magna fringilla urna. Tincidunt praesent semper feugiat nibh sed. Elementum nibh tellus molestie nunc. Nisl nunc mi ipsum faucibus vitae. Orci porta non pulvinar neque laoreet suspendisse interdum consectetur. Purus in mollis nunc sed id semper. Vestibulum morbi blandit cursus risus at ultrices mi. Viverra aliquet eget sit amet tellus cras adipiscing.\nFeugiat scelerisque varius morbi enim nunc faucibus a pellentesque. Tristique risus nec feugiat in. Iaculis urna id volutpat lacus laoreet. Nullam ac tortor vitae purus. Tellus cras adipiscing enim eu. Amet porttitor eget dolor morbi non arcu risus quis. At varius vel pharetra vel turpis nunc eget lorem. Sit amet nulla facilisi morbi. Sed vulputate odio ut enim blandit volutpat maecenas. Viverra nibh cras pulvinar mattis nunc sed blandit libero. Potenti nullam ac tortor vitae. Ipsum a arcu cursus vitae congue mauris rhoncus aenean vel. Et netus et malesuada fames ac turpis. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Venenatis a condimentum vitae sapien pellentesque habitant. Vel risus commodo viverra maecenas. Tristique risus nec feugiat in fermentum posuere urna nec tincidunt. Orci nulla pellentesque dignissim enim sit. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus."
@@ -144,25 +147,67 @@ class DataController: ObservableObject {
                 tag.addToRecipes(recipe)
 
 
-                for ingredientNumber in 1...5 {
+                for _ in 1...5 {
+                    let cookingIngredients = [
+                        "Tofu",
+                        "Quinoa",
+                        "Lentils",
+                        "Chickpeas",
+                        "Black beans",
+                        "Kidney beans",
+                        "Tempeh",
+                        "Seitan",
+                        "Nutritional yeast",
+                        "Coconut milk",
+                        "Almond milk",
+                        "Soy milk",
+                        "Oat milk",
+                        "Cashews",
+                        "Almonds",
+                        "Walnuts",
+                        "Peanuts",
+                        "Sunflower seeds",
+                        "Chia seeds",
+                        "Flax seeds",
+                        "Hemp seeds",
+                        "Sesame seeds",
+                        "Pumpkin seeds",
+                        "Nut butters (e.g., almond butter, peanut butter)",
+                        "Agave syrup",
+                        "Maple syrup",
+                        "Coconut oil",
+                        "Olive oil",
+                        "Avocado oil",
+                        "Soy sauce",
+                        "Tamari",
+                        "Coconut aminos",
+                        "Balsamic vinegar",
+                        "Apple cider vinegar",
+                        "Rice vinegar",
+                        "Dijon mustard",
+                        "Whole grain mustard",
+                        "Cumin",
+                        "Turmeric",
+                        "Paprika",
+                        "Cinnamon",
+                        "Ginger",
+                        "Garlic",
+                        "Onion",
+                        "Bell peppers",
+                        "Spinach",
+                        "Kale",
+                        "Broccoli",
+                        "Zucchini",
+                        "Mushrooms",
+                        "Tomatoes"
+                    ] // Example Ingredients to pull from.
                     let ingredient = Ingredient(context: viewContext)
                     ingredient.id = UUID()
                     ingredient.massUnit = cookingUnits[Int.random(in: 0...8)]
                     ingredient.massValue = Double(Int.random(in: 1...100))
-                    ingredient.name = "Ingredient \(ingredientNumber) for recipe \(j)"
+                    ingredient.name = cookingIngredients[Int.random(in: 0...49)] //A random one of the 50 ingredients.
                     recipe.addToIngredients(ingredient)
                 }
-
-//                for exampleStepNumber in 1...5 {
-//                    let stepText = ["First", "Second", "Third", "Fourth", "Fifth"]
-//                    let step = Step(context: viewContext)
-//                    step.id = UUID()
-//                    step.instruction = stepText[exampleStepNumber-1]
-//                    step.number = Int64(exampleStepNumber)
-//                    recipe.addToSteps(step)
-//                }
-
-    
             }
         }
 
@@ -172,9 +217,27 @@ class DataController: ObservableObject {
     func newTag() {
         let tag = Tag(context: container.viewContext)
         tag.id = UUID()
-        tag.name = NSLocalizedString("New Tag", comment: "Creat a new tag")
+        tag.name = NSLocalizedString("New Tag", comment: "Create a new tag")
 
         save()
+    }
+
+    func allTags() -> [Tag] {
+        let request = Tag.fetchRequest()
+        let allTags = (try? container.viewContext.fetch(request)) ?? []
+        return allTags
+    }
+
+    var selectedTags: [Tag] = []
+
+    func missingTags(from recipe: Recipe) -> [Tag] {
+        let request = Tag.fetchRequest()
+        let allTags = (try? container.viewContext.fetch(request)) ?? []
+
+        let allTagsSet = Set(allTags)
+        let difference = allTagsSet.symmetricDifference(recipe.recipeTags)
+
+        return difference.sorted()
     }
 
     func newRecipe() {
@@ -183,7 +246,7 @@ class DataController: ObservableObject {
         recipe.id = UUID()
         recipe.creationDate = .now
         recipe.servings = 1
-        recipe.difficulty = 0
+        recipe.difficulty = "Easy"
         recipe.cookingTime = 0
         recipe.cookingHours = 0
         recipe.cookingMinutes = 0
@@ -303,19 +366,11 @@ class DataController: ObservableObject {
         if !trimmedFilterText.isEmpty {
             let titlePredicate = NSPredicate(format: "title CONTAINS[c] %@", trimmedFilterText)
             let informationPredicate = NSPredicate(format: "information CONTAINS[c] %@", trimmedFilterText)
-            let ingredientPredicate = NSPredicate(format: "ingredients CONTAINS[c] %@", trimmedFilterText)
-            let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, informationPredicate, ingredientPredicate])
+            let difficultyPredicate = NSPredicate(format: "difficulty CONTAINS[c] %@", trimmedFilterText)
+            let ingredientPredicate = NSPredicate(format: "ANY ingredients.name CONTAINS[c] %@", trimmedFilterText) //Any keyword is used for the one to many relationship.
+            let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, informationPredicate, difficultyPredicate, ingredientPredicate])
             predicates.append(combinedPredicate)
         }
-
-//        if filterTokens.isEmpty == false {
-//            for filterToken in filterTokens {
-//                let tokenPredicate = NSPredicate(format: "tags CONTAINS %@", filterToken)
-//                predicates.append(tokenPredicate)
-//            }
-//        }
-
-        
 
         let request = Recipe.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
