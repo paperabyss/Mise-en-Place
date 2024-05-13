@@ -241,6 +241,10 @@ struct RecipeView: View {
             Button(!editEnabled ? "Edit" : "Stop Editing") {
                 editEnabled.toggle()
             }
+            Button("IngredientListPrint") {
+                print(recipe.ingredientList)
+                print(recipe.recipeIngredientsList)
+            }
         }
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $recipe.recipeStoredImage)

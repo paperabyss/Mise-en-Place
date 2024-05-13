@@ -65,6 +65,19 @@ extension Recipe {
         return result.sorted()
     }
 
+    var recipeIngredientsList: String {
+        get {
+            var ingredientList = ""
+            let results = ingredients?.allObjects as? [Ingredient] ?? []
+            for ingredient in results {
+                ingredientList.append(ingredient.name ?? "")
+            }
+            return ingredientList
+        }
+
+        set { ingredientList = newValue}
+    }
+
     var recipeIngredients: [Ingredient] {
         let result = ingredients?.allObjects as? [Ingredient] ?? []
         return result.sorted()

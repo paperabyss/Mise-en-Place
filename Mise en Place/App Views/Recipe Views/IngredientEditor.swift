@@ -45,6 +45,7 @@ struct IngredientEditor: View {
             .frame(maxWidth: .infinity, maxHeight: 80)
             .onReceive(ingredient.objectWillChange) { _ in
             dataController.queueSave()
+            
         }
     }
 }
