@@ -111,6 +111,8 @@ struct RecipeView: View {
                         .padding(1)
                     }
 
+                    
+
                     .padding()
                     .frame(maxWidth: .infinity)
                     .clipShape(RoundedRectangle(cornerRadius: 10))

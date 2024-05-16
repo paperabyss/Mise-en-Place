@@ -78,6 +78,8 @@ struct New_EditRecipeView: View {
                         Stepper("Servings: \(Int(recipe.servings))", value: $recipe.servings, in: 1...16 )
 
                     }
+
+                    TagsMenuView(recipe: recipe)
                 }
 
                 //Time to Make

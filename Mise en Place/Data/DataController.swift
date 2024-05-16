@@ -222,6 +222,16 @@ class DataController: ObservableObject {
         save()
     }
 
+    func createNewTagandAddtoRecipe(recipe: Recipe, name: String){
+        let tag = Tag(context: container.viewContext)
+        tag.name = name
+        tag.id = UUID()
+
+        recipe.addToTags(tag)
+        save()
+
+    }
+
     func allTags() -> [Tag] {
         let request = Tag.fetchRequest()
         let allTags = (try? container.viewContext.fetch(request)) ?? []

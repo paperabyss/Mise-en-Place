@@ -65,6 +65,16 @@ extension Recipe {
         return result.sorted()
     }
 
+    var recipeTagsList: String {
+        guard let tags else { return "No tags"}
+
+        if tags.count == 0 {
+            return "No tags"
+        } else {
+            return recipeTags.map(\.tagName).formatted()
+        }
+    }
+
     var recipeIngredients: [Ingredient] {
         let result = ingredients?.allObjects as? [Ingredient] ?? []
         return result.sorted()
