@@ -88,6 +88,11 @@ extension Recipe {
         
     }
 
+    var recipeDifficulty: String {
+        get { difficulty ?? "Easy"}
+        set { difficulty = newValue}
+    }
+
     var recipeDifficultyString: String {
         switch difficulty{
         case "Easy":

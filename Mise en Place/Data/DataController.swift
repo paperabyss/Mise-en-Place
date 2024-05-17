@@ -19,10 +19,13 @@ class DataController: ObservableObject {
 
     @Published var filterText = "" 
     @Published var filterTokens = [Ingredient]()
+    @Published var filterEnabled = false
 
     @Published var selectedTab = "recipe"
+    @Published var selectedTag = ""
 
     @Published var mealTypes = ["Breakfast", "Lunch", "Dinner"]
+    @Published var difficulties = ["Easy", "Medium", "Hard"]
     @Published var plannedMeals = [""]
     @Published var missingMeals = [""]
 

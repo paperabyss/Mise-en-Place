@@ -121,15 +121,17 @@ struct RecipeGridView: View {
                 }
                 #endif
 
-//                Menu("Filter") {
-//                    Picker {
-//                        ForEach(dataController.selectedTags) { tag in
-//                            Button{
-//                                dataController.selectedTags.remove(Tag)
-//                            }
-//                        }
-//                    }
-//                }
+                Menu("Filter by") {
+                    Button(dataController.filterEnabled ? "Turn Filter Off" : "Turn Filter On") {
+                        dataController.filterEnabled.toggle()
+                    }
+                    Divider()
+                    Picker("Tag", selection: $dataController.selectedTag){
+                        ForEach(dataController.allTags()) { tag in
+                            Text(tag.tagName).tag(tag.tagName)
+                        }
+                    }
+                }
 
                 Button() {
                     dataController.newRecipe()

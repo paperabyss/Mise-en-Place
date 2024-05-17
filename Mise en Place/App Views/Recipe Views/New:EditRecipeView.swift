@@ -120,10 +120,10 @@ struct New_EditRecipeView: View {
 
                 //Difficulty of Recipe
                 Section(header: Text("Difficulty")) {
-                    Picker("Recipe Difficulty", selection: $recipe.difficulty) {
-                        Text("Easy")
-                        Text("Medium")
-                        Text("Hard")
+                    Picker("Recipe Difficulty", selection: $recipe.recipeDifficulty) {
+                        ForEach(dataController.difficulties, id: \.self) {
+                            Text($0)
+                        }
                     }
                 }
 
