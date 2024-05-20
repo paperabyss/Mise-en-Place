@@ -126,11 +126,7 @@ struct RecipeGridView: View {
                         dataController.filterEnabled.toggle()
                     }
                     Divider()
-                    Picker("Tag", selection: $dataController.selectedTag){
-                        ForEach(dataController.allTags()) { tag in
-                            Text(tag.tagName).tag(tag.tagName)
-                        }
-                    }
+                    FilterButtonMenu()
                 }
 
                 Button() {

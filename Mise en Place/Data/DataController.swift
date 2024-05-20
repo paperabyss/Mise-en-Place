@@ -23,6 +23,7 @@ class DataController: ObservableObject {
 
     @Published var selectedTab = "recipe"
     @Published var selectedTag = ""
+    @Published var filterTags: [Tag] = []
 
     @Published var mealTypes = ["Breakfast", "Lunch", "Dinner"]
     @Published var difficulties = ["Easy", "Medium", "Hard"]
@@ -369,11 +370,6 @@ class DataController: ObservableObject {
         let filter = selectedFilter ?? .all
         var predicates = [NSPredicate]()
 
-        if let tag = filter.tag {
-            let tagPredicate = NSPredicate(format: "tags CONTAINS %@", tag)
-            predicates.append(tagPredicate)
-        }
-
         let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
 
         if !trimmedFilterText.isEmpty {
@@ -383,6 +379,12 @@ class DataController: ObservableObject {
             let ingredientPredicate = NSPredicate(format: "ANY ingredients.name CONTAINS[c] %@", trimmedFilterText) //Any keyword is used for the one to many relationship.
             let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, informationPredicate, difficultyPredicate, ingredientPredicate])
             predicates.append(combinedPredicate)
+        }
+        if filterEnabled {
+            if !filterTags.isEmpty{
+                let tagPredicate = NSPredicate(format: "ANY tags CONTAINS %@", filterTags)
+                predicates.append(tagPredicate)
+            }
         }
 
         let request = Recipe.fetchRequest()
@@ -495,27 +497,6 @@ class DataController: ObservableObject {
         }
     }
 
-//    func exportRecipe(recipe: Recipe) {
-//        do {
-//            let data = try JSONEncoder().encode(RecipeContainer(recipe: recipe))
-//            let decodedRecipe = try JSONDecoder().decode(RecipeContainer.self, from: data)
-//
-//            print(decodedRecipe.recipe)
-//        }  catch let DecodingError.dataCorrupted(context) {
-//            print(context)
-//        } catch let DecodingError.keyNotFound(key, context) {
-//            print("Key '\(key)' not found:", context.debugDescription)
-//            print("codingPath:", context.codingPath)
-//        } catch let DecodingError.valueNotFound(value, context) {
-//            print("Value '\(value)' not found:", context.debugDescription)
-//            print("codingPath:", context.codingPath)
-//        } catch let DecodingError.typeMismatch(type, context)  {
-//            print("Type '\(type)' mismatch:", context.debugDescription)
-//            print("codingPath:", context.codingPath)
-//        } catch {
-//            print("error: ", error)
-//        }
-//    }
 
     func convertToJSONArray(moArray: [NSManagedObject]) -> Any {
         var jsonArray: [[String: Any]] = []

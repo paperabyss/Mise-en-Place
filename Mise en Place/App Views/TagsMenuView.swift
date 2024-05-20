@@ -20,7 +20,7 @@ struct TagsMenuView: View {
                 Button {
                     recipe.removeFromTags(tag)
                 } label: {
-                    Label(tag.tagName, systemImage: "Checkmark")
+                    Label(tag.tagName, systemImage: "checkmark")
                 }
             }
 
