@@ -11,13 +11,16 @@ struct FilterButtonMenu: View {
     @EnvironmentObject var dataController: DataController
 
     var body: some View {
-        ForEach(dataController.allTags()) { tag in
+        ForEach(dataController.allTags().sorted()) { tag in
             Button {
                 if dataController.filterTags.contains(tag){
                     dataController.filterTags.removeAll(where: { $0 == tag})
+                    dataController.filterTagsNames.removeAll { $0 == tag.tagName}
+                } else {
+                    dataController.filterTags.append(tag)
+                    dataController.filterTagsNames.append(tag.tagName)
+                    print(dataController.filterTags)
                 }
-                dataController.filterTags.append(tag)
-                print(dataController.filterTags)
             } label: {
                 HStack{
                     Text(tag.tagName)

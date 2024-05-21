@@ -60,6 +60,14 @@ extension Recipe {
         set { instructions = newValue }
     }
 
+    var recipeTagsNames: [String] {
+            var names: [String] = []
+            for tag in recipeTags {
+                names.append(tag.tagName)
+                }
+            return names
+    }
+
     var recipeTags: [Tag] {
         let result = tags?.allObjects as? [Tag] ?? []
         return result.sorted()
@@ -84,8 +92,6 @@ extension Recipe {
         var result = steps?.allObjects as? [Step] ?? []
         result.sort { $0.number < $1.number}
         return result
-
-        
     }
 
     var recipeDifficulty: String {
@@ -131,7 +137,6 @@ extension Recipe {
         }
         return ("0")
     }
-
 
     static var example: Recipe {
         let controller = DataController(inMemory: true)

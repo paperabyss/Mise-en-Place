@@ -24,6 +24,7 @@ class DataController: ObservableObject {
     @Published var selectedTab = "recipe"
     @Published var selectedTag = ""
     @Published var filterTags: [Tag] = []
+    @Published var filterTagsNames: [String] = []
 
     @Published var mealTypes = ["Breakfast", "Lunch", "Dinner"]
     @Published var difficulties = ["Easy", "Medium", "Hard"]
@@ -364,10 +365,9 @@ class DataController: ObservableObject {
 
         save()
     }
- 
+
 
     func recipesForSelectedFilter() -> [Recipe] {
-        let filter = selectedFilter ?? .all
         var predicates = [NSPredicate]()
 
         let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
@@ -380,19 +380,28 @@ class DataController: ObservableObject {
             let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, informationPredicate, difficultyPredicate, ingredientPredicate])
             predicates.append(combinedPredicate)
         }
-        if filterEnabled {
-            if !filterTags.isEmpty{
-                let tagPredicate = NSPredicate(format: "ANY tags CONTAINS %@", filterTags)
-                predicates.append(tagPredicate)
-            }
-        }
 
         let request = Recipe.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
 
         let allRecipes = (try? container.viewContext.fetch(request)) ?? []
-        return allRecipes.sorted()
+
+        var recipesForTheCurrentTags: [Recipe] {
+            var matches: [Recipe] = allRecipes
+            for recipe in allRecipes.sorted() {
+                for filterTag in filterTags {
+                    if !recipe.recipeTags.contains(filterTag){
+                        matches.removeAll { $0 == recipe}
+                    }
+                }
+            }
+            if filterEnabled {
+                return matches.sorted()
+            }
+            return allRecipes.sorted()
+        }
+        return recipesForTheCurrentTags.sorted()
     }
 
     func getCurrentWeekDates(date: Date) -> [Date] {
