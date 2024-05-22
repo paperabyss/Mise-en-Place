@@ -35,7 +35,7 @@ struct RecipeView: View {
                         .padding()
 
                     //Picture / Picture Picker
-                    HStack {
+                    VStack{HStack {
                         Spacer()
                         if recipe.recipeStoredImage != nil { // If an there is an image for the recipe, this box will be filled with the picture.
                             Image(uiImage: recipe.recipeStoredImage!)
@@ -74,7 +74,7 @@ struct RecipeView: View {
                         }
 
                         Spacer()
-                        
+
                         VStack {
 
                             //Start of cooking time block
@@ -109,9 +109,13 @@ struct RecipeView: View {
                                 .stroke(Theme.outlines)
                         )
                         .padding(1)
+
+                    }
+                        RecipeTagsView(recipe: recipe)
+
                     }
 
-                    
+
 
                     .padding()
                     .frame(maxWidth: .infinity)

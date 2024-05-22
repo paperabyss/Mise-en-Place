@@ -40,6 +40,7 @@
 		CCDF32842AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF32832AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift */; };
 		CCFD51702BF620B8003F7D28 /* TagsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFD516F2BF620B8003F7D28 /* TagsMenuView.swift */; };
 		CCFD51722BFABE32003F7D28 /* FilterButtonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFD51712BFABE32003F7D28 /* FilterButtonMenu.swift */; };
+		CCFD51742BFDB673003F7D28 /* RecipeTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFD51732BFDB673003F7D28 /* RecipeTagsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		CCDF32832AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Step-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		CCFD516F2BF620B8003F7D28 /* TagsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsMenuView.swift; sourceTree = "<group>"; };
 		CCFD51712BFABE32003F7D28 /* FilterButtonMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonMenu.swift; sourceTree = "<group>"; };
+		CCFD51732BFDB673003F7D28 /* RecipeTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTagsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				CCB8607D2ADF3F67003ECD3A /* StepEditor.swift */,
 				CC7957C32AB7B9BC00392AD3 /* RecipeView.swift */,
 				CCD07DE92AB7AB08004432D6 /* NoRecipeView.swift */,
+				CCFD51732BFDB673003F7D28 /* RecipeTagsView.swift */,
 			);
 			path = "Recipe Views";
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				CCDF32842AA6A3C5008C4AE9 /* Step-CoreDataHelpers.swift in Sources */,
 				CC848A052B86E927008CF6AF /* Theme.swift in Sources */,
 				CC59E6272BE9F4410082ED57 /* ColorPickerView.swift in Sources */,
+				CCFD51742BFDB673003F7D28 /* RecipeTagsView.swift in Sources */,
 				CCDF14792B3504BB00794C10 /* NewMealView.swift in Sources */,
 				CC7957C42AB7B9BC00392AD3 /* RecipeView.swift in Sources */,
 				CC8D52D02A9D5EA1000C99DD /* SidebarView.swift in Sources */,
