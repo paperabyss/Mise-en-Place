@@ -121,12 +121,14 @@ struct RecipeGridView: View {
                 }
                 #endif
 
-                Menu("Filter by") {
-                    Button(dataController.filterEnabled ? "Turn Filter Off" : "Turn Filter On") {
-                        dataController.filterEnabled.toggle()
+                Menu() {
+                    Button("Clear filter") {
+                        dataController.filterTags.removeAll()
                     }
                     Divider()
                     FilterButtonMenu()
+                } label: {
+                    Label("Filter by", systemImage: "slider.horizontal.3")
                 }
 
                 Button() {

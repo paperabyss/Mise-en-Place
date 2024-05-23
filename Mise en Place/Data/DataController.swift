@@ -389,17 +389,17 @@ class DataController: ObservableObject {
 
         var recipesForTheCurrentTags: [Recipe] {
             var matches: [Recipe] = allRecipes
-            for recipe in allRecipes.sorted() {
-                for filterTag in filterTags {
-                    if !recipe.recipeTags.contains(filterTag){
-                        matches.removeAll { $0 == recipe}
+
+            if !filterTags.isEmpty {
+                for recipe in allRecipes.sorted() {
+                    for filterTag in filterTags {
+                        if !recipe.recipeTags.contains(filterTag){
+                            matches.removeAll { $0 == recipe}
+                        }
                     }
                 }
             }
-            if filterEnabled {
-                return matches.sorted()
-            }
-            return allRecipes.sorted()
+            return matches.sorted()
         }
         return recipesForTheCurrentTags.sorted()
     }
