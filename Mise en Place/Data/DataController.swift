@@ -17,14 +17,13 @@ class DataController: ObservableObject {
     @Published var selectedRecipe: Recipe?
     @Published var selectedMeal: Meal?
 
-    @Published var filterText = "" 
-    @Published var filterTokens = [Ingredient]()
-    @Published var filterEnabled = false
+    @Published var filterText = ""
 
     @Published var selectedTab = "recipe"
     @Published var selectedTag = ""
+
     @Published var filterTags: [Tag] = []
-    @Published var filterTagsNames: [String] = []
+    @Published var filterIngredients: [Ingredient] = []
 
     @Published var mealTypes = ["Breakfast", "Lunch", "Dinner"]
     @Published var difficulties = ["Easy", "Medium", "Hard"]
@@ -367,6 +366,12 @@ class DataController: ObservableObject {
     }
 
 
+    func allIngredients() -> [Ingredient]{
+        let ingredientsRequest = Ingredient.fetchRequest()
+        let allIngredients = (try? container.viewContext.fetch(ingredientsRequest)) ?? []
+        return allIngredients
+    }
+
     func recipesForSelectedFilter() -> [Recipe] {
         var predicates = [NSPredicate]()
 
@@ -382,6 +387,7 @@ class DataController: ObservableObject {
         }
 
         let request = Recipe.fetchRequest()
+
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
 
@@ -395,6 +401,11 @@ class DataController: ObservableObject {
                     for filterTag in filterTags {
                         if !recipe.recipeTags.contains(filterTag){
                             matches.removeAll { $0 == recipe}
+                        }
+                    }
+                    for filterIngredient in filterIngredients {
+                        if !recipe.recipeIngredients.contains(filterIngredient){
+                            matches.removeAll {$0 == recipe}
                         }
                     }
                 }

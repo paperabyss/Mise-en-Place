@@ -127,6 +127,9 @@ struct RecipeGridView: View {
                     }
                     Divider()
                     FilterButtonMenu()
+
+                    Divider()
+                    IngredientFilterMenu()
                 } label: {
                     Label("Filter by", systemImage: "slider.horizontal.3")
                 }

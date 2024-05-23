@@ -15,11 +15,8 @@ struct FilterButtonMenu: View {
             Button {
                 if dataController.filterTags.contains(tag){
                     dataController.filterTags.removeAll(where: { $0 == tag})
-                    dataController.filterTagsNames.removeAll { $0 == tag.tagName}
                 } else {
                     dataController.filterTags.append(tag)
-                    dataController.filterTagsNames.append(tag.tagName)
-                    print(dataController.filterTags)
                 }
             } label: {
                 HStack{
