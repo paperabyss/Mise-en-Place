@@ -369,7 +369,7 @@ class DataController: ObservableObject {
     func allIngredients() -> [Ingredient]{
         let ingredientsRequest = Ingredient.fetchRequest()
         let allIngredients = (try? container.viewContext.fetch(ingredientsRequest)) ?? []
-        return allIngredients
+        return allIngredients.sorted()
     }
 
     func recipesForSelectedFilter() -> [Recipe] {
