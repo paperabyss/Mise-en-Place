@@ -372,6 +372,25 @@ class DataController: ObservableObject {
         return allIngredients.sorted()
     }
 
+    func uniqueIngredients() -> [Ingredient] {
+        var uniqueIngredients: [Ingredient] = []
+        for ingredient in allIngredients() {
+            var match = false
+            for uniqueIngredient in uniqueIngredients {
+                if uniqueIngredient.ingredientName == ingredient.ingredientName{
+                    match = true
+                }
+            }
+            if !match {
+                uniqueIngredients.append(ingredient)
+            }
+        }
+
+        return uniqueIngredients
+    }
+
+
+
     func recipesForSelectedFilter() -> [Recipe] {
         var predicates = [NSPredicate]()
 
@@ -385,6 +404,7 @@ class DataController: ObservableObject {
             let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, informationPredicate, difficultyPredicate, ingredientPredicate])
             predicates.append(combinedPredicate)
         }
+
 
         let request = Recipe.fetchRequest()
 
@@ -403,7 +423,7 @@ class DataController: ObservableObject {
                             matches.removeAll { $0 == recipe}
                         }
                     }
-                    for filterIngredient in filterIngredients {
+                    for filterIngredient in filterIngredients{
                         if !recipe.recipeIngredients.contains(filterIngredient){
                             matches.removeAll {$0 == recipe}
                         }

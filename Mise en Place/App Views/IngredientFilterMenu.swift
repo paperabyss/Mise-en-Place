@@ -11,7 +11,8 @@ struct IngredientFilterMenu: View {
     @EnvironmentObject var dataController: DataController
 
     var body: some View {
-        ForEach(dataController.allIngredients()) { ingredient in
+
+        ForEach(dataController.uniqueIngredients()) { ingredient in
             Button {
                 if dataController.filterIngredients.contains(ingredient){
                     dataController.filterIngredients.removeAll(where: { $0 == ingredient})
@@ -27,6 +28,7 @@ struct IngredientFilterMenu: View {
                     }
                 }
             }
+
         }
     }
 }
