@@ -11,19 +11,18 @@ struct IngredientFilterMenu: View {
     @EnvironmentObject var dataController: DataController
 
     var body: some View {
-
         ForEach(dataController.uniqueIngredients()) { ingredient in
             Button {
-                if dataController.filterIngredients.contains(ingredient){
-                    dataController.filterIngredients.removeAll(where: { $0 == ingredient})
+                if dataController.filterIngredients.contains(ingredient.ingredientName){
+                    dataController.filterIngredients.removeAll(where: { $0 == ingredient.ingredientName})
 
                 } else {
-                    dataController.filterIngredients.append(ingredient)
+                    dataController.filterIngredients.append(ingredient.ingredientName)
                 }
             } label: {
                 HStack{
                     Text(ingredient.ingredientName)
-                    if dataController.filterIngredients.contains(ingredient) {
+                    if dataController.filterIngredients.contains(ingredient.ingredientName) {
                         Image(systemName: "checkmark")
                     }
                 }

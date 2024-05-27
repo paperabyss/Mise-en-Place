@@ -88,6 +88,14 @@ extension Recipe {
         return result.sorted()
     }
 
+    var recipeIngredeintNames: [String] {
+        var names: [String] = []
+        for ingredient in recipeIngredients {
+            names.append(ingredient.ingredientName)
+        }
+        return names
+    }
+
     var recipeSteps: [Step] {
         var result = steps?.allObjects as? [Step] ?? []
         result.sort { $0.number < $1.number}

@@ -23,7 +23,8 @@ class DataController: ObservableObject {
     @Published var selectedTag = ""
 
     @Published var filterTags: [Tag] = []
-    @Published var filterIngredients: [Ingredient] = []
+    @Published var filterIngredients: [String] = []
+    
 
     @Published var mealTypes = ["Breakfast", "Lunch", "Dinner"]
     @Published var difficulties = ["Easy", "Medium", "Hard"]
@@ -405,6 +406,11 @@ class DataController: ObservableObject {
             predicates.append(combinedPredicate)
         }
 
+//        if !filterIngredients.isEmpty {
+//            let filterIngredientsPredicate = NSPredicate(format: "ANY ingredients.name IN %@", filterIngredients)
+//            predicates.append(filterIngredientsPredicate)
+//        }
+
 
         let request = Recipe.fetchRequest()
 
@@ -423,16 +429,23 @@ class DataController: ObservableObject {
                             matches.removeAll { $0 == recipe}
                         }
                     }
-                    for filterIngredient in filterIngredients{
-                        if !recipe.recipeIngredients.contains(filterIngredient){
-                            matches.removeAll {$0 == recipe}
-                        }
+                }
+            }
+            return matches.sorted()
+        }
+
+        var recipesForTheCurrentIngredients: [Recipe] {
+            var matches: [Recipe] = recipesForTheCurrentTags
+            for recipe in recipesForTheCurrentTags {
+                for ingredient in filterIngredients {
+                    if !recipe.recipeIngredeintNames.contains(ingredient){
+                        matches.removeAll { $0 == recipe}
                     }
                 }
             }
             return matches.sorted()
         }
-        return recipesForTheCurrentTags.sorted()
+        return recipesForTheCurrentIngredients.sorted()
     }
 
     func getCurrentWeekDates(date: Date) -> [Date] {
