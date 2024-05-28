@@ -21,6 +21,7 @@ class DataController: ObservableObject {
 
     @Published var selectedTab = "recipe"
     @Published var selectedTag = ""
+    var selectedTags: [Tag] = []
 
     @Published var filterTags: [Tag] = []
     @Published var filterIngredients: [String] = []
@@ -243,8 +244,6 @@ class DataController: ObservableObject {
         return allTags
     }
 
-    var selectedTags: [Tag] = []
-
     func missingTags(from recipe: Recipe) -> [Tag] {
         let request = Tag.fetchRequest()
         let allTags = (try? container.viewContext.fetch(request)) ?? []
@@ -406,12 +405,6 @@ class DataController: ObservableObject {
             predicates.append(combinedPredicate)
         }
 
-//        if !filterIngredients.isEmpty {
-//            let filterIngredientsPredicate = NSPredicate(format: "ANY ingredients.name IN %@", filterIngredients)
-//            predicates.append(filterIngredientsPredicate)
-//        }
-
-
         let request = Recipe.fetchRequest()
 
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
@@ -479,6 +472,7 @@ class DataController: ObservableObject {
 
         return dateFormatter.string(from: date)
     }
+
     func getCurrentWeekDatesFormatted(date: Date) -> [String] {
         let calendar = Calendar.current
         let currentDate = date
@@ -548,22 +542,5 @@ class DataController: ObservableObject {
         } else {
             columnSize = 100
         }
-    }
-
-
-    func convertToJSONArray(moArray: [NSManagedObject]) -> Any {
-        var jsonArray: [[String: Any]] = []
-        for item in moArray {
-            var dict: [String: Any] = [:]
-            for attribute in item.entity.attributesByName {
-                //check if value is present, then add key to dictionary so as to avoid the nil value crash
-                if let value = item.value(forKey: attribute.key) {
-                    dict[attribute.key] = value
-                }
-            }
-            jsonArray.append(dict)
-        }
-        print(jsonArray)
-        return jsonArray
     }
 }
