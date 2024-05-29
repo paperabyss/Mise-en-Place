@@ -91,7 +91,7 @@ extension Recipe {
     var recipeIngredeintNames: [String] {
         var names: [String] = []
         for ingredient in recipeIngredients {
-            names.append(ingredient.ingredientName)
+            names.append(ingredient.ingredientName.lowercased())
         }
         return names
     }

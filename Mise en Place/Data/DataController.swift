@@ -392,11 +392,12 @@ class DataController: ObservableObject {
 
 
     func recipesForSelectedFilter() -> [Recipe] {
+
         var predicates = [NSPredicate]()
 
+        //The following is a filter based on the assumption you are searching for only one thing.
         let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
-
-        if !trimmedFilterText.isEmpty {
+        if !trimmedFilterText.isEmpty && !filterText.contains(", "){
             let titlePredicate = NSPredicate(format: "title CONTAINS[c] %@", trimmedFilterText)
             let informationPredicate = NSPredicate(format: "information CONTAINS[c] %@", trimmedFilterText)
             let difficultyPredicate = NSPredicate(format: "difficulty CONTAINS[c] %@", trimmedFilterText)
@@ -405,40 +406,54 @@ class DataController: ObservableObject {
             predicates.append(combinedPredicate)
         }
 
+
+
         let request = Recipe.fetchRequest()
-
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        
-
         let allRecipes = (try? container.viewContext.fetch(request)) ?? []
 
-        var recipesForTheCurrentTags: [Recipe] {
+
+
+        //The Following filters based on what currently selected filters the user has selected.
+        var matches: [Recipe] {
             var matches: [Recipe] = allRecipes
 
-            if !filterTags.isEmpty {
-                for recipe in allRecipes.sorted() {
+
+
+            for recipe in allRecipes.sorted(){
+
+                if !filterTags.isEmpty {
                     for filterTag in filterTags {
                         if !recipe.recipeTags.contains(filterTag){
                             matches.removeAll { $0 == recipe}
                         }
                     }
                 }
+
+                if !filterIngredients.isEmpty {
+                    for ingredient in filterIngredients {
+                        if !recipe.recipeIngredeintNames.contains(ingredient.lowercased()){
+                            matches.removeAll { $0 == recipe}
+                        }
+                    }
+                }
+
+                if trimmedFilterText.contains(","){
+                    let array = trimmedFilterText.lowercased().components(separatedBy: ", ")
+                    for ingredient in array{
+                        if !recipe.recipeIngredeintNames.contains(ingredient){
+                            matches.removeAll { $0 == recipe}
+                        }
+                    }
+                }
+
+
             }
             return matches.sorted()
         }
 
-        var recipesForTheCurrentIngredients: [Recipe] {
-            var matches: [Recipe] = recipesForTheCurrentTags
-            for recipe in recipesForTheCurrentTags {
-                for ingredient in filterIngredients {
-                    if !recipe.recipeIngredeintNames.contains(ingredient){
-                        matches.removeAll { $0 == recipe}
-                    }
-                }
-            }
-            return matches.sorted()
-        }
-        return recipesForTheCurrentIngredients.sorted()
+
+        return matches.sorted()
     }
 
     func getCurrentWeekDates(date: Date) -> [Date] {
