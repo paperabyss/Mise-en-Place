@@ -55,6 +55,7 @@ class DataController: ObservableObject {
         "Mint", //Done
         "Nana", //Done
         "Momo", //Done
+        "Rec-Diffs"
     ]
 
     @Published var columnSize = 100

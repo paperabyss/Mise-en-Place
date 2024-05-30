@@ -42,6 +42,8 @@ struct Theme {
 
         case "Momo": momoTheme()
 
+        case "Rec-Diffs": recDiffsTheme()
+
         default: defaultTheme()
         }
 
@@ -175,6 +177,12 @@ struct Theme {
     static func purpleAndPinkTheme() {
         outlines = Color(hex: "D60270")
         interactiveElements = Color(hex: "9B4F96")
+        text = .primary
+    }
+
+    static func recDiffsTheme() {
+        outlines = Color(red: 184/255, green: 70/255, blue: 61/255)
+        interactiveElements = Color(red: 78/255, green: 122/255, blue: 152/255)
         text = .primary
     }
 }
