@@ -25,7 +25,17 @@ class DataController: ObservableObject {
 
     @Published var filterTags: [Tag] = []
     @Published var filterIngredients: [String] = []
-    
+
+    var suggestedTokens: [Ingredient] {
+        if filterText.starts(with: "#") {
+            return uniqueIngredients()
+        } else {
+            return []
+        }
+    }
+
+    var currentTokens: [Ingredient] = []
+
 
     @Published var mealTypes = ["Breakfast", "Lunch", "Dinner"]
     @Published var difficulties = ["Easy", "Medium", "Hard"]
