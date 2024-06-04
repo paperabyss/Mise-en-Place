@@ -143,7 +143,7 @@ struct RecipeGridView: View {
                     Label("New Recipe",systemImage: "square.and.pencil")
                 }
             }
-            .searchable(text: $dataController.filterText, tokens: $dataController.currentTokens, suggestedTokens: .constant(dataController.suggestedTokens))
+            .searchable(text: $dataController.filterText, tokens: $dataController.currentTokens, suggestedTokens: dataController.suggestedTokens)
         }
     }
 }
